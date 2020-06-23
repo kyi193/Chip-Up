@@ -3,6 +3,8 @@ import { Platform, StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { createStore } from 'redux'
+import reducer from './reducers'
+import middleware from './middleware'
 
 export default class App extends React.Component {
   render() {
