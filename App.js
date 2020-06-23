@@ -5,6 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { createStore } from 'redux'
 import reducer from './reducers'
 import middleware from './middleware'
+import MainMenu from './components/MainMenu'
 
 export default class App extends React.Component {
   render() {
