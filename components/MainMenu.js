@@ -12,7 +12,7 @@ class MainMenu extends Component {
     return (
       <View style={styles.container}>
         <ActionButton buttonColor="rgba(42, 125, 188, 0.5)">
-          <ActionButton.Item buttonColor='#FF8C00' title="New Task" onPress={() => this.props.navigation.navigate('Chip Up Main Menu')}>
+          <ActionButton.Item buttonColor='#FF8C00' title="New Task" onPress={() => this.props.navigation.navigate('Chip Up')}>
             <Entypo name="hair-cross" style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => { }}>

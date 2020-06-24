@@ -22,7 +22,7 @@ const MainNav = () => (
       options={{ headerShown: false }}
     />
     <Stack.Screen
-      name="Chip Up Main Menu"
+      name="Chip Up"
       component={ChipUpMainMenu}
     />
   </Stack.Navigator>
