@@ -5,13 +5,14 @@ import { Entypo } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { connect } from 'react-redux'
 
 class MainMenu extends Component {
   render() {
     return (
       <View style={styles.container}>
         <ActionButton buttonColor="rgba(42, 125, 188, 0.5)">
-          <ActionButton.Item buttonColor='#FF8C00' title="New Task" onPress={() => console.log("notes tapped!")}>
+          <ActionButton.Item buttonColor='#FF8C00' title="New Task" onPress={() => this.props.navigation.navigate('Chip Up Main Menu')}>
             <Entypo name="hair-cross" style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => { }}>
@@ -39,4 +40,4 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 })
-export default MainMenu
+export default connect()(MainMenu)
