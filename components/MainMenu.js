@@ -1,21 +1,24 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import ActionButton from '../assets/circularTools/ActionButton.js'
+import { Entypo } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 class MainMenu extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ActionButton buttonColor="rgba(231,76,60,1)">
-          <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => console.log("notes tapped!")}>
-            <Icon name="android-create" style={styles.actionButtonIcon} />
+        <ActionButton buttonColor="rgba(42, 125, 188, 0.5)">
+          <ActionButton.Item buttonColor='#FF8C00' title="New Task" onPress={() => console.log("notes tapped!")}>
+            <Entypo name="hair-cross" style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => { }}>
-            <Icon name="android-notifications-none" style={styles.actionButtonIcon} />
+            <Feather name="shuffle" style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item buttonColor='#1abc9c' title="All Tasks" onPress={() => { }}>
-            <Icon name="android-done-all" style={styles.actionButtonIcon} />
+            <FontAwesome5 name="bolt" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
       </View>
@@ -30,8 +33,9 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   actionButtonIcon: {
-    fontSize: 20,
-    height: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: 30,
     color: 'white',
   },
 })

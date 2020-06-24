@@ -191,7 +191,7 @@ export default class ActionButton extends Component {
               key={index}
               position={this.props.position}
               anim={this.state.anim}
-              size={this.props.itemSize}
+              size={65}
               radius={this.props.radius}
               angle={startRadian + index * offset}
               btnColor={this.props.btnOutRange}
@@ -288,9 +288,9 @@ ActionButton.defaultProps = {
   onOverlayPress: () => { },
   backdrop: false,
   degrees: 135,
-  size: 63,
+  size: 100,
   itemSize: 36,
-  radius: 100,
+  radius: 130,
   btnOutRange: 'rgba(0,0,0,1)',
   btnOutRangeTxt: 'rgba(255,255,255,1)',
 };
