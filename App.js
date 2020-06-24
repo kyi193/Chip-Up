@@ -9,6 +9,9 @@ import reducer from './reducers'
 import middleware from './middleware'
 import MainMenu from './components/MainMenu'
 import ChipUpMainMenu from './components/ChipUpMainMenu'
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+
 
 const Stack = createStackNavigator();
 const MainNav = () => (
@@ -29,11 +32,11 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={createStore(reducer, composeWithDevTools(middleware))}>
-        <View style={{ flex: 1 }}>
+        <SafeAreaProvider style={{ flex: 1 }}>
           <NavigationContainer>
             <MainNav />
           </NavigationContainer>
-        </View>
+        </SafeAreaProvider>
       </Provider>
     );
   }
