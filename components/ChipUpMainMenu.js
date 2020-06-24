@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import { Header } from 'react-native-elements'
 import { Entypo } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
+import ChipUpPlayerNum from './ChipUpPlayerNum'
 
 class ChipUpMainMenu extends Component {
   render() {
@@ -17,7 +18,7 @@ class ChipUpMainMenu extends Component {
             backgroundColor: 'white',
             justifyContent: 'space-around',
           }} />
-        <Text>Chip Up Main Menu</Text>
+        <ChipUpPlayerNum />
       </View>
     )
   }
