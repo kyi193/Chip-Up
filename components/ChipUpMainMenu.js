@@ -5,11 +5,13 @@ import { Entypo } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import ChipUpPlayerNum from './ChipUpPlayerNum'
 import ChipUpAnteAmt from './ChipUpAnteAmt'
+import ChipUpBigBlind from './ChipUpBigBlind'
 
 class ChipUpMainMenu extends Component {
   state = {
     numOfPlayers: 9,
     ante: 15,
+    bigBlind: 10,
   }
 
   updateNumOfPlayers = (numOfPlayers) => {
@@ -38,6 +40,7 @@ class ChipUpMainMenu extends Component {
           }} />
         <ChipUpPlayerNum updateNumOfPlayers={this.updateNumOfPlayers} />
         <ChipUpAnteAmt updateAnte={this.updateAnte} />
+        <ChipUpBigBlind />
       </View>
     )
   }
