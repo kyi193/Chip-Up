@@ -26,11 +26,15 @@ class ChipUpBigBlind extends Component {
     }))
   }
   decrementBigBlind = () => {
+    const bigBlind = (this.state.bigBlind === 1) ? 1 : this.state.bigBlind - 1
+    this.props.updateBigBlind(bigBlind)
     this.setState(() => ({
       bigBlind: (this.state.bigBlind === 1) ? 1 : this.state.bigBlind - 1
     }))
   }
   incrementBigBlind = () => {
+    const bigBlind = (this.state.bigBlind === 20) ? 20 : this.state.bigBlind + 1
+    this.props.updateBigBlind(bigBlind)
     this.setState(() => ({
       bigBlind: (this.state.bigBlind === 20) ? 20 : this.state.bigBlind + 1
     }))

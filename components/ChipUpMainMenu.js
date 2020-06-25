@@ -24,7 +24,13 @@ class ChipUpMainMenu extends Component {
       ante
     }))
   }
+  updateBigBlind = (bigBlind) => {
+    this.setState(() => ({
+      bigBlind
+    }))
+  }
   render() {
+    console.log(this.state.numOfPlayers, this.state.ante, this.state.bigBlind)
     return (
       <View style={styles.container}>
         <Header
@@ -38,7 +44,7 @@ class ChipUpMainMenu extends Component {
           }} />
         <ChipUpPlayerNum updateNumOfPlayers={this.updateNumOfPlayers} />
         <ChipUpAnteAmt updateAnte={this.updateAnte} />
-        <ChipUpBigBlind />
+        <ChipUpBigBlind updateBigBlind={this.updateBigBlind} />
       </View>
     )
   }
