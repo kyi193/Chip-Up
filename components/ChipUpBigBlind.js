@@ -13,8 +13,6 @@ const DismissKeyboardHOC = (Comp) => {
   );
 };
 
-const bbAmounts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
-
 class ChipUpBigBlind extends Component {
   state = {
     bigBlind: 10
@@ -43,7 +41,6 @@ class ChipUpBigBlind extends Component {
   render() {
     console.log("Big Blind", this.state.bigBlind)
     const { bigBlind } = this.state
-    const bigBlindString = bigBlind.toString()
     return (
       <View>
         <Text>Big Blinds</Text>
@@ -100,6 +97,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 25,
   },
   inputField: {
+    flexDirection: 'column',
     width: 100,
     height: 100,
     borderColor: 'gray',
