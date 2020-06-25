@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import { Header } from 'react-native-elements'
 import { Entypo } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
@@ -30,7 +30,6 @@ class ChipUpMainMenu extends Component {
     }))
   }
   render() {
-    console.log(this.state.numOfPlayers, this.state.ante, this.state.bigBlind)
     return (
       <View style={styles.container}>
         <Header

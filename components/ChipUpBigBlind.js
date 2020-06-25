@@ -21,6 +21,7 @@ class ChipUpBigBlind extends Component {
   }
 
   onChangeBigBlind = (bigBlind) => {
+    bigBlind = parseInt(bigBlind);
     this.setState(() => ({
       bigBlind
     }))
@@ -29,48 +30,46 @@ class ChipUpBigBlind extends Component {
     const bigBlind = (this.state.bigBlind === 1) ? 1 : this.state.bigBlind - 1
     this.props.updateBigBlind(bigBlind)
     this.setState(() => ({
-      bigBlind: (this.state.bigBlind === 1) ? 1 : this.state.bigBlind - 1
+      bigBlind: bigBlind
     }))
   }
   incrementBigBlind = () => {
     const bigBlind = (this.state.bigBlind === 20) ? 20 : this.state.bigBlind + 1
     this.props.updateBigBlind(bigBlind)
     this.setState(() => ({
-      bigBlind: (this.state.bigBlind === 20) ? 20 : this.state.bigBlind + 1
+      bigBlind: bigBlind
     }))
   }
   render() {
     console.log("Big Blind", this.state.bigBlind)
     const { bigBlind } = this.state
-    const DismissKeyboardView = DismissKeyboardHOC(View)
+    const bigBlindString = bigBlind.toString()
     return (
       <View>
         <Text>Big Blinds</Text>
-        <View style={styles.container}>
-          <TouchableOpacity
-            style={styles.buttonLeft}
-            onPress={this.decrementBigBlind}
-          >
-            <AntDesign name="caretleft" size={40} color="black" />
-          </TouchableOpacity>
-          <DismissKeyboardView>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.container}>
+            <TouchableOpacity
+              style={styles.buttonLeft}
+              onPress={this.decrementBigBlind}
+            >
+              <AntDesign name="caretleft" size={40} color="black" />
+            </TouchableOpacity>
             <TextInput
-              defaultValue={bigBlind.toString()}
               style={styles.inputField}
               keyboardType='numeric'
               onChangeText={text => this.onChangeBigBlind(text)}
-              value={bigBlind.toString()}
             >
-              <Text> BB</Text>
+              {isNaN(bigBlind) ? "" : bigBlind}
             </TextInput>
-          </DismissKeyboardView>
-          <TouchableOpacity
-            style={styles.buttonRight}
-            onPress={this.incrementBigBlind}
-          >
-            <AntDesign name="caretright" size={40} color="black" />
-          </TouchableOpacity>
-        </View>
+            <TouchableOpacity
+              style={styles.buttonRight}
+              onPress={this.incrementBigBlind}
+            >
+              <AntDesign name="caretright" size={40} color="black" />
+            </TouchableOpacity>
+          </View>
+        </TouchableWithoutFeedback>
       </View>
     )
   }
