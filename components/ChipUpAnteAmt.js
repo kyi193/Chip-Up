@@ -1,36 +1,36 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-const numOfPlayers = [9, 8, 7, 6, 5, 4, 3, 2]
-class ChipUpPlayerNum extends Component {
+const anteAmounts = [15, 12.5, 10]
+class ChipUpAnteAmt extends Component {
   state = {
-    playerNum: 9
+    anteNum: 15
   }
 
-  playerNumSelection = key => (event) => {
-    this.props.updateNumOfPlayers(key)
+  anteAmtSelection = key => (event) => {
+    this.props.updateAnte(key)
     this.setState(() => ({
-      playerNum: key
+      anteNum: key
     }))
   }
   render() {
-    const { playerNum } = this.state
+    const { anteNum } = this.state
     return (
       <View>
-        <Text>How many players?</Text>
-        <View style={styles.numOfPlayers}>
-          {numOfPlayers.map((number) => (
-            number === playerNum
+        <Text>Ante Amount</Text>
+        <View style={styles.anteAmounts}>
+          {anteAmounts.map((number) => (
+            number === anteNum
               ? <TouchableOpacity
                 key={number}
                 style={styles.playerNumBoxSelected}
-                onPress={this.playerNumSelection(number)}>
-                <Text style={styles.playerNum}>{number}</Text>
+                onPress={this.anteAmtSelection(number)}>
+                <Text style={styles.playerNum}>{number}%</Text>
               </TouchableOpacity>
               : <TouchableOpacity
                 key={number}
                 style={styles.playerNumBox}
-                onPress={this.playerNumSelection(number)}>
-                <Text style={styles.playerNum}>{number}</Text>
+                onPress={this.anteAmtSelection(number)}>
+                <Text style={styles.playerNum}>{number}%</Text>
               </TouchableOpacity>
           ))}
         </View>
@@ -38,30 +38,30 @@ class ChipUpPlayerNum extends Component {
     )
   }
 }
-export default ChipUpPlayerNum
+export default ChipUpAnteAmt
 
 const styles = StyleSheet.create({
-  numOfPlayers: {
+  anteAmounts: {
     flexDirection: "row",
     justifyContent: 'flex-start'
   },
   playerNumBox: {
-    height: 45,
-    width: 45,
+    height: 60,
+    width: 60,
     borderColor: 'orange',
     borderWidth: 2,
     marginLeft: .5,
   },
   playerNumBoxSelected: {
-    height: 45,
-    width: 45,
+    height: 60,
+    width: 60,
     borderColor: 'orange',
     borderWidth: 2,
     marginLeft: .5,
     backgroundColor: 'orange'
   },
   playerNum: {
-    marginTop: 7,
+    marginTop: 15,
     textAlign: 'center',
     fontSize: 20
   }

@@ -4,9 +4,27 @@ import { Header } from 'react-native-elements'
 import { Entypo } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import ChipUpPlayerNum from './ChipUpPlayerNum'
+import ChipUpAnteAmt from './ChipUpAnteAmt'
 
 class ChipUpMainMenu extends Component {
+  state = {
+    numOfPlayers: 9,
+    ante: 15,
+  }
+
+  updateNumOfPlayers = (numOfPlayers) => {
+    this.setState(() => ({
+      numOfPlayers
+    }))
+  }
+  updateAnte = (ante) => {
+    this.setState(() => ({
+      ante
+    }))
+  }
   render() {
+    console.log('Num', this.state.numOfPlayers)
+    console.log('ANTE', this.state.ante)
     return (
       <View style={styles.container}>
         <Header
@@ -18,7 +36,8 @@ class ChipUpMainMenu extends Component {
             backgroundColor: 'white',
             justifyContent: 'space-around',
           }} />
-        <ChipUpPlayerNum />
+        <ChipUpPlayerNum updateNumOfPlayers={this.updateNumOfPlayers} />
+        <ChipUpAnteAmt updateAnte={this.updateAnte} />
       </View>
     )
   }
