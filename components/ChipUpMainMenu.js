@@ -25,8 +25,6 @@ class ChipUpMainMenu extends Component {
     }))
   }
   render() {
-    console.log('Num', this.state.numOfPlayers)
-    console.log('ANTE', this.state.ante)
     return (
       <View style={styles.container}>
         <Header
