@@ -56,9 +56,8 @@ class ChipUpBigBlind extends Component {
               style={styles.inputField}
               keyboardType='numeric'
               onChangeText={text => this.onChangeBigBlind(text)}
-            >
-              {isNaN(bigBlind) ? "" : bigBlind}
-            </TextInput>
+              value={isNaN(bigBlind) ? "" : (bigBlind > 20 || bigBlind < 1) ? "" : bigBlind.toString()}
+            />
             <TouchableOpacity
               style={styles.buttonRight}
               onPress={this.incrementBigBlind}
