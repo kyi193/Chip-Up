@@ -39,7 +39,6 @@ class ChipUpBigBlind extends Component {
     }))
   }
   render() {
-    console.log("Big Blind", this.state.bigBlind)
     const { bigBlind } = this.state
     return (
       <View>

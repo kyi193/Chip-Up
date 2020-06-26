@@ -6,12 +6,14 @@ import { Feather } from '@expo/vector-icons';
 import ChipUpPlayerNum from './ChipUpPlayerNum'
 import ChipUpAnteAmt from './ChipUpAnteAmt'
 import ChipUpBigBlind from './ChipUpBigBlind'
+import ChipUpPosition from './ChipUpPosition'
 
 class ChipUpMainMenu extends Component {
   state = {
     numOfPlayers: 9,
     ante: 15,
     bigBlind: 10,
+    position: 'UTG'
   }
 
   updateNumOfPlayers = (numOfPlayers) => {
@@ -29,6 +31,11 @@ class ChipUpMainMenu extends Component {
       bigBlind
     }))
   }
+  updatePosition = (position) => {
+    this.setState(() => ({
+      position
+    }))
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -44,6 +51,7 @@ class ChipUpMainMenu extends Component {
         <ChipUpPlayerNum updateNumOfPlayers={this.updateNumOfPlayers} />
         <ChipUpAnteAmt updateAnte={this.updateAnte} />
         <ChipUpBigBlind updateBigBlind={this.updateBigBlind} />
+        <ChipUpPosition updatePosition={this.updatePosition} />
       </View>
     )
   }
