@@ -50,7 +50,7 @@ class ChipUpBigBlind extends Component {
               style={styles.buttonLeft}
               onPress={this.decrementBigBlind}
             >
-              <AntDesign name="caretleft" size={40} color="gray" />
+              <AntDesign name="caretleft" size={30} color="black" />
             </TouchableOpacity>
             <TextInput
               style={styles.inputField}
@@ -62,7 +62,7 @@ class ChipUpBigBlind extends Component {
               style={styles.buttonRight}
               onPress={this.incrementBigBlind}
             >
-              <AntDesign name="caretright" size={40} color="gray" />
+              <AntDesign name="caretright" size={30} color="black" />
             </TouchableOpacity>
           </View>
         </TouchableWithoutFeedback>
@@ -79,30 +79,33 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   buttonLeft: {
-    height: 100,
+    height: 50,
     width: 60,
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: '#FF4500',
+    borderColor: '#D7BE69',
     borderWidth: 2,
     borderTopLeftRadius: 25,
     borderBottomLeftRadius: 25,
+    backgroundColor: '#D7BE69'
   },
   buttonRight: {
-    height: 100,
+    height: 50,
     width: 60,
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: '#FF4500',
+    borderColor: '#bf9b30',
     borderWidth: 2,
     borderTopRightRadius: 25,
     borderBottomRightRadius: 25,
+    backgroundColor: '#bf9b30'
   },
   inputField: {
     flexDirection: 'column',
     width: 100,
-    height: 100,
-    borderColor: '#FF4500',
+    height: 50,
+    borderTopColor: 'black',
+    borderBottomColor: 'black',
     borderWidth: 2,
     color: 'black',
     justifyContent: 'center',

@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
     width: 72,
     borderColor: '#A9A9A9',
     borderWidth: 2,
-    marginLeft: .5,
+    marginLeft: 2,
+    marginBottom: 5,
     borderRadius: 10,
     backgroundColor: '#A9A9A9'
   },
@@ -61,7 +62,8 @@ const styles = StyleSheet.create({
     width: 72,
     borderColor: 'orange',
     borderWidth: 2,
-    marginLeft: .5,
+    marginLeft: 2,
+    marginBottom: 5,
     backgroundColor: 'orange',
     borderRadius: 10
   },
