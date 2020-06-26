@@ -48,9 +48,11 @@ const styles = StyleSheet.create({
   playerNumBox: {
     height: 45,
     width: 45,
-    borderColor: 'orange',
+    borderColor: '#A9A9A9',
     borderWidth: 2,
     marginLeft: .5,
+    borderRadius: 10,
+    backgroundColor: '#A9A9A9'
   },
   playerNumBoxSelected: {
     height: 45,
@@ -58,11 +60,13 @@ const styles = StyleSheet.create({
     borderColor: 'orange',
     borderWidth: 2,
     marginLeft: .5,
-    backgroundColor: 'orange'
+    backgroundColor: 'orange',
+    borderRadius: 10,
   },
   playerNum: {
     marginTop: 7,
     textAlign: 'center',
-    fontSize: 20
-  }
+    fontSize: 20,
+    color: 'white'
+  },
 })
