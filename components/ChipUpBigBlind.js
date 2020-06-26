@@ -20,6 +20,7 @@ class ChipUpBigBlind extends Component {
 
   onChangeBigBlind = (bigBlind) => {
     bigBlind = parseInt(bigBlind);
+    this.props.updateBigBlind(bigBlind)
     this.setState(() => ({
       bigBlind
     }))
