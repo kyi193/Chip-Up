@@ -52,11 +52,11 @@ class ChipUpMainMenu extends Component {
               backgroundColor: 'white',
               justifyContent: 'space-around',
             }} />
-          {/* <ChipUpPlayerNum updateNumOfPlayers={this.updateNumOfPlayers} />
+          <ChipUpPlayerNum updateNumOfPlayers={this.updateNumOfPlayers} />
           <ChipUpAnteAmt updateAnte={this.updateAnte} />
           <ChipUpBigBlind updateBigBlind={this.updateBigBlind} />
-          <ChipUpPosition updatePosition={this.updatePosition} /> */}
-          <RangeChart />
+          <ChipUpPosition updatePosition={this.updatePosition} />
+          {/* <RangeChart /> */}
         </ImageBackground>
       </View>
     )

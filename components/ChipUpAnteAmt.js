@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-const anteAmounts = [15, 12.5, 10]
+const anteAmounts = [15, 12.5, 10, 0]
 class ChipUpAnteAmt extends Component {
   state = {
     anteNum: 15
