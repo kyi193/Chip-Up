@@ -96,5 +96,5 @@ export const handChart = [
 ]
 
 export const ranges = {
-  utg200: ['A4s', 'A5', 'AA', 'KK', 'QQ', 'JJ', 'AKs', 'AQs', 'AKo']
+  utg200: ['A4s', 'A5s', 'AA', 'KK', 'QQ', 'JJ', 'AKs', 'AQs', 'AKo']
 }
