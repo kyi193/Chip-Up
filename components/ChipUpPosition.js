@@ -51,7 +51,6 @@ export default ChipUpPosition
 
 const styles = StyleSheet.create({
   positions: {
-    flex: 1,
     flexWrap: 'wrap',
     flexDirection: "row",
     justifyContent: 'flex-start'

@@ -94,3 +94,7 @@ export const handChart = [
     '22'
   ]
 ]
+
+export const ranges = {
+  utg200: ['A4s', 'A5', 'AA', 'KK', 'QQ', 'JJ', 'AKs', 'AQs', 'AKo']
+}
