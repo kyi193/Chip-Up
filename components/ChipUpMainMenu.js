@@ -14,7 +14,7 @@ const backgroundImage = { uri: "https://i.imgur.com/BrFGUhA.jpg" };
 class ChipUpMainMenu extends Component {
   state = {
     numOfPlayers: 9,
-    ante: 15,
+    ante: 125,
     bigBlind: 10,
     position: 'utg'
   }

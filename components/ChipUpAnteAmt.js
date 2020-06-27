@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-const anteAmounts = [15, 12.5, 10, 0]
+const anteAmounts = [[12.5, 125], [10, 10], [0, 0]]
 class ChipUpAnteAmt extends Component {
   state = {
-    anteNum: 15
+    anteNum: 125
   }
 
   anteAmtSelection = key => (event) => {
@@ -19,18 +19,18 @@ class ChipUpAnteAmt extends Component {
         <Text>Ante Amount</Text>
         <View style={styles.anteAmounts}>
           {anteAmounts.map((number) => (
-            number === anteNum
+            number[1] === anteNum
               ? <TouchableOpacity
-                key={number}
+                key={number[1]}
                 style={styles.playerNumBoxSelected}
-                onPress={this.anteAmtSelection(number)}>
-                <Text style={styles.playerNum}>{number}%</Text>
+                onPress={this.anteAmtSelection(number[1])}>
+                <Text style={styles.playerNum}>{number[0]}%</Text>
               </TouchableOpacity>
               : <TouchableOpacity
-                key={number}
+                key={number[1]}
                 style={styles.playerNumBox}
-                onPress={this.anteAmtSelection(number)}>
-                <Text style={styles.playerNum}>{number}%</Text>
+                onPress={this.anteAmtSelection(number[1])}>
+                <Text style={styles.playerNum}>{number[0]}%</Text>
               </TouchableOpacity>
           ))}
         </View>
