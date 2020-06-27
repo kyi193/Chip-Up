@@ -58,6 +58,7 @@ class ChipUpMainMenu extends Component {
     const { position, bigBlind, ante } = this.state
     const { dispatch } = this.props
     dispatch(submitParameters(position, bigBlind, ante))
+    this.props.navigation.navigate('Range Chart')
   }
   render() {
     return (

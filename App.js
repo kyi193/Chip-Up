@@ -10,6 +10,7 @@ import middleware from './middleware'
 import MainMenu from './components/MainMenu'
 import ChipUpMainMenu from './components/ChipUpMainMenu'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import RangeChart from './components/RangeChart'
 
 
 
@@ -24,6 +25,10 @@ const MainNav = () => (
     <Stack.Screen
       name="Chip Up"
       component={ChipUpMainMenu}
+    />
+    <Stack.Screen
+      name="Range Chart"
+      component={RangeChart}
     />
   </Stack.Navigator>
 );
