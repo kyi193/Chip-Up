@@ -16,7 +16,7 @@ class ChipUpMainMenu extends Component {
     numOfPlayers: 9,
     ante: 15,
     bigBlind: 10,
-    position: 'UTG'
+    position: 'utg'
   }
 
   updateNumOfPlayers = (numOfPlayers) => {

@@ -1,9 +1,18 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-const positions = ['UTG', 'UTG+1', 'UTG+2', 'Lojack', 'Hijack', 'Cutoff', 'Button', 'SB', 'BB']
+const positions = [['UTG', 'utg'],
+['UTG+1', 'utg1'],
+['UTG+2', 'utg2'],
+['Lojack', 'lj'],
+['Hijack', 'hj'],
+['Cutoff', 'co'],
+['Button', 'btn'],
+['SB', 'sb'],
+['BB', 'bb']
+]
 class ChipUpPosition extends Component {
   state = {
-    position: 'UTG'
+    position: 'utg'
   }
 
   positionSelection = key => (event) => {
@@ -19,18 +28,18 @@ class ChipUpPosition extends Component {
         <Text>Position</Text>
         <View style={styles.positions}>
           {positions.map((number) => (
-            number === position
+            number[1] === position
               ? <TouchableOpacity
-                key={number}
+                key={number[1]}
                 style={styles.playerNumBoxSelected}
-                onPress={this.positionSelection(number)}>
-                <Text style={styles.playerNum}>{number}</Text>
+                onPress={this.positionSelection(number[1])}>
+                <Text style={styles.playerNum}>{number[0]}</Text>
               </TouchableOpacity>
               : <TouchableOpacity
-                key={number}
+                key={number[1]}
                 style={styles.playerNumBox}
-                onPress={this.positionSelection(number)}>
-                <Text style={styles.playerNum}>{number}</Text>
+                onPress={this.positionSelection(number[1])}>
+                <Text style={styles.playerNum}>{number[0]}</Text>
               </TouchableOpacity>
           ))}
         </View>
