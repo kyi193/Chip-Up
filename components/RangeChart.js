@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap'
   },
   rangeChart: {
-    height: 28.5,
-    width: 28.5,
+    height: 50,
+    width: 50,
     backgroundColor: 'gray',
     borderColor: 'black',
     borderWidth: 1,

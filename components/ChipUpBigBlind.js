@@ -15,7 +15,7 @@ const DismissKeyboardHOC = (Comp) => {
 
 class ChipUpBigBlind extends Component {
   state = {
-    bigBlind: 10
+    bigBlind: 20
   }
 
   onChangeBigBlind = (bigBlind) => {

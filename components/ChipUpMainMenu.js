@@ -28,8 +28,8 @@ function SubmitBtn({ onPress }) {
 class ChipUpMainMenu extends Component {
   state = {
     numOfPlayers: 9,
-    ante: 125,
-    bigBlind: 10,
+    ante: 0,
+    bigBlind: 20,
     position: 'utg'
   }
 
