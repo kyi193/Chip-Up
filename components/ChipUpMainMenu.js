@@ -7,6 +7,7 @@ import ChipUpPlayerNum from './ChipUpPlayerNum'
 import ChipUpAnteAmt from './ChipUpAnteAmt'
 import ChipUpBigBlind from './ChipUpBigBlind'
 import ChipUpPosition from './ChipUpPosition'
+import RangeChart from './RangeChart'
 
 const backgroundImage = { uri: "https://i.imgur.com/BrFGUhA.jpg" };
 
@@ -51,10 +52,11 @@ class ChipUpMainMenu extends Component {
               backgroundColor: 'white',
               justifyContent: 'space-around',
             }} />
-          <ChipUpPlayerNum updateNumOfPlayers={this.updateNumOfPlayers} />
+          {/* <ChipUpPlayerNum updateNumOfPlayers={this.updateNumOfPlayers} />
           <ChipUpAnteAmt updateAnte={this.updateAnte} />
           <ChipUpBigBlind updateBigBlind={this.updateBigBlind} />
-          <ChipUpPosition updatePosition={this.updatePosition} />
+          <ChipUpPosition updatePosition={this.updatePosition} /> */}
+          <RangeChart />
         </ImageBackground>
       </View>
     )
