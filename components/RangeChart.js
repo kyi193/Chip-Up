@@ -63,7 +63,7 @@ class RangeChart extends Component {
           ))}
         </View>
         <View style={styles.title}>
-          <Text style={{ fontSize: 20, color: 'black', backgroundColor: 'white', borderColor: 'orange', borderWidth: 4, padding: 10 }}>You can shove these hands from the {pos} position for {bigBlind} big blinds</Text>
+          <Text style={{ fontSize: 20, color: 'white', backgroundColor: 'gray', borderColor: 'orange', borderWidth: 4, padding: 10 }}>You can shove these hands from the {pos} position for {bigBlind} big blinds</Text>
         </View>
       </View>
     )
