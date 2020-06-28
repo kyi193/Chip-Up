@@ -5,25 +5,32 @@ import { connect } from 'react-redux'
 
 class RangeChart extends Component {
   render() {
-    const { param } = this.props
+    const { param, state } = this.props
     const range = ranges[param]
+    const position = state.chipUp.position
+    const bigBlind = state.chipUp.bigBlind
     return (
-      <View style={styles.container}>
-        {handChart.map((row) => (
-          row.map((hand) => (
-            range.includes(hand)
-              ? <View style={(Platform.OS === 'ios' || Platform.OS === 'android')
-                ? styles.highlightedios
-                : styles.highlightedweb} key={hand}>
-                <Text style={{ color: 'white', fontSize: 12, padding: 2, textAlign: 'center' }}>{hand}</Text>
-              </View>
-              : <View style={(Platform.OS === 'ios' || Platform.OS === 'android')
-                ? styles.unhighlightedios
-                : styles.unhighlightedweb} key={hand}>
-                <Text style={{ color: 'white', fontSize: 12, padding: 2, textAlign: 'center' }}>{hand}</Text>
-              </View>
-          ))
-        ))}
+      <View>
+        <View style={styles.title}>
+          <Text style={{ fontSize: 25 }}>You can shove these hands from the {position} position for {bigBlind} big blinds</Text>
+        </View>
+        <View style={styles.container}>
+          {handChart.map((row) => (
+            row.map((hand) => (
+              range.includes(hand)
+                ? <View style={(Platform.OS === 'ios' || Platform.OS === 'android')
+                  ? styles.highlightedios
+                  : styles.highlightedweb} key={hand}>
+                  <Text style={{ color: 'white', fontSize: 12, padding: 2, textAlign: 'center' }}>{hand}</Text>
+                </View>
+                : <View style={(Platform.OS === 'ios' || Platform.OS === 'android')
+                  ? styles.unhighlightedios
+                  : styles.unhighlightedweb} key={hand}>
+                  <Text style={{ color: 'white', fontSize: 12, padding: 2, textAlign: 'center' }}>{hand}</Text>
+                </View>
+            ))
+          ))}
+        </View>
       </View>
     )
   }
@@ -64,11 +71,18 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 1,
   },
+  title: {
+    flex: 1,
+    justifyContent: 'center',
+    alignContent: 'center',
+    paddingTop: 35
+  }
 })
 
 function mapStateToProps(state) {
   return {
-    param: state.chipUp
+    state,
+    param: state.chipUp.range
   }
 }
 export default connect(mapStateToProps)(RangeChart)

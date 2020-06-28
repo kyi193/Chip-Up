@@ -3,7 +3,11 @@ const reducer = (state = {}, action) => {
   switch (action.type) {
     case SUBMIT_PARAMETERS:
       {
-        state['chipUp'] = action.position + action.bigBlind + action.ante
+        state['chipUp'] = {
+          range: action.position + action.bigBlind + action.ante,
+          position: action.position,
+          bigBlind: action.bigBlind
+        }
         return state
       }
   }
