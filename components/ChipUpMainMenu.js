@@ -66,17 +66,19 @@ class ChipUpMainMenu extends Component {
         <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
           <Header
             leftComponent={<Feather name="menu" size={30} color="orange" />}
-            centerComponent={{ text: 'Chip Up', style: { color: 'black', fontSize: 24 } }}
+            centerComponent={{ text: 'Chip Up', style: { color: 'gold', fontSize: 24 } }}
             rightComponent={<Entypo name="hair-cross" size={30}
               color={'orange'} />}
             containerStyle={{
-              backgroundColor: 'white',
+              backgroundColor: 'black',
               justifyContent: 'space-around',
+              borderBottomColor: 'orange',
+              borderBottomWidth: '3',
             }} />
           <ChipUpPlayerNum updateNumOfPlayers={this.updateNumOfPlayers} />
           <ChipUpAnteAmt updateAnte={this.updateAnte} />
-          <ChipUpBigBlind updateBigBlind={this.updateBigBlind} />
           <ChipUpPosition updatePosition={this.updatePosition} />
+          <ChipUpBigBlind updateBigBlind={this.updateBigBlind} />
           {/* <RangeChart /> */}
           <SubmitBtn onPress={this.calculateRange} />
         </ImageBackground>
@@ -98,14 +100,15 @@ const styles = StyleSheet.create({
   },
   submitBtn: {
     flexDirection: 'column-reverse',
-    backgroundColor: '#B22222',
+    backgroundColor: 'orange',
     borderColor: 'gray',
-    borderWidth: 2,
+    borderWidth: 3,
     padding: 10,
     borderRadius: 7,
     height: 60,
     marginLeft: 40,
     marginRight: 40,
+    marginTop: 20,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 10

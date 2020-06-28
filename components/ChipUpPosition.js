@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 const positions = [['UTG', 'utg'],
-['UTG+1', 'utg1'],
-['UTG+2', 'utg2'],
+['UTG+1', 'utgOne'],
+['UTG+2', 'utgTwo'],
 ['Lojack', 'lj'],
 ['Hijack', 'hj'],
 ['Cutoff', 'co'],
@@ -25,7 +25,9 @@ class ChipUpPosition extends Component {
     const { position } = this.state
     return (
       <View>
-        <Text>Position</Text>
+        <View style={{ borderColor: 'gray', borderTopWidth: 2, borderBottomWidth: 2, height: 50, backgroundColor: 'black', justifyContent: 'center', alignContent: 'center' }}>
+          <Text style={{ fontSize: 25, color: 'white', textAlign: 'center' }}>Position</Text>
+        </View>
         <View style={styles.positions}>
           {positions.map((number) => (
             number[1] === position
@@ -53,7 +55,8 @@ const styles = StyleSheet.create({
   positions: {
     flexWrap: 'wrap',
     flexDirection: "row",
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    marginTop: 10,
   },
   playerNumBox: {
     height: 72,

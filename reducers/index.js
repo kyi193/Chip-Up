@@ -4,7 +4,7 @@ const reducer = (state = {}, action) => {
     case SUBMIT_PARAMETERS:
       {
         state['chipUp'] = {
-          range: action.position + action.bigBlind + action.ante,
+          range: action.bigBlind + action.position + action.ante,
           position: action.position,
           bigBlind: action.bigBlind
         }

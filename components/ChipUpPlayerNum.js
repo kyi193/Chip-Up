@@ -16,7 +16,9 @@ class ChipUpPlayerNum extends Component {
     const { playerNum } = this.state
     return (
       <View>
-        <Text>How many players?</Text>
+        <View style={{ borderBottomColor: 'gray', borderBottomWidth: 2, height: 50, backgroundColor: 'black', justifyContent: 'center', alignContent: 'center' }}>
+          <Text style={{ fontSize: 25, color: 'white', textAlign: 'center', }}>How many players?</Text>
+        </View>
         <View style={styles.numOfPlayers}>
           {numOfPlayers.map((number) => (
             number === playerNum
@@ -43,7 +45,9 @@ export default ChipUpPlayerNum
 const styles = StyleSheet.create({
   numOfPlayers: {
     flexDirection: "row",
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    marginTop: 10,
+    marginBottom: 20,
   },
   playerNumBox: {
     height: 45,

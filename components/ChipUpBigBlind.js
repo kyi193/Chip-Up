@@ -43,7 +43,6 @@ class ChipUpBigBlind extends Component {
     const { bigBlind } = this.state
     return (
       <View>
-        <Text>Big Blinds</Text>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.container}>
             <TouchableOpacity
@@ -66,8 +65,8 @@ class ChipUpBigBlind extends Component {
             </TouchableOpacity>
           </View>
         </TouchableWithoutFeedback>
-        <View style={{ width: 100, height: 30, marginLeft: 60, }}>
-          <Text style={{ fontSize: 24, textAlign: 'center' }}>BB</Text>
+        <View style={{ width: 100, height: 30, justifyContent: 'center', alignSelf: 'center' }}>
+          <Text style={{ fontSize: 24, color: 'gold', justifyContent: 'center', alignSelf: 'center' }}>BB</Text>
         </View>
       </View>
     )
@@ -77,28 +76,31 @@ class ChipUpBigBlind extends Component {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
   },
   buttonLeft: {
     height: 50,
     width: 60,
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: '#D7BE69',
+    borderColor: 'orange',
     borderWidth: 2,
     borderTopLeftRadius: 25,
     borderBottomLeftRadius: 25,
-    backgroundColor: '#D7BE69'
+    backgroundColor: 'orange'
   },
   buttonRight: {
     height: 50,
     width: 60,
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: '#bf9b30',
+    borderColor: 'orange',
     borderWidth: 2,
     borderTopRightRadius: 25,
     borderBottomRightRadius: 25,
-    backgroundColor: '#bf9b30'
+    backgroundColor: 'orange'
   },
   inputField: {
     flexDirection: 'column',
@@ -106,8 +108,8 @@ const styles = StyleSheet.create({
     height: 50,
     borderTopColor: 'gold',
     borderBottomColor: 'gold',
-    backgroundColor: 'gray',
-    color: 'gold',
+    backgroundColor: '#FFFAFA',
+    color: 'black',
     justifyContent: 'center',
     textAlign: 'center',
     fontSize: 30,

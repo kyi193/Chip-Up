@@ -16,7 +16,9 @@ class ChipUpAnteAmt extends Component {
     const { anteNum } = this.state
     return (
       <View>
-        <Text>Ante Amount</Text>
+        <View style={{ borderColor: 'gray', borderTopWidth: 2, borderBottomWidth: 2, height: 50, backgroundColor: 'black', justifyContent: 'center', alignContent: 'center' }}>
+          <Text style={{ fontSize: 25, color: 'white', textAlign: 'center' }}>Antes</Text>
+        </View>
         <View style={styles.anteAmounts}>
           {anteAmounts.map((number) => (
             number[1] === anteNum
@@ -43,7 +45,9 @@ export default ChipUpAnteAmt
 const styles = StyleSheet.create({
   anteAmounts: {
     flexDirection: "row",
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    marginTop: 10,
+    marginBottom: 20,
   },
   playerNumBox: {
     height: 60,
