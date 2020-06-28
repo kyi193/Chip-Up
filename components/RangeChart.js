@@ -11,7 +11,27 @@ class RangeChart extends Component {
     const { param, state } = this.props
     const range = ranges[param]
     const position = state.chipUp.position
+    let pos = ''
     const bigBlind = state.chipUp.bigBlind
+    if (position === 'utg') {
+      pos = 'Under the Gun'
+    } else if (position === 'utgOne') {
+      pos = 'Under the Gun + 1'
+    } else if (position === 'utgTwo') {
+      pos = 'Under the Gun + 2'
+    } else if (position === 'lj') {
+      pos = 'Lojack'
+    } else if (position === 'hj') {
+      pos = 'Hijack'
+    } else if (position === 'co') {
+      pos = 'Cut Off'
+    } else if (position === 'btn') {
+      pos = 'Button'
+    } else if (position === 'sb') {
+      pos = 'Small Blind'
+    } else if (position === 'bb') {
+      pos = 'Big Blind'
+    }
     return (
       <View style={{ flex: 1, backgroundColor: 'black' }}>
         <Header
@@ -43,7 +63,7 @@ class RangeChart extends Component {
           ))}
         </View>
         <View style={styles.title}>
-          <Text style={{ fontSize: 20, color: 'black', backgroundColor: 'white', borderColor: 'orange', borderWidth: 4, padding: 10 }}>You can shove these hands from the {position} position for {bigBlind} big blinds</Text>
+          <Text style={{ fontSize: 20, color: 'black', backgroundColor: 'white', borderColor: 'orange', borderWidth: 4, padding: 10 }}>You can shove these hands from the {pos} position for {bigBlind} big blinds</Text>
         </View>
       </View>
     )
