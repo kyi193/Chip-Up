@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 const positions = [['UTG', 'utg'],
-['UTG+1', 'utgOne'],
-['UTG+2', 'utgTwo'],
-['Lojack', 'lj'],
-['Hijack', 'hj'],
-['Cutoff', 'co'],
-['Button', 'btn'],
+['+1', 'utgOne'],
+['MP', 'utgTwo'],
+['LJ', 'lj'],
+['HJ', 'hj'],
+['CO', 'co'],
+['BTN', 'btn'],
 ['SB', 'sb'],
 ['BB', 'bb']
 ]
@@ -26,7 +26,7 @@ class ChipUpPosition extends Component {
     return (
       <View>
         <View style={{ borderColor: 'gray', borderTopWidth: 2, borderBottomWidth: 2, height: 50, backgroundColor: 'black', justifyContent: 'center', alignContent: 'center' }}>
-          <Text style={{ fontSize: 25, color: 'white', textAlign: 'center' }}>Position</Text>
+          <Text style={{ fontSize: 25, color: 'white', textAlign: 'center', fontWeight: 'bold' }}>Position</Text>
         </View>
         <View style={styles.positions}>
           {positions.map((number) => (
@@ -59,30 +59,32 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   playerNumBox: {
-    height: 72,
-    width: 72,
+    height: 39,
+    width: 39,
     borderColor: '#A9A9A9',
     borderWidth: 2,
     marginLeft: 2,
     marginBottom: 5,
     borderRadius: 10,
-    backgroundColor: '#A9A9A9'
+    backgroundColor: '#A9A9A9',
+    justifyContent: 'center',
+    alignContent: 'center',
   },
   playerNumBoxSelected: {
-    height: 72,
-    width: 72,
+    height: 39,
+    width: 39,
     borderColor: 'orange',
     borderWidth: 2,
     marginLeft: 2,
     marginBottom: 5,
     backgroundColor: 'orange',
-    borderRadius: 10
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignContent: 'center',
   },
   playerNum: {
-    marginTop: 15,
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 17,
     color: 'white',
-    fontWeight: 'bold'
   }
 })
