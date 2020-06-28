@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 const positions = [['UTG', 'utg'],
 ['+1', 'utgOne'],
-['MP', 'utgTwo'],
+['+2', 'utgTwo'],
+['MP', 'mp'],
 ['LJ', 'lj'],
 ['HJ', 'hj'],
 ['CO', 'co'],
 ['BTN', 'btn'],
-['SB', 'sb'],
-['BB', 'bb']
+['SB', 'sb']
 ]
 class ChipUpPosition extends Component {
   state = {
