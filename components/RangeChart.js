@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   highlightedios: {
     height: 28.83,
     width: 28.83,
-    backgroundColor: 'green',
+    backgroundColor: 'orange',
     borderColor: 'black',
     borderWidth: 1,
   },
