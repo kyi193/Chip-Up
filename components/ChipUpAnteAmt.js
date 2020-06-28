@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
   anteAmounts: {
     flexDirection: "row",
     justifyContent: 'flex-start',
+    alignSelf: 'center',
     marginTop: 10,
     marginBottom: 20,
   },
@@ -70,7 +71,8 @@ const styles = StyleSheet.create({
   playerNum: {
     marginTop: 15,
     textAlign: 'center',
-    fontSize: 20,
-    color: 'white'
+    fontSize: 18,
+    color: 'white',
+    fontWeight: 'bold'
   },
 })

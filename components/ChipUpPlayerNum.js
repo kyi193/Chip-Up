@@ -66,11 +66,13 @@ const styles = StyleSheet.create({
     marginLeft: 1.5,
     backgroundColor: 'orange',
     borderRadius: 10,
+    fontWeight: 'bold'
   },
   playerNum: {
     marginTop: 7,
     textAlign: 'center',
     fontSize: 20,
-    color: 'white'
+    color: 'white',
+    fontWeight: 'bold'
   },
 })

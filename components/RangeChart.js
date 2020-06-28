@@ -36,7 +36,7 @@ class RangeChart extends Component {
       <View style={{ flex: 1, backgroundColor: 'black' }}>
         <Header
           leftComponent={<Feather name="menu" size={30} color="orange" />}
-          centerComponent={{ text: 'Chip Up', style: { color: 'gold', fontSize: 24 } }}
+          centerComponent={{ text: 'Chip Up', style: { color: 'gold', fontSize: 24, fontWeight: 'bold' } }}
           rightComponent={<Entypo name="hair-cross" size={30}
             color={'orange'} />}
           containerStyle={{
