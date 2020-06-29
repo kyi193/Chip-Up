@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: 'flex-start',
     marginTop: 10,
+    alignSelf: 'center',
   },
   playerNumBox: {
     height: 39,

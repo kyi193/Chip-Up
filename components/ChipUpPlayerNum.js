@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
   numOfPlayers: {
     flexDirection: "row",
     justifyContent: 'flex-start',
+    alignSelf: 'center',
     marginTop: 10,
     marginBottom: 20,
   },

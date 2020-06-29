@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableWithoutFeedback, Keyboard, ImageBackground, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableWithoutFeedback, Keyboard, ImageBackground, TouchableOpacity, Platform } from 'react-native'
 import { Header } from 'react-native-elements'
 import { Entypo } from '@expo/vector-icons';
 import ChipUpPlayerNum from './ChipUpPlayerNum'
@@ -18,9 +18,9 @@ function SubmitBtn({ onPress }) {
   return (
     <View>
       <TouchableOpacity
-        style={styles.submitBtn}
+        style={(Platform.OS === 'ios' || Platform.OS === 'android') ? styles.submitBtn : styles.submitBtnWeb}
         onPress={onPress}>
-        <Text style={styles.submitBtnText}>Calculate</Text>
+        <Text style={(Platform.OS === 'ios' || Platform.OS === 'android') ? styles.submitBtnText : styles.submitBtnTextWeb}>Calculate</Text>
       </TouchableOpacity>
     </View>
   )
@@ -67,7 +67,7 @@ class ChipUpMainMenu extends Component {
         <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
           <Header
             leftComponent={<Ionicons name="md-arrow-round-back" size={30} color="orange" onPress={() => this.props.navigation.goBack(null)} />}
-            centerComponent={{ text: 'Chip Up', style: { color: 'gold', fontSize: 24, fontWeight: 'bold' } }}
+            centerComponent={{ text: 'Chip Up', style: { color: 'gold', fontSize: 24, } }}
             rightComponent={<Entypo name="hair-cross" size={30}
               color={'orange'} />}
             containerStyle={{
@@ -93,7 +93,7 @@ export default connect()(ChipUpMainMenu)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   backgroundImage: {
     flex: 1,
@@ -115,6 +115,27 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   submitBtnText: {
+    flex: 1,
+    color: 'white',
+    fontSize: 22,
+    textAlign: 'center',
+    fontWeight: 'bold'
+  },
+  submitBtnWeb: {
+    flexDirection: 'column-reverse',
+    backgroundColor: 'orange',
+    borderColor: 'gray',
+    borderWidth: 3,
+    padding: 10,
+    borderRadius: 7,
+    height: 60,
+    marginTop: 20,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginBottom: 10,
+    width: 400,
+  },
+  submitBtnTextWeb: {
     flex: 1,
     color: 'white',
     fontSize: 22,

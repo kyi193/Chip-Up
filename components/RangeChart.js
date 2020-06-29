@@ -45,19 +45,19 @@ class RangeChart extends Component {
             borderBottomColor: 'orange',
             borderBottomWidth: '3',
           }} />
-        <View style={styles.container}>
+        <View style={(Platform.OS === 'ios' || Platform.OS === 'android') ? styles.containerIos : styles.containerWeb}>
           {handChart.map((row) => (
             row.map((hand) => (
               range.includes(hand)
                 ? <View style={(Platform.OS === 'ios' || Platform.OS === 'android')
                   ? styles.highlightedios
                   : styles.highlightedweb} key={hand}>
-                  <Text style={{ color: 'white', fontSize: 12, padding: 2, textAlign: 'center' }}>{hand}</Text>
+                  <Text style={(Platform.OS === 'ios' || Platform.OS === 'android') ? styles.handIos : styles.handWeb}>{hand}</Text>
                 </View>
                 : <View style={(Platform.OS === 'ios' || Platform.OS === 'android')
                   ? styles.unhighlightedios
                   : styles.unhighlightedweb} key={hand}>
-                  <Text style={{ color: 'white', fontSize: 12, padding: 2, textAlign: 'center' }}>{hand}</Text>
+                  <Text style={(Platform.OS === 'ios' || Platform.OS === 'android') ? styles.handIos : styles.handWeb}>{hand}</Text>
                 </View>
             ))
           ))}
@@ -71,11 +71,21 @@ class RangeChart extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  containerIos: {
     borderTopWidth: 3,
     flexDirection: 'row',
     width: '100%',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    alignSelf: 'center',
+    maxWidth: 380
+  },
+  containerWeb: {
+    borderTopWidth: 3,
+    flexDirection: 'row',
+    width: '100%',
+    flexWrap: 'wrap',
+    alignSelf: 'center',
+    maxWidth: 655
   },
   highlightedios: {
     height: 28.83,
@@ -94,9 +104,11 @@ const styles = StyleSheet.create({
   highlightedweb: {
     height: 50,
     width: 50,
-    backgroundColor: 'green',
+    backgroundColor: 'orange',
     borderColor: 'black',
     borderWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   unhighlightedweb: {
     height: 50,
@@ -104,6 +116,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     borderColor: 'black',
     borderWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   title: {
     marginTop: 5,
@@ -116,6 +130,20 @@ const styles = StyleSheet.create({
     borderRightWidth: 4,
     borderTopWidth: 4,
     padding: 10,
+  },
+  handWeb: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignContent: 'center',
+    color: 'white',
+    fontSize: 18,
+    textAlign: 'center'
+  },
+  handIos: {
+    color: 'white',
+    fontSize: 12,
+    padding: 2,
+    textAlign: 'center'
   }
 })
 
