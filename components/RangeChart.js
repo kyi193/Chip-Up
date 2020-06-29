@@ -54,9 +54,9 @@ class RangeChart extends Component {
     return (
       <View style={{ flex: 1, backgroundColor: 'black' }}>
         <Header
-          leftComponent={<Ionicons name="md-arrow-round-back" size={30} color="orange" onPress={() => this.props.navigation.goBack(null)} />}
-          centerComponent={{ text: `${pos} - ${bigBlind} BB (${ante}% Ante)`, style: { color: 'gold', fontSize: (Platform.OS === 'ios' || Platform.OS === 'android') ? 24 : 40, fontWeight: 'bold' } }}
-          rightComponent={<Entypo name="hair-cross" size={30}
+          leftComponent={<Ionicons style={(Platform.OS === 'ios' || Platform.OS === 'android' ? {} : { paddingLeft: 25 })} name="md-arrow-round-back" size={30} color="orange" onPress={() => this.props.navigation.goBack(null)} />}
+          centerComponent={{ text: `${pos} - ${bigBlind} BB (${ante}% Ante)`, style: { color: 'gold', fontSize: (Platform.OS === 'ios' || Platform.OS === 'android') ? 14 : 40, fontWeight: 'bold' } }}
+          rightComponent={<Entypo style={(Platform.OS === 'ios' || Platform.OS === 'android' ? {} : { paddingRight: 25 })} name="hair-cross" size={30}
             color={'orange'} />}
           containerStyle={(Platform.OS === 'ios' || Platform.OS === 'android')
             ? {
@@ -91,7 +91,7 @@ class RangeChart extends Component {
           ))}
         </View>
         <View style={styles.title}>
-          <Text style={{ fontSize: 20, color: 'white', backgroundColor: 'gray', borderColor: 'orange', borderWidth: 4, padding: 10 }}>You can shove these hands from the {pos} position for {bigBlind} big blinds ({combinations}% of hands)</Text>
+          <Text style={{ fontSize: 20, color: 'white', backgroundColor: 'gray', borderColor: 'orange', borderWidth: 4, padding: 10 }}>You can shove these hands from the {pos} position for {bigBlind} big blinds ({combinations}% of total possible hands)</Text>
         </View>
       </View>
     )
