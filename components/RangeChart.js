@@ -30,6 +30,7 @@ class RangeChart extends Component {
     const position = state.chipUp.position
     let pos = ''
     const bigBlind = state.chipUp.bigBlind
+    const ante = state.chipUp.ante
     const combinations = ((this.getCombination(range) / 1326) * 100).toFixed(2)
     if (position === 'utg') {
       pos = 'UTG'
@@ -54,7 +55,7 @@ class RangeChart extends Component {
       <View style={{ flex: 1, backgroundColor: 'black' }}>
         <Header
           leftComponent={<Ionicons name="md-arrow-round-back" size={30} color="orange" onPress={() => this.props.navigation.goBack(null)} />}
-          centerComponent={{ text: `${pos} - ${bigBlind} BB`, style: { color: 'gold', fontSize: (Platform.OS === 'ios' || Platform.OS === 'android') ? 24 : 40, fontWeight: 'bold' } }}
+          centerComponent={{ text: `${pos} - ${bigBlind} BB (${ante}% Ante)`, style: { color: 'gold', fontSize: (Platform.OS === 'ios' || Platform.OS === 'android') ? 24 : 40, fontWeight: 'bold' } }}
           rightComponent={<Entypo name="hair-cross" size={30}
             color={'orange'} />}
           containerStyle={(Platform.OS === 'ios' || Platform.OS === 'android')

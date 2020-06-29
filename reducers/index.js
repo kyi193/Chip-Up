@@ -6,7 +6,8 @@ const reducer = (state = {}, action) => {
         state['chipUp'] = {
           range: action.bigBlind + action.position + action.ante,
           position: action.position,
-          bigBlind: action.bigBlind
+          bigBlind: action.bigBlind,
+          ante: action.ante
         }
         return state
       }
