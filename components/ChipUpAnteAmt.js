@@ -17,7 +17,7 @@ class ChipUpAnteAmt extends Component {
     return (
       <View>
         <View style={{ borderColor: 'gray', borderTopWidth: 2, borderBottomWidth: 2, height: 50, backgroundColor: 'black', justifyContent: 'center', alignContent: 'center' }}>
-          <Text style={{ fontSize: 25, color: 'white', textAlign: 'center', fontWeight: 'bold' }}>Antes</Text>
+          <Text style={{ fontSize: 25, color: 'white', textAlign: 'center', fontWeight: 'bold' }}>Antes (Ante/Big Blind)</Text>
         </View>
         <View style={styles.anteAmounts}>
           {anteAmounts.map((number) => (

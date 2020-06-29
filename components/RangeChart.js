@@ -14,11 +14,11 @@ class RangeChart extends Component {
     let pos = ''
     const bigBlind = state.chipUp.bigBlind
     if (position === 'utg') {
-      pos = 'Under the Gun'
+      pos = 'UTG'
     } else if (position === 'utgOne') {
-      pos = 'Under the Gun + 1'
+      pos = 'UTG+1'
     } else if (position === 'utgTwo') {
-      pos = 'Under the Gun + 2'
+      pos = 'UTG+2'
     } else if (position === 'mp') {
       pos = 'Middle Position'
     } else if (position === 'lj') {
@@ -36,7 +36,7 @@ class RangeChart extends Component {
       <View style={{ flex: 1, backgroundColor: 'black' }}>
         <Header
           leftComponent={<Feather name="menu" size={30} color="orange" />}
-          centerComponent={{ text: 'Chip Up', style: { color: 'gold', fontSize: 24, fontWeight: 'bold' } }}
+          centerComponent={{ text: `${pos} - ${bigBlind} BB`, style: { color: 'gold', fontSize: 24, fontWeight: 'bold' } }}
           rightComponent={<Entypo name="hair-cross" size={30}
             color={'orange'} />}
           containerStyle={{
