@@ -19,6 +19,8 @@ class RangeChart extends Component {
       pos = 'Under the Gun + 1'
     } else if (position === 'utgTwo') {
       pos = 'Under the Gun + 2'
+    } else if (position === 'mp') {
+      pos = 'Middle Position'
     } else if (position === 'lj') {
       pos = 'Lojack'
     } else if (position === 'hj') {
@@ -29,8 +31,6 @@ class RangeChart extends Component {
       pos = 'Button'
     } else if (position === 'sb') {
       pos = 'Small Blind'
-    } else if (position === 'bb') {
-      pos = 'Big Blind'
     }
     return (
       <View style={{ flex: 1, backgroundColor: 'black' }}>
