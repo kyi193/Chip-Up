@@ -86,9 +86,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   bannerIos: {
-    borderTopColor: 'gray',
     borderBottomColor: 'gray',
-    borderTopWidth: 2,
     borderBottomWidth: 2,
     height: 50,
     backgroundColor: 'black',

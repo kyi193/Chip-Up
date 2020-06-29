@@ -66,15 +66,24 @@ class ChipUpMainMenu extends Component {
         <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
           <Header
             leftComponent={<Ionicons name="md-arrow-round-back" size={30} color="orange" onPress={() => this.props.navigation.goBack(null)} />}
-            centerComponent={{ text: 'Chip Up', style: { color: 'gold', fontSize: 24, } }}
+            centerComponent={{ text: 'Chip Up', style: { color: 'gold', fontSize: (Platform.OS === 'ios' || Platform.OS === 'android') ? 24 : 40, fontWeight: 'bold', } }}
             rightComponent={<Entypo name="hair-cross" size={30}
               color={'orange'} />}
-            containerStyle={{
-              backgroundColor: 'black',
-              justifyContent: 'space-around',
-              borderBottomColor: 'orange',
-              borderBottomWidth: '3',
-            }} />
+            containerStyle={(Platform.OS === 'ios' || Platform.OS === 'android')
+              ? {
+                backgroundColor: 'black',
+                justifyContent: 'space-around',
+                borderBottomColor: 'orange',
+                borderBottomWidth: '3',
+              } : {
+                backgroundColor: 'black',
+                justifyContent: 'space-around',
+                borderBottomColor: 'orange',
+                borderBottomWidth: '3',
+                height: 100,
+                borderBottomColor: 'orange',
+                borderBottomWidth: 4
+              }} />
           <ChipUpPlayerNum updateNumOfPlayers={this.updateNumOfPlayers} />
           <ChipUpAnteAmt updateAnte={this.updateAnte} />
           <ChipUpPosition updatePosition={this.updatePosition} />

@@ -36,15 +36,24 @@ class RangeChart extends Component {
       <View style={{ flex: 1, backgroundColor: 'black' }}>
         <Header
           leftComponent={<Ionicons name="md-arrow-round-back" size={30} color="orange" onPress={() => this.props.navigation.goBack(null)} />}
-          centerComponent={{ text: `${pos} - ${bigBlind} BB`, style: { color: 'gold', fontSize: 24, fontWeight: 'bold' } }}
+          centerComponent={{ text: `${pos} - ${bigBlind} BB`, style: { color: 'gold', fontSize: (Platform.OS === 'ios' || Platform.OS === 'android') ? 24 : 40, fontWeight: 'bold' } }}
           rightComponent={<Entypo name="hair-cross" size={30}
             color={'orange'} />}
-          containerStyle={{
-            backgroundColor: 'black',
-            justifyContent: 'space-around',
-            borderBottomColor: 'orange',
-            borderBottomWidth: '3',
-          }} />
+          containerStyle={(Platform.OS === 'ios' || Platform.OS === 'android')
+            ? {
+              backgroundColor: 'black',
+              justifyContent: 'space-around',
+              borderBottomColor: 'orange',
+              borderBottomWidth: '3',
+            } : {
+              backgroundColor: 'black',
+              justifyContent: 'space-around',
+              borderBottomColor: 'orange',
+              borderBottomWidth: '3',
+              height: 100,
+              borderBottomColor: 'orange',
+              borderBottomWidth: 4
+            }} />
         <View style={(Platform.OS === 'ios' || Platform.OS === 'android') ? styles.containerIos : styles.containerWeb}>
           {handChart.map((row) => (
             row.map((hand) => (
@@ -80,6 +89,7 @@ const styles = StyleSheet.create({
     maxWidth: 380
   },
   containerWeb: {
+    marginTop: 10,
     borderTopWidth: 3,
     flexDirection: 'row',
     width: '100%',
