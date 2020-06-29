@@ -4,7 +4,7 @@ import { handChart, ranges } from '../utils/helpers'
 import { connect } from 'react-redux'
 import { Header } from 'react-native-elements'
 import { Entypo } from '@expo/vector-icons';
-import { Feather } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 class RangeChart extends Component {
   render() {
@@ -35,7 +35,7 @@ class RangeChart extends Component {
     return (
       <View style={{ flex: 1, backgroundColor: 'black' }}>
         <Header
-          leftComponent={<Feather name="menu" size={30} color="orange" />}
+          leftComponent={<Ionicons name="md-arrow-round-back" size={30} color="orange" onPress={() => this.props.navigation.goBack(null)} />}
           centerComponent={{ text: `${pos} - ${bigBlind} BB`, style: { color: 'gold', fontSize: 24, fontWeight: 'bold' } }}
           rightComponent={<Entypo name="hair-cross" size={30}
             color={'orange'} />}

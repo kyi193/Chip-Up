@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableWithoutFeedback, Keyboard, ImageBackground, TouchableOpacity } from 'react-native'
 import { Header } from 'react-native-elements'
 import { Entypo } from '@expo/vector-icons';
-import { Feather } from '@expo/vector-icons';
 import ChipUpPlayerNum from './ChipUpPlayerNum'
 import ChipUpAnteAmt from './ChipUpAnteAmt'
 import ChipUpBigBlind from './ChipUpBigBlind'
@@ -10,6 +9,8 @@ import ChipUpPosition from './ChipUpPosition'
 import RangeChart from './RangeChart'
 import { connect } from 'react-redux'
 import { submitParameters } from '../actions'
+import { Ionicons } from '@expo/vector-icons';
+
 
 const backgroundImage = { uri: "https://i.imgur.com/BrFGUhA.jpg" };
 
@@ -65,7 +66,7 @@ class ChipUpMainMenu extends Component {
       <View style={styles.container}>
         <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
           <Header
-            leftComponent={<Feather name="menu" size={30} color="orange" />}
+            leftComponent={<Ionicons name="md-arrow-round-back" size={30} color="orange" onPress={() => this.props.navigation.goBack(null)} />}
             centerComponent={{ text: 'Chip Up', style: { color: 'gold', fontSize: 24, fontWeight: 'bold' } }}
             rightComponent={<Entypo name="hair-cross" size={30}
               color={'orange'} />}
