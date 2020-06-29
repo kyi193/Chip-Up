@@ -11,8 +11,7 @@ import { connect } from 'react-redux'
 import { submitParameters } from '../actions'
 import { Ionicons } from '@expo/vector-icons';
 
-
-const backgroundImage = { uri: "https://i.imgur.com/BrFGUhA.jpg" };
+const backgroundImage = (Platform.OS === 'ios' || Platform.OS === 'android') ? { uri: "https://i.imgur.com/BrFGUhA.jpg" } : { uri: "https://i.imgur.com/qDG7eHT.jpg" };
 
 function SubmitBtn({ onPress }) {
   return (
