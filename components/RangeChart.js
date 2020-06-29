@@ -6,13 +6,31 @@ import { Header } from 'react-native-elements'
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 
+
+
 class RangeChart extends Component {
+  getCombination = (range) => {
+    let combinations = 0
+    for (let i = 0; i < range.length; i++) {
+      if (range[i].length === 2) {
+        combinations += 6
+      } else {
+        if (range[i][2] === 'o') {
+          combinations += 12
+        } else {
+          combinations += 4
+        }
+      }
+    }
+    return combinations
+  }
   render() {
     const { param, state } = this.props
     const range = ranges[param]
     const position = state.chipUp.position
     let pos = ''
     const bigBlind = state.chipUp.bigBlind
+    const combinations = ((this.getCombination(range) / 1326) * 100).toFixed(2)
     if (position === 'utg') {
       pos = 'UTG'
     } else if (position === 'utgOne') {
@@ -72,7 +90,7 @@ class RangeChart extends Component {
           ))}
         </View>
         <View style={styles.title}>
-          <Text style={{ fontSize: 20, color: 'white', backgroundColor: 'gray', borderColor: 'orange', borderWidth: 4, padding: 10 }}>You can shove these hands from the {pos} position for {bigBlind} big blinds</Text>
+          <Text style={{ fontSize: 20, color: 'white', backgroundColor: 'gray', borderColor: 'orange', borderWidth: 4, padding: 10 }}>You can shove these hands from the {pos} position for {bigBlind} big blinds ({combinations}% of hands)</Text>
         </View>
       </View>
     )
