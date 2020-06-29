@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     marginBottom: 10,
-    width: 400,
+    width: 250,
   },
   submitBtnTextWeb: {
     flex: 1,

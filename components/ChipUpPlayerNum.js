@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native'
 const numOfPlayers = [9, 8, 7, 6, 5, 4, 3, 2]
 class ChipUpPlayerNum extends Component {
   state = {
@@ -16,7 +16,7 @@ class ChipUpPlayerNum extends Component {
     const { playerNum } = this.state
     return (
       <View>
-        <View style={{ borderBottomColor: 'gray', borderBottomWidth: 2, height: 50, backgroundColor: 'black', justifyContent: 'center', alignContent: 'center' }}>
+        <View style={(Platform.OS === 'ios' || Platform.OS === 'android') ? styles.bannerIos : styles.bannerWeb}>
           <Text style={{ fontSize: 25, color: 'white', textAlign: 'center', fontWeight: 'bold' }}>How many players?</Text>
         </View>
         <View style={styles.numOfPlayers}>
@@ -74,4 +74,25 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'white',
   },
+  bannerWeb: {
+    marginTop: 20,
+    borderColor: 'gray',
+    borderWidth: 2,
+    height: 50,
+    backgroundColor: 'black',
+    justifyContent: 'center',
+    alignContent: 'center',
+    width: 450,
+    alignSelf: 'center'
+  },
+  bannerIos: {
+    borderTopColor: 'gray',
+    borderBottomColor: 'gray',
+    borderTopWidth: 2,
+    borderBottomWidth: 2,
+    height: 50,
+    backgroundColor: 'black',
+    justifyContent: 'center',
+    alignContent: 'center',
+  }
 })

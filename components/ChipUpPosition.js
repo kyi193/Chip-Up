@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native'
 const positions = [['UTG', 'utg'],
 ['+1', 'utgOne'],
 ['+2', 'utgTwo'],
@@ -25,7 +25,7 @@ class ChipUpPosition extends Component {
     const { position } = this.state
     return (
       <View>
-        <View style={{ borderColor: 'gray', borderTopWidth: 2, borderBottomWidth: 2, height: 50, backgroundColor: 'black', justifyContent: 'center', alignContent: 'center' }}>
+        <View style={(Platform.OS === 'ios' || Platform.OS === 'android') ? styles.bannerIos : styles.bannerWeb}>
           <Text style={{ fontSize: 25, color: 'white', textAlign: 'center', fontWeight: 'bold' }}>Position</Text>
         </View>
         <View style={styles.positions}>
@@ -87,5 +87,25 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 17,
     color: 'white',
+  },
+  bannerWeb: {
+    borderColor: 'gray',
+    borderWidth: 2,
+    height: 50,
+    backgroundColor: 'black',
+    justifyContent: 'center',
+    alignContent: 'center',
+    width: 450,
+    alignSelf: 'center'
+  },
+  bannerIos: {
+    borderTopColor: 'gray',
+    borderBottomColor: 'gray',
+    borderTopWidth: 2,
+    borderBottomWidth: 2,
+    height: 50,
+    backgroundColor: 'black',
+    justifyContent: 'center',
+    alignContent: 'center',
   }
 })

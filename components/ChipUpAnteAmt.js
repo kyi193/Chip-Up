@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native'
 const anteAmounts = [[10, 10], [0, 0]]
 class ChipUpAnteAmt extends Component {
   state = {
@@ -16,7 +16,7 @@ class ChipUpAnteAmt extends Component {
     const { anteNum } = this.state
     return (
       <View>
-        <View style={{ borderColor: 'gray', borderTopWidth: 2, borderBottomWidth: 2, height: 50, backgroundColor: 'black', justifyContent: 'center', alignContent: 'center' }}>
+        <View style={(Platform.OS === 'ios' || Platform.OS === 'android') ? styles.bannerIos : styles.bannerWeb}>
           <Text style={{ fontSize: 25, color: 'white', textAlign: 'center', fontWeight: 'bold' }}>Antes (Ante/Big Blind)</Text>
         </View>
         <View style={styles.anteAmounts}>
@@ -74,4 +74,24 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'white',
   },
+  bannerWeb: {
+    borderColor: 'gray',
+    borderWidth: 2,
+    height: 50,
+    backgroundColor: 'black',
+    justifyContent: 'center',
+    alignContent: 'center',
+    width: 450,
+    alignSelf: 'center'
+  },
+  bannerIos: {
+    borderTopColor: 'gray',
+    borderBottomColor: 'gray',
+    borderTopWidth: 2,
+    borderBottomWidth: 2,
+    height: 50,
+    backgroundColor: 'black',
+    justifyContent: 'center',
+    alignContent: 'center',
+  }
 })
