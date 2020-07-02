@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, Platform } from 'react-native'
 import { Header } from 'react-native-elements'
 import { Entypo, Ionicons } from '@expo/vector-icons';
+import PlayerOneCards from './PlayerOneCards'
+import PlayerTwoCards from './PlayerTwoCards'
 
 
 class EquitoolMainMenu extends Component {
@@ -27,6 +29,8 @@ class EquitoolMainMenu extends Component {
               height: 100,
               borderBottomWidth: 4
             }} />
+        <PlayerOneCards />
+        <PlayerTwoCards />
       </View>
     )
   }
@@ -35,7 +39,6 @@ class EquitoolMainMenu extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-between',
   }
 })
 export default EquitoolMainMenu
