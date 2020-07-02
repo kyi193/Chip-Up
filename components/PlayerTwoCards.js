@@ -4,6 +4,7 @@ class PlayerTwoCards extends Component {
   state = {
     cardOneHighLighted: false,
     cardTwoHighLighted: false,
+    cardSelected: 'none'
   }
 
   cardOneSelected = () => {
@@ -11,12 +12,14 @@ class PlayerTwoCards extends Component {
     if (cardOneHighLighted && !cardTwoHighLighted) {
       this.setState(() => ({
         cardOneHighLighted: false,
-        cardTwoHighLighted: false
+        cardTwoHighLighted: false,
+        cardSelected: 'none',
       }))
     } else {
       this.setState(() => ({
         cardOneHighLighted: !cardOneHighLighted,
-        cardTwoHighLighted: (cardOneHighLighted === cardTwoHighLighted) ? cardTwoHighLighted : !cardTwoHighLighted
+        cardTwoHighLighted: (cardOneHighLighted === cardTwoHighLighted) ? cardTwoHighLighted : !cardTwoHighLighted,
+        cardSelected: 'one'
       }))
     }
   }
@@ -25,17 +28,19 @@ class PlayerTwoCards extends Component {
     if (cardTwoHighLighted && !cardOneHighLighted) {
       this.setState(() => ({
         cardOneHighLighted: false,
-        cardTwoHighLighted: false
+        cardTwoHighLighted: false,
+        cardSelected: 'none'
       }))
     } else {
       this.setState(() => ({
         cardTwoHighLighted: !cardTwoHighLighted,
-        cardOneHighLighted: (cardTwoHighLighted === cardOneHighLighted) ? cardOneHighLighted : !cardOneHighLighted
+        cardOneHighLighted: (cardTwoHighLighted === cardOneHighLighted) ? cardOneHighLighted : !cardOneHighLighted,
+        cardSelected: 'two'
       }))
     }
   }
   render() {
-    const { cardOneHighLighted, cardTwoHighLighted } = this.state
+    const { cardOneHighLighted, cardTwoHighLighted, cardSelected } = this.state
     return (
       <View style={styles.container}>
         <TouchableWithoutFeedback onPress={this.cardOneSelected}>
@@ -48,6 +53,11 @@ class PlayerTwoCards extends Component {
             <Text>Card 2</Text>
           </View>
         </TouchableWithoutFeedback>
+        {cardSelected !== 'none'
+          ? <View style={{ width: 500, height: 100, borderWidth: 2, borderColor: 'black' }}>
+            <Text>Wazzah</Text>
+          </View>
+          : <View></View>}
       </View>
     )
   }
