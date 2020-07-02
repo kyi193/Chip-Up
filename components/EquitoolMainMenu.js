@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, Platform } from 'react-native'
 import { Header } from 'react-native-elements'
 import { Entypo, Ionicons } from '@expo/vector-icons';
+
+
 class EquitoolMainMenu extends Component {
   render() {
     return (
@@ -15,7 +17,7 @@ class EquitoolMainMenu extends Component {
             ? {
               backgroundColor: 'black',
               justifyContent: 'space-around',
-              borderBottomColor: 'silvere',
+              borderBottomColor: 'silver',
               borderBottomWidth: '3',
             } : {
               backgroundColor: 'black',
