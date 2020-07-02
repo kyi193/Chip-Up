@@ -15,7 +15,7 @@ class MainMenu extends Component {
           <ActionButton.Item buttonColor='#FF8C00' title="New Task" btnOutRange='#ffffff' onPress={() => this.props.navigation.navigate('Chip Up')}>
             <Entypo name="hair-cross" style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => { }}>
+          <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => this.props.navigation.navigate('Equitool')}>
             <Feather name="shuffle" style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item buttonColor='#1abc9c' title="All Tasks" onPress={() => { }}>

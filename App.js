@@ -11,6 +11,7 @@ import MainMenu from './components/MainMenu'
 import ChipUpMainMenu from './components/ChipUpMainMenu'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import RangeChart from './components/RangeChart'
+import EquitoolMainMenu from './components/EquitoolMainMenu'
 
 
 
@@ -29,6 +30,10 @@ const MainNav = () => (
     <Stack.Screen
       name="Range Chart"
       component={RangeChart}
+    />
+    <Stack.Screen
+      name="Equitool"
+      component={EquitoolMainMenu}
     />
   </Stack.Navigator>
 );
