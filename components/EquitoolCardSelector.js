@@ -9,16 +9,23 @@ class EquitoolCardSelector extends Component {
     return r.keys().map(r);
   }
   render() {
-    const { playerOneCardA,
+    const {
+      playerOneCardA,
       playerOneCardB,
       playerTwoCardA,
-      playerTwoCardB } = this.props
+      playerTwoCardB,
+      flopOneCard,
+      flopTwoCard,
+      flopThreeCard,
+      turnCard
+    } = this.props
     listOfCards = this.importAll(require.context('../assets/images/cards', false, /\.(png|jpe?g|svg)$/));
     return (
       <View style={{ width: 1300, height: 400, flexDirection: 'row', flexWrap: 'wrap', }}>
         {listOfCards.map(
           (image, index) =>
-            ((!image.includes(playerOneCardA) && !image.includes(playerOneCardB) && !image.includes(playerTwoCardA) && !image.includes(playerTwoCardB)))
+            ((!image.includes(playerOneCardA) && !image.includes(playerOneCardB) && !image.includes(playerTwoCardA) && !image.includes(playerTwoCardB)
+              && !image.includes(flopOneCard) && !image.includes(flopTwoCard) && !image.includes(flopThreeCard) && !image.includes(turnCard)))
               ? (<TouchableWithoutFeedback key={index} onPress={() => this.props.selectCard(image)}>
                 <Image
                   key={index}
@@ -33,12 +40,16 @@ class EquitoolCardSelector extends Component {
   }
 }
 function mapStateToProps(state) {
-  const { playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB } = state.equitool
+  const { playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB, flopOneCard, flopTwoCard, flopThreeCard, turnCard } = state.equitool
   return {
     playerOneCardA,
     playerOneCardB,
     playerTwoCardA,
-    playerTwoCardB
+    playerTwoCardB,
+    flopOneCard,
+    flopTwoCard,
+    flopThreeCard,
+    turnCard
   }
 }
 
