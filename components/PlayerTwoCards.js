@@ -68,7 +68,7 @@ class PlayerTwoCards extends Component {
     }
   }
   render() {
-    const { cardOneHighLighted, cardTwoHighLighted, cardSelected, cardOneSelected, cardTwoSelected } = this.state
+    const { cardOneHighLighted, cardTwoHighLighted, cardSelected, cardOneSelected, cardTwoSelected, } = this.state
     return (
       <View style={styles.container}>
         <TouchableWithoutFeedback onPress={this.cardOneSelected}>
@@ -97,13 +97,15 @@ class PlayerTwoCards extends Component {
           ? <View style={{ width: 1300, height: 400, flexDirection: 'row', flexWrap: 'wrap', }}>
             {listOfCards.map(
               (image, index) =>
-                (<TouchableWithoutFeedback key={index} onPress={() => this.selectCard(image)}>
-                  <Image
-                    key={index}
-                    source={image}
-                    alt="info"
-                    style={styles.selectedCard} />
-                </TouchableWithoutFeedback>)
+                (image !== cardOneSelected && image !== cardTwoSelected)
+                  ? (<TouchableWithoutFeedback key={index} onPress={() => this.selectCard(image)}>
+                    <Image
+                      key={index}
+                      source={image}
+                      alt="info"
+                      style={styles.selectedCard} />
+                  </TouchableWithoutFeedback>
+                  ) : <View style={styles.blackedOut} />
             )}
           </View>
           : <View></View>}
@@ -139,6 +141,14 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 2,
     borderColor: 'black',
+    marginHorizontal: 5
+  },
+  blackedOut: {
+    height: 100,
+    width: 71,
+    borderRadius: 8,
+    borderWidth: 2,
+    backgroundColor: 'black',
     marginHorizontal: 5
   }
 })
