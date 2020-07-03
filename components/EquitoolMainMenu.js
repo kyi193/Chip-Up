@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Platform } from 'react-native'
 import { Header } from 'react-native-elements'
 import { Entypo, Ionicons } from '@expo/vector-icons';
 import EquitoolPlayerCards from './EquitoolPlayerCards'
+import EquitoolCommunityCardSelector from './EquitoolCommunityCardSelector'
 import { connect } from 'react-redux'
 import { saveEquitoolParameters } from '../actions'
 
@@ -36,6 +37,7 @@ class EquitoolMainMenu extends Component {
     dispatch(saveEquitoolParameters('empty', 'empty', 'empty', 'empty'))
   }
   render() {
+    const { playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB } = this.state
     return (
       <View style={styles.container}>
         <Header
@@ -59,6 +61,8 @@ class EquitoolMainMenu extends Component {
             }} />
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <EquitoolPlayerCards updatePlayer={this.updatePlayerOneCards} player='one' />
+          {(playerOneCardA !== 'empty' && playerOneCardB !== 'empty' && playerTwoCardA !== 'empty' && playerTwoCardB !== 'empty')
+            && <EquitoolCommunityCardSelector />}
           <EquitoolPlayerCards updatePlayer={this.updatePlayerTwoCards} player='two' />
         </View>
       </View>

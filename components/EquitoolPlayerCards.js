@@ -112,12 +112,12 @@ const styles = StyleSheet.create({
   containerOne: {
     flexDirection: 'row',
     marginTop: 20,
-    marginLeft: 20
+    marginLeft: 50
   },
   containerTwo: {
     flexDirection: 'row-reverse',
     marginTop: 20,
-    marginRight: 20
+    marginRight: 50
   },
   cardHighlighted: {
     height: 100,
