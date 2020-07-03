@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, TouchableWithoutFeedback, Image } from 'react-native'
 let listOfCards = []
-class PlayerTwoCards extends Component {
+class EquitoolPlayerCards extends Component {
   state = {
     cardOneHighLighted: false,
     cardTwoHighLighted: false,
@@ -53,13 +53,17 @@ class PlayerTwoCards extends Component {
     let value = image.substring(14, 16)
     value = value[0] + value[1].toLowerCase()
     const { cardSelected } = this.state
+    const { updatePlayer } = this.props
+
     if (cardSelected === 'one') {
+      updatePlayer(value, this.state.cardTwoValue)
       this.setState(() => ({
         cardOneSelected: image,
         cardSelected: 'none',
         cardOneValue: value
       }))
     } else {
+      updatePlayer(this.state.cardOneValue, value)
       this.setState(() => ({
         cardTwoSelected: image,
         cardSelected: 'none',
@@ -152,4 +156,4 @@ const styles = StyleSheet.create({
     marginHorizontal: 5
   }
 })
-export default PlayerTwoCards
+export default EquitoolPlayerCards

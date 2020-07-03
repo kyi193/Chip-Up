@@ -2,12 +2,31 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, Platform } from 'react-native'
 import { Header } from 'react-native-elements'
 import { Entypo, Ionicons } from '@expo/vector-icons';
-import PlayerOneCards from './PlayerOneCards'
-import PlayerTwoCards from './PlayerTwoCards'
-
+import EquitoolPlayerCards from './EquitoolPlayerCards'
 
 class EquitoolMainMenu extends Component {
+  state = {
+    playerOneCardA: '',
+    playerOneCardB: '',
+    playerTwoCardA: '',
+    playerTwoCardB: '',
+  }
+
+  updatePlayerOneCards = (cardA, cardB) => {
+    this.setState(() => ({
+      playerOneCardA: cardA,
+      playerOneCardB: cardB
+    }))
+  }
+  updatePlayerTwoCards = (cardA, cardB) => {
+    this.setState(() => ({
+      playerTwoCardA: cardA,
+      playerTwoCardB: cardB
+    }))
+  }
   render() {
+    console.log('PLAYER ONE:', this.state.playerOneCardA, this.state.playerOneCardB)
+    console.log('PLAYER TWO:', this.state.playerTwoCardA, this.state.playerTwoCardB)
     return (
       <View style={styles.container}>
         <Header
@@ -29,8 +48,8 @@ class EquitoolMainMenu extends Component {
               height: 100,
               borderBottomWidth: 4
             }} />
-        <PlayerOneCards />
-        <PlayerTwoCards />
+        <EquitoolPlayerCards updatePlayer={this.updatePlayerOneCards} />
+        <EquitoolPlayerCards updatePlayer={this.updatePlayerTwoCards} />
       </View>
     )
   }
