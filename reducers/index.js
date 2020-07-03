@@ -16,6 +16,10 @@ const reducer = (state = {}, action) => {
         playerOneCardB: action.playerOneCardB,
         playerTwoCardA: action.playerTwoCardA,
         playerTwoCardB: action.playerTwoCardB,
+        flopOneCard: action.flopOneCard,
+        flopTwoCard: action.flopTwoCard,
+        flopThreeCard: action.flopThreeCard,
+        turnCard: action.turnCard,
       }
       return state
     }

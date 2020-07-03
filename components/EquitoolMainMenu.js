@@ -41,12 +41,12 @@ class EquitoolMainMenu extends Component {
   }
   componentDidUpdate = () => {
     const { dispatch } = this.props
-    const { playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB } = this.state
-    dispatch(saveEquitoolParameters(playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB))
+    const { playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB, flopOneCard, flopTwoCard, flopThreeCard, turnCard } = this.state
+    dispatch(saveEquitoolParameters(playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB, flopOneCard, flopTwoCard, flopThreeCard, turnCard))
   }
   componentDidMount() {
     const { dispatch } = this.props
-    dispatch(saveEquitoolParameters('empty', 'empty', 'empty', 'empty'))
+    dispatch(saveEquitoolParameters('empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'))
   }
   render() {
     const { playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB } = this.state
