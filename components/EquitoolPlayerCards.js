@@ -75,29 +75,31 @@ class EquitoolPlayerCards extends Component {
   render() {
     const { cardOneHighLighted, cardTwoHighLighted, cardSelected, cardOneSelected, cardTwoSelected, } = this.state
     return (
-      <View style={styles.container}>
-        <TouchableWithoutFeedback onPress={this.cardOneSelected}>
-          {cardOneSelected === null
-            ? <View style={cardOneHighLighted ? styles.cardHighlighted : styles.cardUnhighlighted}>
-              <Text>Card 1</Text>
-            </View>
-            : <Image
-              source={cardOneSelected}
-              alt="info"
-              style={{ height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'black', marginHorizontal: 5 }} />
-          }
-        </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={this.cardTwoSelected}>
-          {cardTwoSelected === null
-            ? <View style={cardTwoHighLighted ? styles.cardHighlighted : styles.cardUnhighlighted}>
-              <Text>Card 2</Text>
-            </View>
-            : <Image
-              source={cardTwoSelected}
-              alt="info"
-              style={{ height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'black' }} />
-          }
-        </TouchableWithoutFeedback>
+      <View style={{ flexDirection: 'column' }}>
+        <View style={this.props.player === 'one' ? styles.containerOne : styles.containerTwo}>
+          <TouchableWithoutFeedback onPress={this.cardOneSelected}>
+            {cardOneSelected === null
+              ? <View style={cardOneHighLighted ? styles.cardHighlighted : styles.cardUnhighlighted}>
+                <Text>Card 1</Text>
+              </View>
+              : <Image
+                source={cardOneSelected}
+                alt="info"
+                style={{ height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'black', marginHorizontal: 5 }} />
+            }
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={this.cardTwoSelected}>
+            {cardTwoSelected === null
+              ? <View style={cardTwoHighLighted ? styles.cardHighlighted : styles.cardUnhighlighted}>
+                <Text>Card 2</Text>
+              </View>
+              : <Image
+                source={cardTwoSelected}
+                alt="info"
+                style={{ height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'black' }} />
+            }
+          </TouchableWithoutFeedback>
+        </View>
         {cardSelected !== 'none'
           ? <EquitoolCardSelector selectCard={this.selectCard} />
           : <View></View>}
@@ -107,8 +109,15 @@ class EquitoolPlayerCards extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row'
+  containerOne: {
+    flexDirection: 'row',
+    marginTop: 20,
+    marginLeft: 20
+  },
+  containerTwo: {
+    flexDirection: 'row-reverse',
+    marginTop: 20,
+    marginRight: 20
   },
   cardHighlighted: {
     height: 100,

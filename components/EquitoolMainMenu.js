@@ -57,8 +57,10 @@ class EquitoolMainMenu extends Component {
               height: 100,
               borderBottomWidth: 4
             }} />
-        <EquitoolPlayerCards updatePlayer={this.updatePlayerOneCards} />
-        <EquitoolPlayerCards updatePlayer={this.updatePlayerTwoCards} />
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <EquitoolPlayerCards updatePlayer={this.updatePlayerOneCards} player='one' />
+          <EquitoolPlayerCards updatePlayer={this.updatePlayerTwoCards} player='two' />
+        </View>
       </View>
     )
   }
