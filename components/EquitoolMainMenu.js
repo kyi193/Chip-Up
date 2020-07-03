@@ -13,6 +13,10 @@ class EquitoolMainMenu extends Component {
     playerOneCardB: 'empty',
     playerTwoCardA: 'empty',
     playerTwoCardB: 'empty',
+    flopOneCard: 'empty',
+    flopTwoCard: 'empty',
+    flopThreeCard: 'empty',
+    turnCard: 'empty',
   }
 
   updatePlayerOneCards = (cardA, cardB) => {
@@ -27,6 +31,14 @@ class EquitoolMainMenu extends Component {
       playerTwoCardB: cardB
     }))
   }
+  updateCommunityCards = (flopOneCard, flopTwoCard, flopThreeCard, turnCard) => {
+    this.setState(() => ({
+      flopOneCard,
+      flopTwoCard,
+      flopThreeCard,
+      turnCard,
+    }))
+  }
   componentDidUpdate = () => {
     const { dispatch } = this.props
     const { playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB } = this.state
@@ -38,6 +50,7 @@ class EquitoolMainMenu extends Component {
   }
   render() {
     const { playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB } = this.state
+    console.log(this.state.flopOneCard, this.state.flopTwoCard, this.state.flopThreeCard, this.state.turnCard,)
     return (
       <View style={styles.container}>
         <Header
@@ -62,7 +75,7 @@ class EquitoolMainMenu extends Component {
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <EquitoolPlayerCards updatePlayer={this.updatePlayerOneCards} player='one' />
           {(playerOneCardA !== 'empty' && playerOneCardB !== 'empty' && playerTwoCardA !== 'empty' && playerTwoCardB !== 'empty')
-            && <EquitoolCommunityCardSelector />}
+            && <EquitoolCommunityCardSelector updateCommunity={this.updateCommunityCards} />}
           <EquitoolPlayerCards updatePlayer={this.updatePlayerTwoCards} player='two' />
         </View>
       </View>
