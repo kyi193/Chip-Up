@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, TouchableWithoutFeedback, Image } from 'react-native'
+import EquitoolCardSelector from './EquitoolCardSelector'
 let listOfCards = []
 class EquitoolPlayerCards extends Component {
   state = {
@@ -8,8 +9,8 @@ class EquitoolPlayerCards extends Component {
     cardSelected: 'none',
     cardOneSelected: null,
     cardTwoSelected: null,
-    cardOneValue: '',
-    cardTwoValue: '',
+    cardOneValue: 'empty',
+    cardTwoValue: 'empty',
   }
   importAll(r) {
     return r.keys().map(r);
@@ -51,7 +52,7 @@ class EquitoolPlayerCards extends Component {
   }
   selectCard = (image) => {
     let value = image.substring(14, 16)
-    value = value[0] + value[1].toLowerCase()
+    // value = value[0] + value[1].toLowerCase()
     const { cardSelected } = this.state
     const { updatePlayer } = this.props
 
@@ -98,20 +99,7 @@ class EquitoolPlayerCards extends Component {
           }
         </TouchableWithoutFeedback>
         {cardSelected !== 'none'
-          ? <View style={{ width: 1300, height: 400, flexDirection: 'row', flexWrap: 'wrap', }}>
-            {listOfCards.map(
-              (image, index) =>
-                (image !== cardOneSelected && image !== cardTwoSelected)
-                  ? (<TouchableWithoutFeedback key={index} onPress={() => this.selectCard(image)}>
-                    <Image
-                      key={index}
-                      source={image}
-                      alt="info"
-                      style={styles.selectedCard} />
-                  </TouchableWithoutFeedback>
-                  ) : <View style={styles.blackedOut} />
-            )}
-          </View>
+          ? <EquitoolCardSelector selectCard={this.selectCard} />
           : <View></View>}
       </View>
     )

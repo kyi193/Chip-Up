@@ -3,13 +3,15 @@ import { View, Text, StyleSheet, Platform } from 'react-native'
 import { Header } from 'react-native-elements'
 import { Entypo, Ionicons } from '@expo/vector-icons';
 import EquitoolPlayerCards from './EquitoolPlayerCards'
+import { connect } from 'react-redux'
+import { saveEquitoolParameters } from '../actions'
 
 class EquitoolMainMenu extends Component {
   state = {
-    playerOneCardA: '',
-    playerOneCardB: '',
-    playerTwoCardA: '',
-    playerTwoCardB: '',
+    playerOneCardA: 'empty',
+    playerOneCardB: 'empty',
+    playerTwoCardA: 'empty',
+    playerTwoCardB: 'empty',
   }
 
   updatePlayerOneCards = (cardA, cardB) => {
@@ -24,9 +26,16 @@ class EquitoolMainMenu extends Component {
       playerTwoCardB: cardB
     }))
   }
+  componentDidUpdate = () => {
+    const { dispatch } = this.props
+    const { playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB } = this.state
+    dispatch(saveEquitoolParameters(playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB))
+  }
+  componentDidMount() {
+    const { dispatch } = this.props
+    dispatch(saveEquitoolParameters('empty', 'empty', 'empty', 'empty'))
+  }
   render() {
-    console.log('PLAYER ONE:', this.state.playerOneCardA, this.state.playerOneCardB)
-    console.log('PLAYER TWO:', this.state.playerTwoCardA, this.state.playerTwoCardB)
     return (
       <View style={styles.container}>
         <Header
@@ -59,4 +68,4 @@ const styles = StyleSheet.create({
   container: {
   }
 })
-export default EquitoolMainMenu
+export default connect()(EquitoolMainMenu)
