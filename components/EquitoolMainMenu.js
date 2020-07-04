@@ -6,6 +6,7 @@ import EquitoolPlayerCards from './EquitoolPlayerCards'
 import EquitoolCommunityCardSelector from './EquitoolCommunityCardSelector'
 import { connect } from 'react-redux'
 import { saveEquitoolParameters } from '../actions'
+import EquitoolCalculateButton from './EquitoolCalculateButton'
 
 class EquitoolMainMenu extends Component {
   state = {
@@ -77,6 +78,9 @@ class EquitoolMainMenu extends Component {
           {(playerOneCardA !== 'empty' && playerOneCardB !== 'empty' && playerTwoCardA !== 'empty' && playerTwoCardB !== 'empty')
             && <EquitoolCommunityCardSelector updateCommunity={this.updateCommunityCards} />}
           <EquitoolPlayerCards updatePlayer={this.updatePlayerTwoCards} player='two' />
+        </View>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <EquitoolCalculateButton state={this.state} />
         </View>
       </View>
     )
