@@ -1,3 +1,105 @@
+const doFor = (count, callback) => { var i = 0; while (i < count && callback(i++) !== true); }
+const suitNames = "HSDC";
+const rankNames = "23456789TJQKA";
+const allPerms = "01234,01235,01236,01245,01246,01256,01345,01346,01356,01456,02345,02346,02356,02456,03456,12345,12346,12356,12456,13456,23456".split(",");
+const cardToString = (card) => rankNames[card & 15] + suitNames[card >> 4];
+const rankingNames = "Royal flush,Straight flush,Four of a kind,Full house,Flush,Straight,Three of a kind,Two pair,Two of a kind,".split(",");
+const flushes = /00000|11111|22222|33333/;
+const straights = /01234|12345|23456|34567|45678|56789|6789a|789ab|89abc/;
+const fourOfKind = /0000|1111|2222|3333|4444|5555|6666|7777|8888|9999|aaaa|bbbb|cccc/;
+const threeOfKind = /000|111|222|333|444|555|666|777|888|999|aaa|bbb|ccc/;
+const twoOfKind = /00|11|22|33|44|55|66|77|88|99|aa|bb|cc/;
+const fullHouse = /(000|111|222|333|444|555|666|777|888|999|aaa|bbb|ccc)(00|11|22|33|44|55|66|77|88|99|aa|bb|cc)|(00|11|22|33|44|55|66|77|88|99|aa|bb|cc)(000|111|222|333|444|555|666|777|888|999|aaa|bbb|ccc)/;
+const twoPair = /(00|11|22|33|44|55|66|77|88|99|aa|bb|cc).*(00|11|22|33|44|55|66|77|88|99|aa|bb|cc)/;
+
+// snippets have no support for modules but this code
+// should run as a module to encapsulate all that stuff above.
+//export default const handEvaluator = {
+
+export const handEvaluator = {
+  parseString(input) {
+    const cards = input
+    var parsedCards;
+    if (cards.length !== 7) { return "Bad input card count not 7" }
+    try {
+      parsedCards = cards.map(card => {
+        var rank = rankNames.indexOf(card[0]);
+        if (rank === -1) { throw new Error(card) }
+        var suit = suitNames.indexOf(card[1]);
+        if (suit === -1) { throw new Error(card) }
+        return rank + (suit << 4);
+      });
+    } catch (e) { return "Bad input invalid card " + e.message }
+    try {
+      parsedCards.sort((a, b) => {
+        if (a === b) { throw new Error() }
+        const dif = (a & 15) - (b & 15);
+        if (dif === 0) { return a - b }
+        return dif;
+      });
+    } catch (e) { return "Bad input duplicated card " }
+    return parsedCards
+  },
+  evaluate(cardsArray) {
+    var suited, ranked, hand;  // holds the hex encoded 5 cards of suit only, rank only and the hand
+    // in the original format
+    var allHandsRanked = []; // to hold all combinations of 5 cards an the scores
+    const tests = {  // a set of named tests that test a hand and return true if the hand matches
+      royalFlush: () => tests.flush() && tests.straight() && tests.royal(),
+      straightFlush: () => tests.flush() && tests.straight(),
+      kind4: () => fourOfKind.test(ranked),
+      fullHouse: () => fullHouse.test(ranked),
+      flush: () => flushes.test(suited),
+      straight: () => straights.test(ranked),
+      kind3: () => threeOfKind.test(ranked),
+      twoPair: () => twoPair.test(ranked),
+      kind2: () => twoOfKind.test(ranked),
+      highCard: () => true,  // always true last type checked
+      royal: () => ranked[4] === "c",  // extra test used for royal flush
+    };
+    const ranking = Object.values(tests); // above tests as a indexed array
+    // gets index that represents one of the 21 permutations and sets
+    // ranked, suited and hand to that combination
+    function getPermutation(index) {
+      ranked = suited = hand = "";
+      doFor(5, (i) => {
+        const card = cardsArray[allPerms[index][i]];
+        ranked += (card & 15).toString(16);
+        suited += (card >> 4).toString(16);
+        hand += " " + cardToString(card);
+      });
+      hand = hand.substr(1);
+    };
+    // Rank the current hand with best score 0
+    function rankHand(permutation) {
+      getPermutation(permutation); // get the permutation
+      doFor(ranking.length, (i) => {  // test each type of hand from best to worst
+        if (ranking[i]()) {  // if test passed
+          allHandsRanked.push({ // add the hand and score the hand
+            name: rankingNames[i],
+            hand: hand,
+            score: i * 13 + (12 - parseInt(ranked[4], 16)),
+          });
+          return true;
+        }
+      });
+    }
+    doFor(allPerms.length, rankHand); // test all permutations
+    // for demo I return all cards commented code below the
+    // return return only best cards
+    return allHandsRanked
+      .sort((a, b) => a.score - b.score);
+
+    // sort and filter returning only the equal best hands
+    /*
+    return allHandsRanked
+        .sort((a,b) => a.score - b.score)
+        .filter((hand,i,arr)=> i=== 0 ? true : hand.score === arr[i-1].score);
+        */
+  }
+};
+
+
 export function generateUID() {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }

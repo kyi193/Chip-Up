@@ -7,7 +7,8 @@ import EquitoolCommunityCardSelector from './EquitoolCommunityCardSelector'
 import { connect } from 'react-redux'
 import { saveEquitoolParameters } from '../actions'
 import EquitoolCalculateButton from './EquitoolCalculateButton'
-import { deck } from '../utils/helpers'
+import { deck, handEvaluator } from '../utils/helpers'
+import 'random'
 class EquitoolMainMenu extends Component {
   state = {
     playerOneCardA: 'empty',
@@ -60,50 +61,179 @@ class EquitoolMainMenu extends Component {
       return true;
     });
   }
-  calculateOdds = () => {
-    const { playerOneCardA,
-      playerOneCardB,
-      playerTwoCardA,
-      playerTwoCardB,
-      flopOneCard,
-      flopTwoCard,
-      flopThreeCard,
-      turnCard } = this.state
-    let remainingDeck
-    const cards = (turnCard !== 'empty')
-      ? [playerOneCardA,
-        playerOneCardB,
-        playerTwoCardA,
-        playerTwoCardB,
-        flopOneCard,
-        flopTwoCard,
-        flopThreeCard,
-        turnCard]
-      : [playerOneCardA,
-        playerOneCardB,
-        playerTwoCardA,
-        playerTwoCardB,
-        flopOneCard,
-        flopTwoCard,
-        flopThreeCard,
-      ]
-    remainingDeck = this.removeCards(deck, cards)
-    if (turnCard !== 'empty') {
-      const randomCardIdx = Math.floor(Math.random() * (remainingDeck.length - 1));
-      const riverCard = remainingDeck[randomCardIdx]
-
-    } else {
-      const randomCardIdx = Math.floor(Math.random() * (remainingDeck.length - 1));
-      const turn = remainingDeck[randomCardIdx]
-      remainingDeck = this.removeCards(remainingDeck, [turn])
-      const river = remainingDeck[randomCardIdx]
-      remainingDeck = this.removeCards(remainingDeck, [river])
+  evaluateTie(handOne, handTwo) {
+    const rankNames = "23456789TJQKA";
+    if (handOne.name === 'Three of a kind') {
+      let handOneRanks = {}
+      let handTwoRanks = {}
+      let handOneArr = handOne.hand.split(' ')
+      let handTwoArr = handTwo.hand.split(' ')
+      let handOneTrips
+      let handTwoTrips
+      for (let i = 0; i < handOneArr.length; i++) {
+        let value = handOneArr[i][0]
+        if (handOneRanks[value] !== undefined) {
+          handOneRanks[value] += 1
+          if (handOneRanks[value] === 3) {
+            handOneTrips = rankNames.indexOf(value)
+          }
+        } else {
+          handOneRanks[value] = 1
+        }
+      }
+      for (let i = 0; i < handTwoArr.length; i++) {
+        let value = handTwoArr[i][0]
+        if (handTwoRanks[value] !== undefined) {
+          handTwoRanks[value] += 1
+          if (handTwoRanks[value] === 3) {
+            handTwoTrips = rankNames.indexOf(value)
+          }
+        } else {
+          handTwoRanks[value] = 1
+        }
+      }
+      if (handOneTrips > handTwoTrips) {
+        return 'one'
+      } else {
+        return 'two'
+      }
     }
+  }
+  calculateOdds = () => {
+    let playerOneWins = 0
+    let playerTwoWins = 0
+    for (let i = 0; i < 100000; i++) {
+      const { playerOneCardA,
+        playerOneCardB,
+        playerTwoCardA,
+        playerTwoCardB,
+        flopOneCard,
+        flopTwoCard,
+        flopThreeCard,
+        turnCard } = this.state
+      let remainingDeck
+      const cards = (turnCard !== 'empty')
+        ? [playerOneCardA,
+          playerOneCardB,
+          playerTwoCardA,
+          playerTwoCardB,
+          flopOneCard,
+          flopTwoCard,
+          flopThreeCard,
+          turnCard]
+        : [playerOneCardA,
+          playerOneCardB,
+          playerTwoCardA,
+          playerTwoCardB,
+          flopOneCard,
+          flopTwoCard,
+          flopThreeCard,
+        ]
+      remainingDeck = this.removeCards(deck, cards)
+      for (let j = remainingDeck.length - 1; j > 0; j--) {
+        const k = Math.floor(Math.random() * j)
+        const temp = remainingDeck[j]
+        remainingDeck[j] = remainingDeck[k]
+        remainingDeck[k] = temp
+      }
+      if (turnCard !== 'empty') {
+        const random = require('random')
+        const randomCardIdx = random.int(0, (remainingDeck.length - 1))
+        for (let j = remainingDeck.length - 1; j > 0; j--) {
+          const k = Math.floor(Math.random() * j)
+          const temp = remainingDeck[j]
+          remainingDeck[j] = remainingDeck[k]
+          remainingDeck[k] = temp
+        }
+        const riverCard = remainingDeck[randomCardIdx]
+        const playerOnehand = [playerOneCardA,
+          playerOneCardB,
+          flopOneCard,
+          flopTwoCard,
+          flopThreeCard,
+          turnCard,
+          riverCard]
+        const playerTwohand = [playerTwoCardA,
+          playerTwoCardB,
+          flopOneCard,
+          flopTwoCard,
+          flopThreeCard,
+          turnCard,
+          riverCard]
+        const playerOneCards = handEvaluator.parseString(playerOnehand)
+        const playerOneRank = handEvaluator.evaluate(playerOneCards)[0]
+        const playerTwoCards = handEvaluator.parseString(playerTwohand)
+        const playerTwoRank = handEvaluator.evaluate(playerTwoCards)[0]
 
+        if (playerOneRank.score < playerTwoRank.score) {
+          playerOneWins += 1
+        } else if (playerOneRank.score > playerTwoRank.score) {
+          console.log(playerOneRank, playerTwoRank)
+          playerTwoWins += 1
+        } else if (playerOneRank.score === playerTwoRank.score) {
+          if (this.evaluateTie(playerOneRank, playerTwoRank) === 'one') {
+            playerOneWins += 1
+          } else {
+            playerTwoWins += 1
+          }
+        }
+
+      } else {
+        const random = require('random')
+        const randomCardIdx = random.int(0, (remainingDeck.length - 1))
+        for (let j = remainingDeck.length - 1; j > 0; j--) {
+          const k = Math.floor(Math.random() * j)
+          const temp = remainingDeck[j]
+          remainingDeck[j] = remainingDeck[k]
+          remainingDeck[k] = temp
+        }
+        const turn = remainingDeck[randomCardIdx]
+        remainingDeck = this.removeCards(remainingDeck, [turn])
+        for (let j = remainingDeck.length - 1; j > 0; j--) {
+          const k = Math.floor(Math.random() * j)
+          const temp = remainingDeck[j]
+          remainingDeck[j] = remainingDeck[k]
+          remainingDeck[k] = temp
+        }
+        const river = remainingDeck[randomCardIdx]
+        remainingDeck = this.removeCards(remainingDeck, [river])
+        const playerOnehand = [playerOneCardA,
+          playerOneCardB,
+          flopOneCard,
+          flopTwoCard,
+          flopThreeCard,
+          turn,
+          river]
+        const playerTwohand = [playerTwoCardA,
+          playerTwoCardB,
+          flopOneCard,
+          flopTwoCard,
+          flopThreeCard,
+          turn,
+          river]
+        const playerOneCards = handEvaluator.parseString(playerOnehand)
+        const playerOneRank = handEvaluator.evaluate(playerOneCards)[0]
+        const playerTwoCards = handEvaluator.parseString(playerTwohand)
+        const playerTwoRank = handEvaluator.evaluate(playerTwoCards)[0]
+
+        if (playerOneRank.score < playerTwoRank.score) {
+          playerOneWins += 1
+        } else if (playerOneRank.score > playerTwoRank.score) {
+          console.log(playerOneRank, playerTwoRank)
+          playerTwoWins += 1
+        } else if (playerOneRank.score === playerTwoRank.score) {
+          if (this.evaluateTie(playerOneRank, playerTwoRank) === 'one') {
+            playerOneWins += 1
+          } else {
+            playerTwoWins += 1
+          }
+        }
+      }
+    }
+    console.log(playerOneWins, playerTwoWins)
   }
   render() {
     const { playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB } = this.state
-    console.log(this.state.flopOneCard, this.state.flopTwoCard, this.state.flopThreeCard, this.state.turnCard,)
     return (
       <View style={styles.container}>
         <Header
