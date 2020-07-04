@@ -9,12 +9,13 @@ function isButtonActive(state) {
     return false
   }
 }
-function EquitoolCalculateButton({ state }) {
+function EquitoolCalculateButton({ state, calculateOdds }) {
   return <AwesomeButton
     width={200}
     disabled={isButtonActive(state) ? false : true}
     backgroundColor={isButtonActive(state) ? '#3498db' : '#C0C0C0'}
-    springRelease={true}>
+    springRelease={true}
+    onPress={calculateOdds}>
     Calculate
     </AwesomeButton>;
 }

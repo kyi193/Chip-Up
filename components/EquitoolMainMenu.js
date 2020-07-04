@@ -7,7 +7,7 @@ import EquitoolCommunityCardSelector from './EquitoolCommunityCardSelector'
 import { connect } from 'react-redux'
 import { saveEquitoolParameters } from '../actions'
 import EquitoolCalculateButton from './EquitoolCalculateButton'
-
+import { deck } from '../utils/helpers'
 class EquitoolMainMenu extends Component {
   state = {
     playerOneCardA: 'empty',
@@ -49,6 +49,58 @@ class EquitoolMainMenu extends Component {
     const { dispatch } = this.props
     dispatch(saveEquitoolParameters('empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'))
   }
+  removeCards(arr, subset) {
+    const exclude = [...subset];
+    return arr.filter(x => {
+      const idx = exclude.indexOf(x);
+      if (idx >= 0) {
+        exclude.splice(idx, 1);
+        return false;
+      }
+      return true;
+    });
+  }
+  calculateOdds = () => {
+    const { playerOneCardA,
+      playerOneCardB,
+      playerTwoCardA,
+      playerTwoCardB,
+      flopOneCard,
+      flopTwoCard,
+      flopThreeCard,
+      turnCard } = this.state
+    let remainingDeck
+    const cards = (turnCard !== 'empty')
+      ? [playerOneCardA,
+        playerOneCardB,
+        playerTwoCardA,
+        playerTwoCardB,
+        flopOneCard,
+        flopTwoCard,
+        flopThreeCard,
+        turnCard]
+      : [playerOneCardA,
+        playerOneCardB,
+        playerTwoCardA,
+        playerTwoCardB,
+        flopOneCard,
+        flopTwoCard,
+        flopThreeCard,
+      ]
+    remainingDeck = this.removeCards(deck, cards)
+    if (turnCard !== 'empty') {
+      const randomCardIdx = Math.floor(Math.random() * (remainingDeck.length - 1));
+      const riverCard = remainingDeck[randomCardIdx]
+
+    } else {
+      const randomCardIdx = Math.floor(Math.random() * (remainingDeck.length - 1));
+      const turn = remainingDeck[randomCardIdx]
+      remainingDeck = this.removeCards(remainingDeck, [turn])
+      const river = remainingDeck[randomCardIdx]
+      remainingDeck = this.removeCards(remainingDeck, [river])
+    }
+
+  }
   render() {
     const { playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB } = this.state
     console.log(this.state.flopOneCard, this.state.flopTwoCard, this.state.flopThreeCard, this.state.turnCard,)
@@ -80,7 +132,7 @@ class EquitoolMainMenu extends Component {
           <EquitoolPlayerCards updatePlayer={this.updatePlayerTwoCards} player='two' />
         </View>
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-          <EquitoolCalculateButton state={this.state} />
+          <EquitoolCalculateButton state={this.state} calculateOdds={this.calculateOdds} />
         </View>
       </View>
     )
