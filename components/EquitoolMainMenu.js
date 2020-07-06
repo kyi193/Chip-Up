@@ -9,6 +9,7 @@ import { saveEquitoolParameters } from '../actions'
 import EquitoolCalculateButton from './EquitoolCalculateButton'
 import { deck, handEvaluator } from '../utils/helpers'
 import 'random'
+import 'poker-hand-evaluator'
 class EquitoolMainMenu extends Component {
   state = {
     playerOneCardA: 'empty',
@@ -98,11 +99,41 @@ class EquitoolMainMenu extends Component {
         return 'two'
       }
     }
+    if (handOne.name === 'Two of a kind') {
+
+    }
   }
   calculateOdds = () => {
+    // const { playerOneCardA,
+    //   playerOneCardB,
+    //   playerTwoCardA,
+    //   playerTwoCardB,
+    //   flopOneCard,
+    //   flopTwoCard,
+    //   flopThreeCard,
+    //   turnCard } = this.state
+    // console.log((turnCard !== 'empty')
+    //   ? [playerOneCardA,
+    //     playerOneCardB,
+    //     playerTwoCardA,
+    //     playerTwoCardB,
+    //     flopOneCard,
+    //     flopTwoCard,
+    //     flopThreeCard,
+    //     turnCard]
+    //   : ['Bink', playerOneCardA,
+    //     playerOneCardB,
+    //     playerTwoCardA,
+    //     playerTwoCardB,
+    //     flopOneCard,
+    //     flopTwoCard,
+    //     flopThreeCard,
+    //   ])
+    const PokerHand = require('poker-hand-evaluator');
     let playerOneWins = 0
     let playerTwoWins = 0
-    for (let i = 0; i < 100000; i++) {
+    let tie = 0
+    for (let i = 0; i < 100; i++) {
       const { playerOneCardA,
         playerOneCardB,
         playerTwoCardA,
@@ -111,7 +142,7 @@ class EquitoolMainMenu extends Component {
         flopTwoCard,
         flopThreeCard,
         turnCard } = this.state
-      let remainingDeck
+      let remainingDeck = deck
       const cards = (turnCard !== 'empty')
         ? [playerOneCardA,
           playerOneCardB,
@@ -129,23 +160,46 @@ class EquitoolMainMenu extends Component {
           flopTwoCard,
           flopThreeCard,
         ]
-      remainingDeck = this.removeCards(deck, cards)
+
+      //Shuffle the deck
       for (let j = remainingDeck.length - 1; j > 0; j--) {
         const k = Math.floor(Math.random() * j)
         const temp = remainingDeck[j]
         remainingDeck[j] = remainingDeck[k]
         remainingDeck[k] = temp
       }
+
+      //Remove selected cards from deck
+      remainingDeck = this.removeCards(deck, cards)
+      console.log("Selected cards removed:", remainingDeck.length)
+
+      //Shuffle deck again
+      for (let j = remainingDeck.length - 1; j > 0; j--) {
+        const k = Math.floor(Math.random() * j)
+        const temp = remainingDeck[j]
+        remainingDeck[j] = remainingDeck[k]
+        remainingDeck[k] = temp
+      }
+
+      //If turn card (4th community card) is present
       if (turnCard !== 'empty') {
         const random = require('random')
+
+        //Determine random index from deck array
         const randomCardIdx = random.int(0, (remainingDeck.length - 1))
+
+        //Shuffle deck
         for (let j = remainingDeck.length - 1; j > 0; j--) {
           const k = Math.floor(Math.random() * j)
           const temp = remainingDeck[j]
           remainingDeck[j] = remainingDeck[k]
           remainingDeck[k] = temp
         }
+
+        //Set card from above index as the river card (last card)
         const riverCard = remainingDeck[randomCardIdx]
+
+        //Set the 7 card hard for player one
         const playerOnehand = [playerOneCardA,
           playerOneCardB,
           flopOneCard,
@@ -153,6 +207,8 @@ class EquitoolMainMenu extends Component {
           flopThreeCard,
           turnCard,
           riverCard]
+
+        //Set the 7 card hard for player two
         const playerTwohand = [playerTwoCardA,
           playerTwoCardB,
           flopOneCard,
@@ -160,43 +216,60 @@ class EquitoolMainMenu extends Component {
           flopThreeCard,
           turnCard,
           riverCard]
+
+        //Determine the strongest possible 5 card hand for both players
         const playerOneCards = handEvaluator.parseString(playerOnehand)
         const playerOneRank = handEvaluator.evaluate(playerOneCards)[0]
         const playerTwoCards = handEvaluator.parseString(playerTwohand)
         const playerTwoRank = handEvaluator.evaluate(playerTwoCards)[0]
 
-        if (playerOneRank.score < playerTwoRank.score) {
+        const playerOne = new PokerHand(playerOneRank.hand)
+        const playerTwo = new PokerHand(playerTwoRank.hand)
+
+        //Choose winner of the hand. Lower score means stronger hand.
+        //Increment player's win count by 1
+        if (playerOne.getScore() < playerTwo.getScore()) {
           playerOneWins += 1
-        } else if (playerOneRank.score > playerTwoRank.score) {
-          console.log(playerOneRank, playerTwoRank)
+        } else if (playerOne.getScore() > playerTwo.getScore()) {
           playerTwoWins += 1
-        } else if (playerOneRank.score === playerTwoRank.score) {
-          if (this.evaluateTie(playerOneRank, playerTwoRank) === 'one') {
-            playerOneWins += 1
-          } else {
-            playerTwoWins += 1
-          }
+        } else if (playerOne.getScore() === playerTwo.getScore()) {
+          tie += 1
         }
 
+        // If turn and river are not selected (Only 3 flop cards selected)
       } else {
         const random = require('random')
-        const randomCardIdx = random.int(0, (remainingDeck.length - 1))
+        //Select random index
+        let randomCardIdx = random.int(0, (remainingDeck.length - 1))
+        //Shuffle deck
         for (let j = remainingDeck.length - 1; j > 0; j--) {
           const k = Math.floor(Math.random() * j)
           const temp = remainingDeck[j]
           remainingDeck[j] = remainingDeck[k]
           remainingDeck[k] = temp
         }
+
+        //Determine the turn card
         const turn = remainingDeck[randomCardIdx]
+
+        //Remove the turn card from the remaining deck
         remainingDeck = this.removeCards(remainingDeck, [turn])
+
+        //Shuffle deck
         for (let j = remainingDeck.length - 1; j > 0; j--) {
           const k = Math.floor(Math.random() * j)
           const temp = remainingDeck[j]
           remainingDeck[j] = remainingDeck[k]
           remainingDeck[k] = temp
         }
+
+        //Select new random index for the river card and instantiate it
+        randomCardIdx = random.int(0, (remainingDeck.length - 1))
         const river = remainingDeck[randomCardIdx]
+
+        //Remove river card
         remainingDeck = this.removeCards(remainingDeck, [river])
+        //Set 7 card hand for player one
         const playerOnehand = [playerOneCardA,
           playerOneCardB,
           flopOneCard,
@@ -204,6 +277,8 @@ class EquitoolMainMenu extends Component {
           flopThreeCard,
           turn,
           river]
+
+        //Set 7 card hand for player two
         const playerTwohand = [playerTwoCardA,
           playerTwoCardB,
           flopOneCard,
@@ -211,26 +286,28 @@ class EquitoolMainMenu extends Component {
           flopThreeCard,
           turn,
           river]
+
+        //Determine strongest possible 5 card hand for each player
         const playerOneCards = handEvaluator.parseString(playerOnehand)
         const playerOneRank = handEvaluator.evaluate(playerOneCards)[0]
         const playerTwoCards = handEvaluator.parseString(playerTwohand)
         const playerTwoRank = handEvaluator.evaluate(playerTwoCards)[0]
 
-        if (playerOneRank.score < playerTwoRank.score) {
+        const playerOne = new PokerHand(playerOneRank.hand)
+        const playerTwo = new PokerHand(playerTwoRank.hand)
+        //Choose winner of the hand. Lower score means stronger hand.
+        //Increment player's win count by 1
+        if (playerOne.getScore() < playerTwo.getScore()) {
           playerOneWins += 1
-        } else if (playerOneRank.score > playerTwoRank.score) {
-          console.log(playerOneRank, playerTwoRank)
+        } else if (playerOne.getScore() > playerTwo.getScore()) {
           playerTwoWins += 1
-        } else if (playerOneRank.score === playerTwoRank.score) {
-          if (this.evaluateTie(playerOneRank, playerTwoRank) === 'one') {
-            playerOneWins += 1
-          } else {
-            playerTwoWins += 1
-          }
+        } else if (playerOne.getScore() === playerTwo.getScore()) {
+          tie += 1
         }
       }
     }
-    console.log(playerOneWins, playerTwoWins)
+    console.log('PLAYER ONE WINS:', playerOneWins)
+    console.log('PLAYER TWO WINS:', playerTwoWins)
   }
   render() {
     const { playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB } = this.state

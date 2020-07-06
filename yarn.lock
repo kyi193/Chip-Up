@@ -6113,6 +6113,11 @@ pngjs@^5.0.0:
   resolved "https://registry.yarnpkg.com/pngjs/-/pngjs-5.0.0.tgz#e79dd2b215767fd9c04561c01236df960bce7fbb"
   integrity sha512-40QW5YalBNfQo5yRYmiw7Yz6TKKVr3h6970B2YE+3fQpsWcrbj1PzJgxeJ19DRQjhMbKPIuMY8rFaXc8moolVw==
 
+poker-hand-evaluator@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/poker-hand-evaluator/-/poker-hand-evaluator-1.0.1.tgz#be97cf9f993d1dc46ab839190f640aa7a70e2fc5"
+  integrity sha512-JJCLiRj3gV0goP8BoxdxXtyChDNCv0ABnZfX6dERND9lXC5gOr9ZoIy/AlTXb3/dEmjnJk+2O5HqgOpFA81pCQ==
+
 pose-core@^2.0.3:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/pose-core/-/pose-core-2.1.1.tgz#53d9f961c73d73f5017f58e955bf7b5a52a1ccc9"
