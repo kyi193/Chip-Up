@@ -79,9 +79,7 @@ class EquitoolPlayerCards extends Component {
         <View style={this.props.player === 'one' ? styles.containerOne : styles.containerTwo}>
           <TouchableWithoutFeedback onPress={this.cardOneSelected}>
             {cardOneSelected === null
-              ? <View style={cardOneHighLighted ? styles.cardHighlighted : styles.cardUnhighlighted}>
-                <Text>Card 1</Text>
-              </View>
+              ? <View style={cardOneHighLighted ? styles.cardHighlighted : styles.cardUnhighlighted} />
               : <Image
                 source={cardOneSelected}
                 alt="info"
@@ -90,9 +88,7 @@ class EquitoolPlayerCards extends Component {
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback onPress={this.cardTwoSelected}>
             {cardTwoSelected === null
-              ? <View style={cardTwoHighLighted ? styles.cardHighlighted : styles.cardUnhighlighted}>
-                <Text>Card 2</Text>
-              </View>
+              ? <View style={cardTwoHighLighted ? styles.cardHighlighted : styles.cardUnhighlighted} />
               : <Image
                 source={cardTwoSelected}
                 alt="info"
@@ -123,7 +119,8 @@ const styles = StyleSheet.create({
     height: 100,
     width: 71,
     borderWidth: 2,
-    borderColor: 'black',
+    borderColor: '#3498db',
+    borderWidth: 3,
     borderRadius: 8,
     marginHorizontal: 5,
     backgroundColor: "#DDDDDD",

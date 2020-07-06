@@ -13,7 +13,7 @@ function EquitoolCalculateButton({ state, calculateOdds }) {
   return <AwesomeButton
     width={200}
     disabled={isButtonActive(state) ? false : true}
-    backgroundColor={isButtonActive(state) ? '#3498db' : '#C0C0C0'}
+    backgroundColor={isButtonActive(state) ? '#3498db' : 'gray'}
     springRelease={true}
     onPress={calculateOdds}>
     Calculate

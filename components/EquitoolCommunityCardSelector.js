@@ -60,53 +60,43 @@ class EquitoolCommunityCardSelector extends Component {
           <View style={{ flexDirection: 'row' }}>
             <TouchableWithoutFeedback onPress={!values.includes(this.state.cardSelected) ? (() => this.setState(() => ({ cardSelected: 'flopOne' }))) : (() => this.setState(() => ({ cardSelected: 'none' })))}>
               {flopOneSelected === null
-                ? <View style={styles.cardUnhighlighted}>
-                  <Text>Flop 1</Text>
-                </View>
+                ? <View style={styles.cardUnhighlighted} />
                 : <Image
                   source={flopOneSelected}
                   alt="info"
-                  style={{ height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'black', marginHorizontal: 5 }} />
+                  style={{ height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'gray', marginHorizontal: 5 }} />
               }
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback onPress={!values.includes(this.state.cardSelected) ? (() => this.setState(() => ({ cardSelected: 'flopTwo' }))) : (() => this.setState(() => ({ cardSelected: 'none' })))}>
               {flopTwoSelected === null
-                ? <View style={styles.cardUnhighlighted}>
-                  <Text>Flop 2</Text>
-                </View>
+                ? <View style={styles.cardUnhighlighted} />
                 : <Image
                   source={flopTwoSelected}
                   alt="info"
-                  style={{ height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'black', marginHorizontal: 5 }} />
+                  style={{ height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'gray', marginHorizontal: 5 }} />
               }
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback onPress={!values.includes(this.state.cardSelected) ? (() => this.setState(() => ({ cardSelected: 'flopThree' }))) : (() => this.setState(() => ({ cardSelected: 'none' })))}>
               {flopThreeSelected === null
-                ? <View style={styles.cardUnhighlighted}>
-                  <Text>Flop 3</Text>
-                </View>
+                ? <View style={styles.cardUnhighlighted} />
                 : <Image
                   source={flopThreeSelected}
                   alt="info"
-                  style={{ height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'black', marginHorizontal: 5 }} />
+                  style={{ height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'gray', marginHorizontal: 5 }} />
               }
             </TouchableWithoutFeedback>
           </View>
           <TouchableWithoutFeedback onPress={!values.includes(this.state.cardSelected) ? (() => this.setState(() => ({ cardSelected: 'turn' }))) : (() => this.setState(() => ({ cardSelected: 'none' })))}>
             {flopTwoSelected === null
-              ? <View style={styles.cardUnhighlighted}>
-                <Text>Turn</Text>
-              </View>
+              ? <View style={styles.cardUnhighlighted} />
               : <Image
                 source={turnSelected}
                 alt="info"
-                style={{ height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'black', marginHorizontal: 5 }} />
+                style={{ height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'gray', marginHorizontal: 5 }} />
             }
           </TouchableWithoutFeedback>
           <View>
-            <View style={styles.cardUnhighlighted}>
-              <Text>River</Text>
-            </View>
+            <View style={styles.cardUnhighlighted} />
           </View>
         </View>
         {this.state.cardSelected !== 'none' ? <EquitoolCardSelector selectCard={this.selectCard} /> : <View></View>}

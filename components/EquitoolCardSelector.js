@@ -21,7 +21,7 @@ class EquitoolCardSelector extends Component {
     } = this.props
     listOfCards = this.importAll(require.context('../assets/images/cards', false, /\.(png|jpe?g|svg)$/));
     return (
-      <View style={{ width: 1300, height: 400, flexDirection: 'row', flexWrap: 'wrap', }}>
+      <View style={{ width: 800, height: 500, flexDirection: 'row', flexWrap: 'wrap', }}>
         {listOfCards.map(
           (image, index) =>
             ((!image.includes(playerOneCardA) && !image.includes(playerOneCardB) && !image.includes(playerTwoCardA) && !image.includes(playerTwoCardB)

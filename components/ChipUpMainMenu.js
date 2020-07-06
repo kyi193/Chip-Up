@@ -105,7 +105,6 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
-    resizeMode: "cover",
   },
   submitBtn: {
     flexDirection: 'column-reverse',
