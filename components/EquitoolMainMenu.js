@@ -20,6 +20,9 @@ class EquitoolMainMenu extends Component {
     flopTwoCard: 'empty',
     flopThreeCard: 'empty',
     turnCard: 'empty',
+    playerOneWins: null,
+    playerTwoWins: null,
+    tie: null
   }
 
   updatePlayerOneCards = (cardA, cardB) => {
@@ -133,7 +136,8 @@ class EquitoolMainMenu extends Component {
     let playerOneWins = 0
     let playerTwoWins = 0
     let tie = 0
-    for (let i = 0; i < 100; i++) {
+    const simulations = 10000
+    for (let i = 0; i < simulations; i++) {
       const { playerOneCardA,
         playerOneCardB,
         playerTwoCardA,
@@ -306,11 +310,14 @@ class EquitoolMainMenu extends Component {
         }
       }
     }
-    console.log('PLAYER ONE WINS:', playerOneWins)
-    console.log('PLAYER TWO WINS:', playerTwoWins)
+    this.setState(() => ({
+      playerOneWins: ((playerOneWins / simulations) * 100).toFixed(2),
+      playerTwoWins: ((playerTwoWins / simulations) * 100).toFixed(2),
+      tie: ((tie / simulations) * 100).toFixed(2)
+    }))
   }
   render() {
-    const { playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB } = this.state
+    const { playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB, playerOneWins, playerTwoWins, tie } = this.state
     return (
       <View style={styles.container}>
         <Header
@@ -334,9 +341,20 @@ class EquitoolMainMenu extends Component {
             }} />
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <EquitoolPlayerCards updatePlayer={this.updatePlayerOneCards} player='one' />
+          {playerOneWins &&
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+              <Text style={{ textAlign: 'center', }}><Text style={{ fontWeight: 'bold' }}>Wins:</Text> {playerOneWins} %</Text>
+              <Text style={{ textAlign: 'center' }}><Text style={{ fontWeight: 'bold' }}>Ties:</Text> {tie} %</Text>
+            </View>}
           {(playerOneCardA !== 'empty' && playerOneCardB !== 'empty' && playerTwoCardA !== 'empty' && playerTwoCardB !== 'empty')
             && <EquitoolCommunityCardSelector updateCommunity={this.updateCommunityCards} />}
+          {playerTwoWins &&
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+              <Text style={{ textAlign: 'center', }}><Text style={{ fontWeight: 'bold' }}>Wins:</Text> {playerTwoWins} %</Text>
+              <Text style={{ textAlign: 'center' }}><Text style={{ fontWeight: 'bold' }}>Ties:</Text> {tie} %</Text>
+            </View>}
           <EquitoolPlayerCards updatePlayer={this.updatePlayerTwoCards} player='two' />
+
         </View>
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
           <EquitoolCalculateButton state={this.state} calculateOdds={this.calculateOdds} />
