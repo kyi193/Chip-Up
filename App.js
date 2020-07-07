@@ -14,7 +14,6 @@ import RangeChart from './components/RangeChart'
 import EquitoolMainMenu from './components/EquitoolMainMenu'
 
 
-
 const Stack = createStackNavigator();
 const MainNav = () => (
   <Stack.Navigator headerMode="none">

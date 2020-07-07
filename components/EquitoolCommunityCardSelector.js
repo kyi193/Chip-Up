@@ -15,9 +15,10 @@ class EquitoolCommunityCardSelector extends Component {
     flopThreeValue: 'empty',
     turnValue: 'empty',
   }
-  selectCard = (image) => {
-    let value = image.substring(14, 16)
-    // value = value[0] + value[1].toLowerCase()
+  selectCard = (card) => {
+    const image = card.imagePath;
+    let value = card.name;
+
     const { cardSelected } = this.state
     const { updateCommunity } = this.props
 

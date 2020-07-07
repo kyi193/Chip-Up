@@ -2,13 +2,15 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableWithoutFeedback, Image } from 'react-native'
 import { connect } from 'react-redux'
 import { generateUID } from '../utils/helpers'
-let listOfCards = []
+import Card from '../utils/card'
+import Deck from '../utils/card'
 
 class EquitoolCardSelector extends Component {
   importAll(r) {
     return r.keys().map(r);
   }
-  render() {
+
+  shouldRenderCard = (card) => {
     const {
       playerOneCardA,
       playerOneCardB,
@@ -19,17 +21,30 @@ class EquitoolCardSelector extends Component {
       flopThreeCard,
       turnCard
     } = this.props
-    listOfCards = this.importAll(require.context('../assets/images/cards', false, /\.(png|jpe?g|svg)$/));
+
+    const cardsInPlay = [
+      playerOneCardA, playerOneCardB,
+      playerTwoCardA, playerTwoCardB,
+      flopOneCard, flopTwoCard, flopThreeCard, turnCard
+    ]
+    for (let cardInPlayStr of cardsInPlay) {
+      if (card.name === cardInPlayStr) {
+        return false
+      }
+    }
+    return true
+  }
+  render() {
+    const deck = new Deck()
     return (
       <View style={{ width: 800, height: 500, flexDirection: 'row', flexWrap: 'wrap', }}>
-        {listOfCards.map(
-          (image, index) =>
-            ((!image.includes(playerOneCardA) && !image.includes(playerOneCardB) && !image.includes(playerTwoCardA) && !image.includes(playerTwoCardB)
-              && !image.includes(flopOneCard) && !image.includes(flopTwoCard) && !image.includes(flopThreeCard) && !image.includes(turnCard)))
-              ? (<TouchableWithoutFeedback key={index} onPress={() => this.props.selectCard(image)}>
+        {deck.cards.map(
+          (card, index) =>
+            this.shouldRenderCard(card)
+              ? (<TouchableWithoutFeedback key={index} onPress={() => this.props.selectCard(card)}>
                 <Image
                   key={index}
-                  source={image}
+                  source={card.imagePath}
                   alt="info"
                   style={styles.selectedCard} />
               </TouchableWithoutFeedback>

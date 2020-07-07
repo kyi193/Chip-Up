@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, TouchableWithoutFeedback, Image } from 'react-native'
 import EquitoolCardSelector from './EquitoolCardSelector'
-let listOfCards = []
+
 class EquitoolPlayerCards extends Component {
   state = {
     cardOneHighLighted: false,
@@ -12,11 +12,7 @@ class EquitoolPlayerCards extends Component {
     cardOneValue: 'empty',
     cardTwoValue: 'empty',
   }
-  importAll(r) {
-    return r.keys().map(r);
-  }
   componentDidMount() {
-    listOfCards = this.importAll(require.context('../assets/images/cards', false, /\.(png|jpe?g|svg)$/));
   }
   cardOneSelected = () => {
     const { cardOneHighLighted, cardTwoHighLighted } = this.state
@@ -50,9 +46,9 @@ class EquitoolPlayerCards extends Component {
       }))
     }
   }
-  selectCard = (image) => {
-    let value = image.substring(14, 16)
-    // value = value[0] + value[1].toLowerCase()
+  selectCard = (card) => {
+    const image = card.imagePath;
+    let value = card.name;
     const { cardSelected } = this.state
     const { updatePlayer } = this.props
 
