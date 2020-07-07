@@ -1,3 +1,19 @@
+const kickerScoreMapper = {
+  'A': .13,
+  '2': .13,
+  '3': .11,
+  '4': .10,
+  '5': .09,
+  '6': .08,
+  '7': .07,
+  '8': .06,
+  '9': .05,
+  'T': .04,
+  'J': .03,
+  'Q': .02,
+  'K': .01,
+}
+
 const cardValueMapper = {
   'A': { position: 0, value: 13 },
   '2': { position: 1, value: 1 },
@@ -55,6 +71,107 @@ export default class Deck {
   }
 }
 
+class FourOfAKindChecker {
+  constructor(fiveCardHand) {
+    this.fiveCardHand = fiveCardHand
+  }
+
+  getResults() {
+    return {
+      matchesHand: this.matchesHand(),
+      score: this.getScore()
+    }
+  }
+
+  getScore() {
+    if (!this.matchesHand) {
+      return null
+    }
+    let kickerScore
+    let cards = [...this.fiveCardHard]
+
+    let countMap = {}
+
+    for (let card of cards) {
+      if (countMap[card]) {
+        countMap[card] += 1
+        if (countMap[card] === 4) {
+          return true
+        }
+      } else {
+        countMap[card] = 1
+      }
+    }
+    for (value of countMap) {
+      if (countMap[value] === 1) {
+        kickerScore = kickerScoreMapper[value]
+      }
+    }
+    return 900000 + kickerScore
+  }
+
+  matchesHand() {
+    let cards = [...this.fiveCardHard]
+
+    let countMap = {}
+
+    for (let card of cards) {
+      if (countMap[card]) {
+        countMap[card] += 1
+        if (countMap[card] === 4) {
+          return true
+        }
+      } else {
+        countMap[card] = 1
+      }
+    }
+
+    return false
+  }
+}
+
+// TOOD: OTHER CHECKS
+
+class HandEvaluator {
+  constructor(fiveCardHand) {
+    this.fiveCardHand = fiveCardHand
+
+    // Start form checking BEST hand to worst
+    this.handCheckers = {
+      // TODO: Straight flush (re-use logic for straight + flush)
+      FourOfAKindChecker,
+      // this.fullHouseChecker
+    }
+  }
+
+  runCheckers() {
+    for (let checkerClass of this.handCheckers) {
+      const checker = new this.handCheckers[checkerClass]; // TODO: figure out dynamic class instantiation
+      const result = checker.getResults(); // Eecpeted: { score: Integer, matchesHand: Boolean}
+      if (result.matchesHand) {
+        return result.score
+      }
+    }
+    return false;
+  }
+
+  fourOfKindScorer() {
+
+  }
+
+  fourofAKindChecker() {
+
+  }
+
+  fullHouseChecker() {
+    // TODO
+  }
+
+  sortCards(cardsArray) {
+    cardsArray.sort((cardA, cardB) => cardA.value.position - cardB.value.position)
+  }
+}
+
 
 export class Game {
   constructor() {
@@ -67,6 +184,29 @@ export class Game {
     this.flopTwoCard = 'empty'
     this.flopThreeCard = 'empty'
     this.turnCard = 'empty'
+  }
+
+
+  generateFiveCardHand() {
+    // 1. duplicate a deck copy
+
+    // pick 1 card at random and remove it from copied eck
+
+    // repeated 4 more times
+
+    // return array of 5 cards
+    let newDeck = [...this.deck.cards]
+    let deckLength = Object.keys(newDeck).length
+    let fiveCardHand = []
+    for (let i = 0; i < 5; i++) {
+      const randomIndex = Math.floor(Math.random() * deckLength - 1)
+      fiveCardHand.push(newDeck.splice(randomIndex, 1))
+    }
+    return fiveCardHand
+  }
+
+  sortCards(cardsArray) {
+    cardsArray.sort((cardA, cardB) => cardA.value.position - cardB.value.position)
   }
 
   playerOneCards() {
@@ -86,6 +226,7 @@ export class Game {
     this.playerTwoCardA = cardA
     this.playerTwoCardB = cardB
   }
+
   setCommunityCards(flopOneCard, flopTwoCard, flopThreeCard, turnCard) {
     this.flopOneCard = flopOneCard
     this.flopTwoCard = flopTwoCard
@@ -97,7 +238,16 @@ export class Game {
     return [this.flopOneCard, this.flopTwoCard, this.flopThreeCard, this.turnCard]
   }
 
+  communityCardsNoTurn() {
+    return [this.flopOneCard, this.flopTwoCard, this.flopThreeCard]
+  }
+
   cardsInPlay() {
     return [...this.playerOneCards(), ...this.playerTwoCards(), ...this.communityCards()]
   }
+
+  cardsInPlayNoTurn() {
+    return [...this.playerOneCards(), ...this.playerTwoCards(), ...this.communityCardsNoTurn()]
+  }
+
 }

@@ -130,34 +130,11 @@ class EquitoolMainMenu extends Component {
     let playerOneWins = 0
     let playerTwoWins = 0
     let tie = 0
-    const simulations = 10000
+    const simulations = 30000
     for (let i = 0; i < simulations; i++) {
-      const { playerOneCardA,
-        playerOneCardB,
-        playerTwoCardA,
-        playerTwoCardB,
-        flopOneCard,
-        flopTwoCard,
-        flopThreeCard,
-        turnCard } = this.state
+      const game = this.state.game
       let remainingDeck = deck
-      const cards = (turnCard !== 'empty')
-        ? [playerOneCardA,
-          playerOneCardB,
-          playerTwoCardA,
-          playerTwoCardB,
-          flopOneCard,
-          flopTwoCard,
-          flopThreeCard,
-          turnCard]
-        : [playerOneCardA,
-          playerOneCardB,
-          playerTwoCardA,
-          playerTwoCardB,
-          flopOneCard,
-          flopTwoCard,
-          flopThreeCard,
-        ]
+      const cards = game.cardsInPlay()
 
       //Shuffle the deck
       for (let j = remainingDeck.length - 1; j > 0; j--) {
@@ -169,7 +146,6 @@ class EquitoolMainMenu extends Component {
 
       //Remove selected cards from deck
       remainingDeck = this.removeCards(deck, cards)
-      console.log("Selected cards removed:", remainingDeck.length)
 
       //Shuffle deck again
       for (let j = remainingDeck.length - 1; j > 0; j--) {
@@ -180,7 +156,7 @@ class EquitoolMainMenu extends Component {
       }
 
       //If turn card (4th community card) is present
-      if (turnCard !== 'empty') {
+      if (game.turnCard !== 'empty') {
         const random = require('random')
 
         //Determine random index from deck array
@@ -198,29 +174,17 @@ class EquitoolMainMenu extends Component {
         const riverCard = remainingDeck[randomCardIdx]
 
         //Set the 7 card hard for player one
-        const playerOnehand = [playerOneCardA,
-          playerOneCardB,
-          flopOneCard,
-          flopTwoCard,
-          flopThreeCard,
-          turnCard,
-          riverCard]
+        const playerOnehand = [...game.playerOneCards(), ...game.communityCards(), riverCard]
 
         //Set the 7 card hard for player two
-        const playerTwohand = [playerTwoCardA,
-          playerTwoCardB,
-          flopOneCard,
-          flopTwoCard,
-          flopThreeCard,
-          turnCard,
-          riverCard]
+        const playerTwohand = [...game.playerTwoCards(), ...game.communityCards(), riverCard]
 
         //Determine the strongest possible 5 card hand for both players
         const playerOneCards = handEvaluator.parseString(playerOnehand)
         const playerOneRank = handEvaluator.evaluate(playerOneCards)[0]
         const playerTwoCards = handEvaluator.parseString(playerTwohand)
         const playerTwoRank = handEvaluator.evaluate(playerTwoCards)[0]
-
+        console.log(playerOneRank)
         const playerOne = new PokerHand(playerOneRank.hand)
         const playerTwo = new PokerHand(playerTwoRank.hand)
 
@@ -268,22 +232,10 @@ class EquitoolMainMenu extends Component {
         //Remove river card
         remainingDeck = this.removeCards(remainingDeck, [river])
         //Set 7 card hand for player one
-        const playerOnehand = [playerOneCardA,
-          playerOneCardB,
-          flopOneCard,
-          flopTwoCard,
-          flopThreeCard,
-          turn,
-          river]
+        const playerOnehand = [...game.playerOneCards(), ...game.communityCardsNoTurn(), turn, river]
 
         //Set 7 card hand for player two
-        const playerTwohand = [playerTwoCardA,
-          playerTwoCardB,
-          flopOneCard,
-          flopTwoCard,
-          flopThreeCard,
-          turn,
-          river]
+        const playerTwohand = [...game.playerTwoCards(), ...game.communityCardsNoTurn(), turn, river]
 
         //Determine strongest possible 5 card hand for each player
         const playerOneCards = handEvaluator.parseString(playerOnehand)
