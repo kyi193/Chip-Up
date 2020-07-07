@@ -236,7 +236,7 @@ class FourOfAKindChecker {
         score = ((90000) * rankScoreMapper[value]) + 900000
       }
     }
-    return parseInt((kickerScore + score))
+    return kickerScore + score
   }
 
   matchesHand() {
@@ -658,7 +658,6 @@ export class HandEvaluator {
       TwoPairChecker,
       PairChecker,
       HighCardChecker,
-      // this.fullHouseChecker
     }
   }
 
