@@ -10,7 +10,7 @@ import EquitoolCalculateButton from './EquitoolCalculateButton'
 import { deck, handEvaluator } from '../utils/helpers'
 import 'random'
 import 'poker-hand-evaluator'
-import { Game } from '../utils/card'
+import { Game, Card, HandEvaluator } from '../utils/card'
 
 const backgroundImage = (Platform.OS === 'ios' || Platform.OS === 'android') ? { uri: "https://i.imgur.com/BrFGUhA.jpg" } : { uri: "https://i.imgur.com/qDG7eHT.jpg" };
 
@@ -130,7 +130,7 @@ class EquitoolMainMenu extends Component {
     let playerOneWins = 0
     let playerTwoWins = 0
     let tie = 0
-    const simulations = 30000
+    const simulations = 10000
     for (let i = 0; i < simulations; i++) {
       const game = this.state.game
       let remainingDeck = deck
@@ -181,20 +181,28 @@ class EquitoolMainMenu extends Component {
 
         //Determine the strongest possible 5 card hand for both players
         const playerOneCards = handEvaluator.parseString(playerOnehand)
-        const playerOneRank = handEvaluator.evaluate(playerOneCards)[0]
+        const playerOneHandArr = [...handEvaluator.evaluate(playerOneCards)[0].hand.split(" ")]
         const playerTwoCards = handEvaluator.parseString(playerTwohand)
-        const playerTwoRank = handEvaluator.evaluate(playerTwoCards)[0]
-        console.log(playerOneRank)
-        const playerOne = new PokerHand(playerOneRank.hand)
-        const playerTwo = new PokerHand(playerTwoRank.hand)
-
+        const playerTwoHandArr = [...handEvaluator.evaluate(playerTwoCards)[0].hand.split(" ")]
+        let playerOneFiveCardHand = []
+        let playerTwoFiveCardHand = []
+        for (let i = 0; i < playerOneHandArr.length; i++) {
+          playerOneFiveCardHand.push(new Card(playerOneHandArr[i]))
+        }
+        for (let i = 0; i < playerTwoHandArr.length; i++) {
+          playerTwoFiveCardHand.push(new Card(playerTwoHandArr[i]))
+        }
+        const playerOneEvaluator = new HandEvaluator(playerOneFiveCardHand)
+        const playerTwoEvaluator = new HandEvaluator(playerTwoFiveCardHand)
+        const playerOne = playerOneEvaluator.getScore()
+        const playerTwo = playerTwoEvaluator.getScore()
         //Choose winner of the hand. Lower score means stronger hand.
         //Increment player's win count by 1
-        if (playerOne.getScore() < playerTwo.getScore()) {
+        if (playerOne > playerTwo) {
           playerOneWins += 1
-        } else if (playerOne.getScore() > playerTwo.getScore()) {
+        } else if (playerOne < playerTwo) {
           playerTwoWins += 1
-        } else if (playerOne.getScore() === playerTwo.getScore()) {
+        } else {
           tie += 1
         }
 
@@ -239,19 +247,28 @@ class EquitoolMainMenu extends Component {
 
         //Determine strongest possible 5 card hand for each player
         const playerOneCards = handEvaluator.parseString(playerOnehand)
-        const playerOneRank = handEvaluator.evaluate(playerOneCards)[0]
+        const playerOneHandArr = [...handEvaluator.evaluate(playerOneCards)[0].hand.split(" ")]
         const playerTwoCards = handEvaluator.parseString(playerTwohand)
-        const playerTwoRank = handEvaluator.evaluate(playerTwoCards)[0]
-
-        const playerOne = new PokerHand(playerOneRank.hand)
-        const playerTwo = new PokerHand(playerTwoRank.hand)
+        const playerTwoHandArr = [...handEvaluator.evaluate(playerTwoCards)[0].hand.split(" ")]
+        let playerOneFiveCardHand = []
+        let playerTwoFiveCardHand = []
+        for (let i = 0; i < playerOneHandArr.length; i++) {
+          playerOneFiveCardHand.push(new Card(playerOneHandArr[i]))
+        }
+        for (let i = 0; i < playerTwoHandArr.length; i++) {
+          playerTwoFiveCardHand.push(new Card(playerTwoHandArr[i]))
+        }
+        const playerOneEvaluator = new HandEvaluator(playerOneFiveCardHand)
+        const playerTwoEvaluator = new HandEvaluator(playerTwoFiveCardHand)
+        const playerOne = playerOneEvaluator.getScore()
+        const playerTwo = playerTwoEvaluator.getScore()
         //Choose winner of the hand. Lower score means stronger hand.
         //Increment player's win count by 1
-        if (playerOne.getScore() < playerTwo.getScore()) {
+        if (playerOne > playerTwo) {
           playerOneWins += 1
-        } else if (playerOne.getScore() > playerTwo.getScore()) {
+        } else if (playerOne < playerTwo) {
           playerTwoWins += 1
-        } else if (playerOne.getScore() === playerTwo.getScore()) {
+        } else {
           tie += 1
         }
       }
@@ -263,7 +280,6 @@ class EquitoolMainMenu extends Component {
     }))
   }
   render() {
-    console.log(this.state)
     const { playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB, playerOneWins, playerTwoWins, tie } = this.state
     return (
       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
