@@ -11,22 +11,7 @@ class EquitoolCardSelector extends Component {
   }
 
   shouldRenderCard = (card) => {
-    const {
-      playerOneCardA,
-      playerOneCardB,
-      playerTwoCardA,
-      playerTwoCardB,
-      flopOneCard,
-      flopTwoCard,
-      flopThreeCard,
-      turnCard
-    } = this.props
-
-    const cardsInPlay = [
-      playerOneCardA, playerOneCardB,
-      playerTwoCardA, playerTwoCardB,
-      flopOneCard, flopTwoCard, flopThreeCard, turnCard
-    ]
+    const { cardsInPlay } = this.props
     for (let cardInPlayStr of cardsInPlay) {
       if (card.name === cardInPlayStr) {
         return false
@@ -55,17 +40,9 @@ class EquitoolCardSelector extends Component {
   }
 }
 function mapStateToProps(state) {
-  const { playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB, flopOneCard, flopTwoCard, flopThreeCard, turnCard } = state.equitool
-  return {
-    playerOneCardA,
-    playerOneCardB,
-    playerTwoCardA,
-    playerTwoCardB,
-    flopOneCard,
-    flopTwoCard,
-    flopThreeCard,
-    turnCard
-  }
+  // console.log(state)
+  // const { playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB, flopOneCard, flopTwoCard, flopThreeCard, turnCard } = state.equitool
+  return { cardsInPlay: state.cardsInPlay }
 }
 
 const styles = StyleSheet.create({

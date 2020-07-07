@@ -10,52 +10,43 @@ import EquitoolCalculateButton from './EquitoolCalculateButton'
 import { deck, handEvaluator } from '../utils/helpers'
 import 'random'
 import 'poker-hand-evaluator'
+import { Game } from '../utils/card'
 
 const backgroundImage = (Platform.OS === 'ios' || Platform.OS === 'android') ? { uri: "https://i.imgur.com/BrFGUhA.jpg" } : { uri: "https://i.imgur.com/qDG7eHT.jpg" };
 
 class EquitoolMainMenu extends Component {
   state = {
-    playerOneCardA: 'empty',
-    playerOneCardB: 'empty',
-    playerTwoCardA: 'empty',
-    playerTwoCardB: 'empty',
-    flopOneCard: 'empty',
-    flopTwoCard: 'empty',
-    flopThreeCard: 'empty',
-    turnCard: 'empty',
+    game: new Game(),
     playerOneWins: null,
     playerTwoWins: null,
     tie: null,
   }
 
   updatePlayerOneCards = (cardA, cardB) => {
-    this.setState(() => ({
-      playerOneCardA: cardA,
-      playerOneCardB: cardB
-    }))
+    const game = this.state.game
+    game.setPlayerOneCard(cardA, cardB)
+    this.setState(() => ({ game }))
   }
   updatePlayerTwoCards = (cardA, cardB) => {
-    this.setState(() => ({
-      playerTwoCardA: cardA,
-      playerTwoCardB: cardB
-    }))
+    const game = this.state.game
+    game.setPlayerTwoCard(cardA, cardB)
+    this.setState(() => ({ game }))
   }
   updateCommunityCards = (flopOneCard, flopTwoCard, flopThreeCard, turnCard) => {
-    this.setState(() => ({
-      flopOneCard,
-      flopTwoCard,
-      flopThreeCard,
-      turnCard,
-    }))
+    const game = this.state.game
+    game.setCommunityCards(flopOneCard, flopTwoCard, flopThreeCard, turnCard)
+    this.setState(() => ({ game }))
   }
   componentDidUpdate = () => {
     const { dispatch } = this.props
-    const { playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB, flopOneCard, flopTwoCard, flopThreeCard, turnCard } = this.state
-    dispatch(saveEquitoolParameters(playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB, flopOneCard, flopTwoCard, flopThreeCard, turnCard))
+    // const { playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB, flopOneCard, flopTwoCard, flopThreeCard, turnCard } = this.state
+    // dispatch(saveEquitoolParameters(...this.state.game.cardsInPlay()))
+    dispatch(saveEquitoolParameters(this.state.game))
   }
   componentDidMount() {
     const { dispatch } = this.props
-    dispatch(saveEquitoolParameters('empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'))
+    // dispatch(saveEquitoolParameters(...this.state.game.cardsInPlay()))
+    dispatch(saveEquitoolParameters(this.state.game))
   }
   removeCards(arr, subset) {
     const exclude = [...subset];
@@ -320,6 +311,7 @@ class EquitoolMainMenu extends Component {
     }))
   }
   render() {
+    console.log(this.state)
     const { playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB, playerOneWins, playerTwoWins, tie } = this.state
     return (
       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>

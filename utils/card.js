@@ -54,3 +54,50 @@ export default class Deck {
     return cards;
   }
 }
+
+
+export class Game {
+  constructor() {
+    this.deck = new Deck();
+    this.playerOneCardA = 'empty'
+    this.playerOneCardB = 'empty'
+    this.playerTwoCardA = 'empty'
+    this.playerTwoCardB = 'empty'
+    this.flopOneCard = 'empty'
+    this.flopTwoCard = 'empty'
+    this.flopThreeCard = 'empty'
+    this.turnCard = 'empty'
+  }
+
+  playerOneCards() {
+    return [this.playerOneCardA, this.playerOneCardB]
+  }
+
+  playerTwoCards() {
+    return [this.playerTwoCardA, this.playerTwoCardB]
+  }
+
+  setPlayerOneCard(cardA, cardB) {
+    this.playerOneCardA = cardA
+    this.playerOneCardB = cardB
+  }
+
+  setPlayerTwoCard(cardA, cardB) {
+    this.playerTwoCardA = cardA
+    this.playerTwoCardB = cardB
+  }
+  setCommunityCards(flopOneCard, flopTwoCard, flopThreeCard, turnCard) {
+    this.flopOneCard = flopOneCard
+    this.flopTwoCard = flopTwoCard
+    this.flopThreeCard = flopThreeCard
+    this.turnCard = turnCard
+  }
+
+  communityCards() {
+    return [this.flopOneCard, this.flopTwoCard, this.flopThreeCard, this.turnCard]
+  }
+
+  cardsInPlay() {
+    return [...this.playerOneCards(), ...this.playerTwoCards(), ...this.communityCards()]
+  }
+}

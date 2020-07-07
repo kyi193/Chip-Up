@@ -10,16 +10,17 @@ export function submitParameters(position, bigBlind, ante) {
   }
 }
 
-export function saveEquitoolParameters(playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB, flopOneCard, flopTwoCard, flopThreeCard, turnCard) {
+export function saveEquitoolParameters(game) {
   return {
     type: SAVE_EQUITOOL_PARAMETERS,
-    playerOneCardA,
-    playerOneCardB,
-    playerTwoCardA,
-    playerTwoCardB,
-    flopOneCard,
-    flopTwoCard,
-    flopThreeCard,
-    turnCard,
+    // playerOneCardA,
+    // playerOneCardB,
+    // playerTwoCardA,
+    // playerTwoCardB,
+    // flopOneCard,
+    // flopTwoCard,
+    // flopThreeCard,
+    // turnCard,
+    game
   }
 }

@@ -11,16 +11,7 @@ const reducer = (state = {}, action) => {
       return state
     }
     case SAVE_EQUITOOL_PARAMETERS: {
-      state['equitool'] = {
-        playerOneCardA: action.playerOneCardA,
-        playerOneCardB: action.playerOneCardB,
-        playerTwoCardA: action.playerTwoCardA,
-        playerTwoCardB: action.playerTwoCardB,
-        flopOneCard: action.flopOneCard,
-        flopTwoCard: action.flopTwoCard,
-        flopThreeCard: action.flopThreeCard,
-        turnCard: action.turnCard,
-      }
+      state['cardsInPlay'] = action.game.cardsInPlay()
       return state
     }
   }
