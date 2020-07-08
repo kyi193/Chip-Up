@@ -5,6 +5,14 @@ class HandValidationError extends Error {
   }
 }
 
+export class CardValidationError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "CardValidationError";
+  }
+}
+const values = 'AKQJT98765432'
+const suits = 'CDHS'
 const kickerScoreMapper = {
   0: .13, //A
   12: .12, //K
@@ -55,12 +63,28 @@ const cardValueMapper = {
 
 export class Card {
   constructor(valueSuitString, imagePath) {
+    console.log('VALUE:', valueSuitString)
+    this.validateCardString(valueSuitString)
     this.name = valueSuitString;
     this.value = cardValueMapper[valueSuitString[0]];
     this.suit = valueSuitString[1];
     this.imagePath = imagePath;
   }
+
+  validateCardString(valueSuitString) {
+    if (valueSuitString === undefined || valueSuitString.length !== 2) {
+      throw new CardValidationError()
+    }
+    if (!values.includes(valueSuitString[0])) {
+      throw new CardValidationError()
+    }
+    if (!suits.includes(valueSuitString[1])) {
+      throw new CardValidationError()
+    }
+  }
 }
+
+
 
 export default class Deck {
   constructor() {

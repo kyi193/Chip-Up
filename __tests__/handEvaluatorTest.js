@@ -1,6 +1,7 @@
 import React from 'react'
 import { HandEvaluator, Game, Card } from '../utils/card'
 import renderer from 'react-test-renderer';
+import { CardValidationError } from '../utils/card'
 function getScore(fiveCardHand) {
   const evaluator = new HandEvaluator(fiveCardHand)
   return evaluator.getScore()
@@ -31,6 +32,37 @@ describe('HandEvaluator', () => {
     })
     test('Should not raise error if array has 5 cards', () => {
       expect(() => (new HandEvaluator([new Card('AC'), new Card('2H'), new Card('KH'), new Card('JS'), new Card('TS')]))).not.toThrowError(new Error('Must include exactly 5 cards'));
+    })
+  })
+})
+
+describe('Card', () => {
+  describe('constructor', () => {
+    test('raises error if card string is null', () => {
+      expect(() => (new Card())).toThrowError(CardValidationError);
+    })
+    test('raises error if card string length is less than 2', () => {
+      expect(() => (new Card('A'))).toThrowError(CardValidationError);
+    })
+    test('raises error if card string length is greater than 3', () => {
+      expect(() => (new Card('ACK'))).toThrowError(CardValidationError);
+    })
+    test('raises error if card value is not valid', () => {
+      expect(() => (new Card('NC'))).toThrowError(CardValidationError);
+    })
+    test('raises error if card value is lower case', () => {
+      expect(() => (new Card('aC'))).toThrowError(CardValidationError);
+    })
+    test('should not raise an error if card value is valid', () => {
+      const cardFn = () => (new Card('AC'))
+      expect(cardFn).not.toThrowError(CardValidationError);
+      const card = cardFn()
+      expect(card.name).toBe('AC')
+      expect(card.value.position).toBe(0)
+      expect(card.value.value).toBe(13)
+      expect(typeof card.value).toBe('object')
+      expect(card.value).toEqual({ position: 0, value: 13 })
+      expect(card.suit).toBe('C')
     })
   })
 })
