@@ -1,3 +1,10 @@
+class HandValidationError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "HandValidationError";
+  }
+}
+
 const kickerScoreMapper = {
   0: .13, //A
   12: .12, //K
@@ -645,7 +652,9 @@ class HighCardChecker {
 export class HandEvaluator {
   constructor(fiveCardHand) {
     this.fiveCardHand = fiveCardHand
-
+    if (this.fiveCardHand.length !== 5) {
+      throw new HandValidationError("Must include exactly 5 cards")
+    }
     // Start form checking BEST hand to worst
     this.handCheckers = {
       // TODO: Straight flush (re-use logic for straight + flush)

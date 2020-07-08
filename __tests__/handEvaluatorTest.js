@@ -18,6 +18,23 @@ function assertHand1EqualsHand2(hand1Arr, hand2Arr) {
   expect(getScore(playerOne5CardHand) === getScore(playerTwo5CardHand)).toBe(true)
 }
 
+describe('HandEvaluator', () => {
+  describe('constructor', () => {
+    test('raises error if array is empty', () => {
+      expect(() => (new HandEvaluator([]))).toThrowError(new Error('Must include exactly 5 cards'));
+    })
+    test('raises error if array has 4 cards', () => {
+      expect(() => (new HandEvaluator([new Card('AC'), new Card('2H'), new Card('KH'), new Card('JS')]))).toThrowError(new Error('Must include exactly 5 cards'));
+    })
+    test('raises error if array has 6 cards', () => {
+      expect(() => (new HandEvaluator([new Card('AC'), new Card('2H'), new Card('KH'), new Card('JS'), new Card('TS'), new Card('4H')]))).toThrowError(new Error('Must include exactly 5 cards'));
+    })
+    test('Should not raise error if array has 5 cards', () => {
+      expect(() => (new HandEvaluator([new Card('AC'), new Card('2H'), new Card('KH'), new Card('JS'), new Card('TS')]))).not.toThrowError(new Error('Must include exactly 5 cards'));
+    })
+  })
+})
+
 describe('Straight flush', () => {
   describe('Straight flush beats four of a kind', () => {
     test('Royal flush should beat JJJJA', () => {
