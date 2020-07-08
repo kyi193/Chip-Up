@@ -150,13 +150,12 @@ class EquitoolMainMenu extends Component {
     let playerOneWins = 0
     let playerTwoWins = 0
     let tie = 0
-    const simulations = 800
+    const simulations = 100
     for (let i = 0; i < simulations; i++) {
       const game = this.state.game
       let remainingDeck = deck
       const cards = game.cardsInPlay()
 
-      //Shuffle the deck
       for (let j = remainingDeck.length - 1; j > 0; j--) {
         const k = Math.floor(Math.random() * j)
         const temp = remainingDeck[j]
@@ -164,37 +163,22 @@ class EquitoolMainMenu extends Component {
         remainingDeck[k] = temp
       }
 
-      //Remove selected cards from deck
       remainingDeck = this.removeCards(deck, cards)
 
-      //Shuffle deck again
-
-      //If turn card (4th community card) is present
       if (game.turnCard !== 'empty') {
         const random = require('random')
-
-        //Determine random index from deck array
         const randomCardIdx = random.int(0, (remainingDeck.length - 1))
-
-        //Set card from above index as the river card (last card)
         const riverCard = remainingDeck[randomCardIdx]
 
-        //Set the 7 card hard for player one
         const playerOnehand = [...game.playerOneCards(), ...game.communityCards(), riverCard]
-
-        //Set the 7 card hard for player two
         const playerTwohand = [...game.playerTwoCards(), ...game.communityCards(), riverCard]
 
-        //Determine the strongest possible 5 card hand for both players
         const playerOneCards = handEvaluator.parseString(playerOnehand)
         const playerOneEvaluator = this.bestFiveCards(playerOneCards)
         const playerTwoCards = handEvaluator.parseString(playerTwohand)
         const playerTwoEvaluator = this.bestFiveCards(playerTwoCards)
-        // console.log(playerOneFiveCardHand)
         const playerOne = playerOneEvaluator.getScore()
         const playerTwo = playerTwoEvaluator.getScore()
-        //Choose winner of the hand. Lower score means stronger hand.
-        //Increment player's win count by 1
         if (playerOne > playerTwo) {
           playerOneWins += 1
         } else if (playerOne < playerTwo) {
@@ -203,48 +187,25 @@ class EquitoolMainMenu extends Component {
           tie += 1
         }
 
-        // If turn and river are not selected (Only 3 flop cards selected)
       } else if (game.flopOneCard !== 'empty' && game.flopTwoCard !== 'empty' && game.flopThreeCard !== 'empty') {
         const random = require('random')
-        //Select random index
         let randomCardIdx = random.int(0, (remainingDeck.length - 1))
-        //Shuffle deck
-        for (let j = remainingDeck.length - 1; j > 0; j--) {
-          const k = Math.floor(Math.random() * j)
-          const temp = remainingDeck[j]
-          remainingDeck[j] = remainingDeck[k]
-          remainingDeck[k] = temp
-        }
-
-        //Determine the turn card
         const turn = remainingDeck[randomCardIdx]
-
-        //Remove the turn card from the remaining deck
         remainingDeck = this.removeCards(remainingDeck, [turn])
-
-        //Select new random index for the river card and instantiate it
         randomCardIdx = random.int(0, (remainingDeck.length - 1))
         const river = remainingDeck[randomCardIdx]
-
-        //Remove river card
         remainingDeck = this.removeCards(remainingDeck, [river])
-        //Set 7 card hand for player one
-        const playerOnehand = [...game.playerOneCards(), ...game.communityCardsNoTurn(), turn, river]
 
-        //Set 7 card hand for player two
+        const playerOnehand = [...game.playerOneCards(), ...game.communityCardsNoTurn(), turn, river]
         const playerTwohand = [...game.playerTwoCards(), ...game.communityCardsNoTurn(), turn, river]
-        // console.log(playerOnehand, playerTwohand)
-        //Determine strongest possible 5 card hand for each player
 
         const playerOneCards = handEvaluator.parseString(playerOnehand)
         const playerOneEvaluator = this.bestFiveCards(playerOneCards)
         const playerTwoCards = handEvaluator.parseString(playerTwohand)
         const playerTwoEvaluator = this.bestFiveCards(playerTwoCards)
-        // console.log(playerOneFiveCardHand)
         const playerOne = playerOneEvaluator.getScore()
         const playerTwo = playerTwoEvaluator.getScore()
-        //Choose winner of the hand. Lower score means stronger hand.
-        //Increment player's win count by 1
+
         if (playerOne > playerTwo) {
           playerOneWins += 1
         } else if (playerOne < playerTwo) {
@@ -254,67 +215,32 @@ class EquitoolMainMenu extends Component {
         }
       } else {
         const random = require('random')
-        //Select random index
         let randomCardIdx = random.int(0, (remainingDeck.length - 1))
-        //Shuffle deck
-        for (let j = remainingDeck.length - 1; j > 0; j--) {
-          const k = Math.floor(Math.random() * j)
-          const temp = remainingDeck[j]
-          remainingDeck[j] = remainingDeck[k]
-          remainingDeck[k] = temp
-        }
-
-        //Determine the turn card
         const flopOneCard = remainingDeck[randomCardIdx]
-
-        //Remove the turn card from the remaining deck
         remainingDeck = this.removeCards(remainingDeck, [flopOneCard])
-
-        //Select new random index for the river card and instantiate it
         randomCardIdx = random.int(0, (remainingDeck.length - 1))
         const flopTwoCard = remainingDeck[randomCardIdx]
-
-        //Remove river card
         remainingDeck = this.removeCards(remainingDeck, [flopTwoCard])
-
-
-        //Select new random index for the river card and instantiate it
         randomCardIdx = random.int(0, (remainingDeck.length - 1))
         const flopThreeCard = remainingDeck[randomCardIdx]
-
-        //Remove river card
         remainingDeck = this.removeCards(remainingDeck, [flopThreeCard])
-
-        //Select new random index for the river card and instantiate it
         randomCardIdx = random.int(0, (remainingDeck.length - 1))
         const turnCard = remainingDeck[randomCardIdx]
-
-        //Remove river card
         remainingDeck = this.removeCards(remainingDeck, [turnCard])
-
-        //Select new random index for the river card and instantiate it
         randomCardIdx = random.int(0, (remainingDeck.length - 1))
         const riverCard = remainingDeck[randomCardIdx]
-
-        //Remove river card
         remainingDeck = this.removeCards(remainingDeck, [riverCard])
-        //Set 7 card hand for player one
-        const playerOnehand = [...game.playerOneCards(), flopOneCard, flopTwoCard, flopThreeCard, turnCard, riverCard]
 
-        //Set 7 card hand for player two
+        const playerOnehand = [...game.playerOneCards(), flopOneCard, flopTwoCard, flopThreeCard, turnCard, riverCard]
         const playerTwohand = [...game.playerTwoCards(), flopOneCard, flopTwoCard, flopThreeCard, turnCard, riverCard]
-        // console.log(playerOnehand, playerTwohand)
-        //Determine strongest possible 5 card hand for each player
 
         const playerOneCards = handEvaluator.parseString(playerOnehand)
         const playerOneEvaluator = this.bestFiveCards(playerOneCards)
         const playerTwoCards = handEvaluator.parseString(playerTwohand)
         const playerTwoEvaluator = this.bestFiveCards(playerTwoCards)
-        // console.log(playerOneFiveCardHand)
         const playerOne = playerOneEvaluator.getScore()
         const playerTwo = playerTwoEvaluator.getScore()
-        //Choose winner of the hand. Lower score means stronger hand.
-        //Increment player's win count by 1
+
         if (playerOne > playerTwo) {
           playerOneWins += 1
         } else if (playerOne < playerTwo) {
