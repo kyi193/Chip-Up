@@ -1,4 +1,4 @@
-class HandValidationError extends Error {
+export class HandValidationError extends Error {
   constructor(message) {
     super(message);
     this.name = "HandValidationError";
@@ -63,7 +63,6 @@ const cardValueMapper = {
 
 export class Card {
   constructor(valueSuitString, imagePath) {
-    console.log('VALUE:', valueSuitString)
     this.validateCardString(valueSuitString)
     this.name = valueSuitString;
     this.value = cardValueMapper[valueSuitString[0]];
@@ -675,10 +674,8 @@ class HighCardChecker {
 
 export class HandEvaluator {
   constructor(fiveCardHand) {
+    this.validateHand(fiveCardHand)
     this.fiveCardHand = fiveCardHand
-    if (this.fiveCardHand.length !== 5) {
-      throw new HandValidationError("Must include exactly 5 cards")
-    }
     // Start form checking BEST hand to worst
     this.handCheckers = {
       // TODO: Straight flush (re-use logic for straight + flush)
@@ -694,6 +691,11 @@ export class HandEvaluator {
     }
   }
 
+  validateHand(fiveCardHand) {
+    if ((new Set(fiveCardHand.map(card => card.name))).size !== 5) {
+      throw new HandValidationError("Must contain exactly 5 unique cards")
+    }
+  }
   getScore() {
     for (let checkerClass in this.handCheckers) {
       const checker = new this.handCheckers[checkerClass](this.fiveCardHand); // TODO: figure out dynamic class instantiation

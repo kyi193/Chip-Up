@@ -1,7 +1,7 @@
 import React from 'react'
 import { HandEvaluator, Game, Card } from '../utils/card'
 import renderer from 'react-test-renderer';
-import { CardValidationError } from '../utils/card'
+import { CardValidationError, HandValidationError } from '../utils/card'
 function getScore(fiveCardHand) {
   const evaluator = new HandEvaluator(fiveCardHand)
   return evaluator.getScore()
@@ -22,16 +22,19 @@ function assertHand1EqualsHand2(hand1Arr, hand2Arr) {
 describe('HandEvaluator', () => {
   describe('constructor', () => {
     test('raises error if array is empty', () => {
-      expect(() => (new HandEvaluator([]))).toThrowError(new Error('Must include exactly 5 cards'));
+      expect(() => (new HandEvaluator([]))).toThrowError(HandValidationError);
     })
     test('raises error if array has 4 cards', () => {
-      expect(() => (new HandEvaluator([new Card('AC'), new Card('2H'), new Card('KH'), new Card('JS')]))).toThrowError(new Error('Must include exactly 5 cards'));
+      expect(() => (new HandEvaluator([new Card('AC'), new Card('2H'), new Card('KH'), new Card('JS')]))).toThrowError(HandValidationError);
     })
     test('raises error if array has 6 cards', () => {
-      expect(() => (new HandEvaluator([new Card('AC'), new Card('2H'), new Card('KH'), new Card('JS'), new Card('TS'), new Card('4H')]))).toThrowError(new Error('Must include exactly 5 cards'));
+      expect(() => (new HandEvaluator([new Card('AC'), new Card('2H'), new Card('KH'), new Card('JS'), new Card('TS'), new Card('4H')]))).toThrowError(HandValidationError);
     })
     test('Should not raise error if array has 5 cards', () => {
-      expect(() => (new HandEvaluator([new Card('AC'), new Card('2H'), new Card('KH'), new Card('JS'), new Card('TS')]))).not.toThrowError(new Error('Must include exactly 5 cards'));
+      expect(() => (new HandEvaluator([new Card('AC'), new Card('2H'), new Card('KH'), new Card('JS'), new Card('TS')]))).not.toThrowError(HandValidationError)
+    })
+    test('Hand should not include duplicates', () => {
+      expect(() => (new HandEvaluator([new Card('AC'), new Card('AC'), new Card('KH'), new Card('JS'), new Card('TS')]))).toThrowError(HandValidationError)
     })
   })
 })
