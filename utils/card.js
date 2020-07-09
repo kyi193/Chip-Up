@@ -542,8 +542,16 @@ class TwoPairChecker {
         countMap[card.value.position] = 1
       }
     }
+    let highPair = 1
     for (let value in countMap) {
       if (countMap[value] === 2) {
+        if (kickerScoreMapper[value] > kickerScoreMapper[highPair]) {
+          highPair = value
+        }
+      }
+    }
+    for (let value in countMap) {
+      if (countMap[value] === 2 && value === highPair) {
         score += ((90000) * rankScoreMapper[value]) / 10
       } else {
         kickerScore += kickerScoreMapper[value]
