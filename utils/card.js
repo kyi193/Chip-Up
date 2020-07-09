@@ -87,34 +87,88 @@ export class Card {
 
 export default class Deck {
   constructor() {
-    this.cards = this.setupCards()
+    this.cards = [
+      new Card('2C', require(`../assets/images/cards/2C.png`)),
+      new Card('3C', require(`../assets/images/cards/3C.png`)),
+      new Card('4C', require(`../assets/images/cards/4C.png`)),
+      new Card('5C', require(`../assets/images/cards/5C.png`)),
+      new Card('6C', require(`../assets/images/cards/6C.png`)),
+      new Card('7C', require(`../assets/images/cards/7C.png`)),
+      new Card('8C', require(`../assets/images/cards/8C.png`)),
+      new Card('9C', require(`../assets/images/cards/9C.png`)),
+      new Card('TC', require(`../assets/images/cards/TC.png`)),
+      new Card('JC', require(`../assets/images/cards/JC.png`)),
+      new Card('QC', require(`../assets/images/cards/QC.png`)),
+      new Card('KC', require(`../assets/images/cards/KC.png`)),
+      new Card('AC', require(`../assets/images/cards/AC.png`)),
+      new Card('2S', require(`../assets/images/cards/2S.png`)),
+      new Card('3S', require(`../assets/images/cards/3S.png`)),
+      new Card('4S', require(`../assets/images/cards/4S.png`)),
+      new Card('5S', require(`../assets/images/cards/5S.png`)),
+      new Card('6S', require(`../assets/images/cards/6S.png`)),
+      new Card('7S', require(`../assets/images/cards/7S.png`)),
+      new Card('8S', require(`../assets/images/cards/8S.png`)),
+      new Card('9S', require(`../assets/images/cards/9S.png`)),
+      new Card('TS', require(`../assets/images/cards/TS.png`)),
+      new Card('JS', require(`../assets/images/cards/JS.png`)),
+      new Card('QS', require(`../assets/images/cards/QS.png`)),
+      new Card('KS', require(`../assets/images/cards/KS.png`)),
+      new Card('AS', require(`../assets/images/cards/AS.png`)),
+      new Card('2D', require(`../assets/images/cards/2D.png`)),
+      new Card('3D', require(`../assets/images/cards/3D.png`)),
+      new Card('4D', require(`../assets/images/cards/4D.png`)),
+      new Card('5D', require(`../assets/images/cards/5D.png`)),
+      new Card('6D', require(`../assets/images/cards/6D.png`)),
+      new Card('7D', require(`../assets/images/cards/7D.png`)),
+      new Card('8D', require(`../assets/images/cards/8D.png`)),
+      new Card('9D', require(`../assets/images/cards/9D.png`)),
+      new Card('TD', require(`../assets/images/cards/TD.png`)),
+      new Card('JD', require(`../assets/images/cards/JD.png`)),
+      new Card('QD', require(`../assets/images/cards/QD.png`)),
+      new Card('KD', require(`../assets/images/cards/KD.png`)),
+      new Card('AD', require(`../assets/images/cards/AD.png`)),
+      new Card('2H', require(`../assets/images/cards/2H.png`)),
+      new Card('3H', require(`../assets/images/cards/3H.png`)),
+      new Card('4H', require(`../assets/images/cards/4H.png`)),
+      new Card('5H', require(`../assets/images/cards/5H.png`)),
+      new Card('6H', require(`../assets/images/cards/6H.png`)),
+      new Card('7H', require(`../assets/images/cards/7H.png`)),
+      new Card('8H', require(`../assets/images/cards/8H.png`)),
+      new Card('9H', require(`../assets/images/cards/9H.png`)),
+      new Card('TH', require(`../assets/images/cards/TH.png`)),
+      new Card('JH', require(`../assets/images/cards/JH.png`)),
+      new Card('QH', require(`../assets/images/cards/QH.png`)),
+      new Card('KH', require(`../assets/images/cards/KH.png`)),
+      new Card('AH', require(`../assets/images/cards/AH.png`)),
+    ]
   }
 
-  setupCards() {
-    // setup values array
-    let values = []
-    for (let i = 2; i < 10; i++) {
-      values.push(i)
-    }
-    values = values.concat(['T', 'J', 'Q', 'K', 'A']);
+  // setupCards() {
+  //   // setup values array
+  //   let values = []
+  //   for (let i = 2; i < 10; i++) {
+  //     values.push(i)
+  //   }
+  //   values = values.concat(['T', 'J', 'Q', 'K', 'A']);
 
-    // setup suits array
-    let suits = ['D', 'C', 'H', 'S'];
-    let cards = []
+  //   // setup suits array
+  //   let suits = ['D', 'C', 'H', 'S'];
+  //   let cards = []
 
-    for (const value of values) {
-      for (const suit of suits) {
-        let valueSuitString = `${value}${suit}`;
-        let imagePath = require(`../assets/images/cards/${valueSuitString}.png`)
+  //   for (const value of values) {
+  //     for (const suit of suits) {
+  //       let valueSuitString = `${value}${suit}`;
+  //       let path = `../assets/images/cards/${valueSuitString}.png`
+  //       let imagePath = require(path)
 
-        cards.push(
-          new Card(valueSuitString, imagePath)
-        )
-      }
-    }
+  //       cards.push(
+  //         new Card(valueSuitString, imagePath)
+  //       )
+  //     }
+  //   }
 
-    return cards;
-  }
+  //   return cards;
+  // }
 }
 
 export class Game {

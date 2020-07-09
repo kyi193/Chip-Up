@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TouchableWithoutFeedback, Image } from 'react-native'
+import { View, StyleSheet, TouchableWithoutFeedback, Image, Platform } from 'react-native'
 import EquitoolCardSelector from './EquitoolCardSelector'
 
 class EquitoolPlayerCards extends Component {
@@ -72,23 +72,23 @@ class EquitoolPlayerCards extends Component {
     const { cardOneHighLighted, cardTwoHighLighted, cardSelected, cardOneSelected, cardTwoSelected, } = this.state
     return (
       <View style={{ flexDirection: 'column' }}>
-        <View style={this.props.player === 'one' ? styles.containerOne : styles.containerTwo}>
+        <View style={this.props.player === 'one' ? (Platform.OS === 'web' ? styles.containerOne : styles.containerOneIos) : (Platform.OS === 'web' ? styles.containerTwo : styles.containerTwoIos)}>
           <TouchableWithoutFeedback onPress={this.cardOneSelected}>
             {cardOneSelected === null
-              ? <View style={cardOneHighLighted ? styles.cardHighlighted : styles.cardUnhighlighted} />
+              ? <View style={Platform.OS === 'web' ? (cardOneHighLighted ? styles.cardHighlighted : styles.cardUnhighlighted) : (cardOneHighLighted ? styles.cardHighlightedIos : styles.cardUnhighlightedIos)} />
               : <Image
                 source={cardOneSelected}
                 alt="info"
-                style={{ height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'black', marginHorizontal: 5 }} />
+                style={Platform.OS === 'web' ? { height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'black', marginHorizontal: 5 } : { height: 50, width: 36.5, borderWidth: 1, borderColor: 'black', marginHorizontal: 2 }} />
             }
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback onPress={this.cardTwoSelected}>
             {cardTwoSelected === null
-              ? <View style={cardTwoHighLighted ? styles.cardHighlighted : styles.cardUnhighlighted} />
+              ? <View style={Platform.OS === 'web' ? (cardTwoHighLighted ? styles.cardHighlighted : styles.cardUnhighlighted) : (cardTwoHighLighted ? styles.cardHighlightedIos : styles.cardUnhighlightedIos)} />
               : <Image
                 source={cardTwoSelected}
                 alt="info"
-                style={{ height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'black' }} />
+                style={Platform.OS === 'web' ? { height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'black', marginHorizontal: 5 } : { height: 50, width: 36.5, borderWidth: 1, borderColor: 'black', marginHorizontal: 2 }} />
             }
           </TouchableWithoutFeedback>
         </View>
@@ -110,6 +110,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row-reverse',
     marginTop: 20,
     marginRight: 50
+  },
+  containerOneIos: {
+    flexDirection: 'row',
+    marginTop: 20,
+  },
+  containerTwoIos: {
+    flexDirection: 'row-reverse',
+    marginTop: 20,
   },
   cardHighlighted: {
     height: 100,
@@ -142,6 +150,35 @@ const styles = StyleSheet.create({
     width: 71,
     borderRadius: 8,
     borderWidth: 2,
+    backgroundColor: 'black',
+    marginHorizontal: 5
+  },
+  cardHighlightedIos: {
+    height: 50,
+    width: 36.5,
+    borderWidth: 1,
+    borderColor: '#3498db',
+    marginHorizontal: 5,
+    backgroundColor: "#DDDDDD",
+  },
+  cardUnhighlightedIos: {
+    height: 50,
+    width: 36.5,
+    borderWidth: 1,
+    borderColor: 'gray',
+    marginHorizontal: 5,
+  },
+  selectedCardIos: {
+    height: 50,
+    width: 36.5,
+    borderWidth: 1,
+    borderColor: 'black',
+    marginHorizontal: 5
+  },
+  blackedOutIos: {
+    height: 50,
+    width: 36.5,
+    borderWidth: 1,
     backgroundColor: 'black',
     marginHorizontal: 5
   }

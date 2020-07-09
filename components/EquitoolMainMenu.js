@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Platform, ImageBackground } from 'react-native'
+import { View, Text, StyleSheet, Platform, ImageBackground, Dimensions, TouchableOpacity, Image } from 'react-native'
 import { Header } from 'react-native-elements'
 import { Entypo, Ionicons } from '@expo/vector-icons';
 import EquitoolPlayerCards from './EquitoolPlayerCards'
@@ -12,7 +12,7 @@ import 'random'
 import 'poker-hand-evaluator'
 import { Game, Card, HandEvaluator } from '../utils/card'
 
-const backgroundImage = (Platform.OS === 'ios' || Platform.OS === 'android') ? { uri: "https://i.imgur.com/BrFGUhA.jpg" } : { uri: "https://i.imgur.com/qDG7eHT.jpg" };
+const backgroundImage = { uri: "https://i.imgur.com/qDG7eHT.jpg" };
 
 class EquitoolMainMenu extends Component {
   state = {
@@ -253,20 +253,21 @@ class EquitoolMainMenu extends Component {
     this.setState(() => ({
       playerOneWins: ((playerOneWins / simulations) * 100).toFixed(2),
       playerTwoWins: ((playerTwoWins / simulations) * 100).toFixed(2),
-      tie: ((tie / simulations) * 100).toFixed(2)
+      tie: ((tie / simulations) * 100).toFixed(2),
     }))
   }
   render() {
     const { game, playerOneWins, playerTwoWins, tie } = this.state
     return (
       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-        <View style={styles.container}>
-
+        <View style={Platform === 'web' ? styles.container : styles.containerIos}>
           <Header
             leftComponent={<Ionicons style={(Platform.OS === 'ios' || Platform.OS === 'android' ? {} : { paddingLeft: 25 })} name="md-arrow-round-back" size={30} color="#3498db" onPress={() => this.props.navigation.goBack(null)} />}
             centerComponent={{ text: 'Equitools', style: { color: '#3498db', fontSize: (Platform.OS === 'ios' || Platform.OS === 'android') ? 24 : 40, fontWeight: 'bold', } }}
-            rightComponent={<Entypo style={(Platform.OS === 'ios' || Platform.OS === 'android' ? {} : { paddingRight: 25 })} name="hair-cross" size={30}
-              color={'#3498db'} />}
+            rightComponent={<TouchableOpacity onPress={this.calculateOdds}>
+              <Entypo style={(Platform.OS === 'ios' || Platform.OS === 'android' ? {} : { paddingRight: 25 })} name="hair-cross" size={30}
+                color={'#3498db'} />
+            </TouchableOpacity>}
             containerStyle={(Platform.OS === 'ios' || Platform.OS === 'android')
               ? {
                 backgroundColor: 'black',
@@ -282,27 +283,54 @@ class EquitoolMainMenu extends Component {
                 borderBottomWidth: 4
               }} />
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <View style={Platform.OS === 'ios' ? styles.playerHeaderOneIos : styles.playerHeaderWeb}>
+              <Text style={Platform.OS === 'ios' ? { color: 'white', textAlign: 'center' } : { color: 'white', textAlign: 'center', fontSize: 25 }}>Player 1</Text>
+            </View>
+            <View style={Platform.OS === 'ios' ? styles.communityHeaderIos : styles.communityHeaderWeb}>
+              <Text style={Platform.OS === 'ios' ? { color: 'white', textAlign: 'center' } : { color: 'white', textAlign: 'center', fontSize: 25 }}>Flop and Turn</Text>
+            </View>
+            <View style={Platform.OS === 'ios' ? styles.playerHeaderTwoIos : styles.playerHeaderWeb}>
+              <Text style={Platform.OS === 'ios' ? { color: 'white', textAlign: 'center' } : { color: 'white', textAlign: 'center', fontSize: 25 }}>Player 2</Text>
+            </View>
+          </View>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <EquitoolPlayerCards updatePlayer={this.updatePlayerOneCards} player='one' />
-            {playerOneWins &&
+            {playerOneWins && Platform.OS === 'web' &&
               <View style={{ justifyContent: 'center', alignItems: 'center', borderColor: '#3498db', borderWidth: 3, borderRadius: 8, height: 100, width: 250, marginTop: 20, backgroundColor: 'black' }}>
                 <Text style={{ textAlign: 'center', color: 'white' }}><Text style={{ fontWeight: 'bold' }}>Wins:</Text> {playerOneWins} %</Text>
                 <Text style={{ textAlign: 'center', color: 'white' }}><Text style={{ fontWeight: 'bold' }}>Ties:</Text> {tie} %</Text>
               </View>}
             {(game.playerOneCardA !== 'empty' && game.playerOneCardB !== 'empty' && game.playerTwoCardA !== 'empty' && game.playerTwoCardB !== 'empty')
-              && <EquitoolCommunityCardSelector updateCommunity={this.updateCommunityCards} />}
-            {playerTwoWins &&
+              && <View style={{ flexDirection: 'column' }}>
+                <EquitoolCommunityCardSelector updateCommunity={this.updateCommunityCards} />
+              </View>}
+            {playerTwoWins && Platform.OS === 'web' &&
               <View style={{ justifyContent: 'center', alignItems: 'center', borderColor: '#3498db', borderWidth: 3, borderRadius: 8, height: 100, width: 250, marginTop: 20, backgroundColor: 'black' }}>
                 <Text style={{ textAlign: 'center', color: 'white' }}><Text style={{ fontWeight: 'bold' }}>Wins:</Text> {playerTwoWins} %</Text>
                 <Text style={{ textAlign: 'center', color: 'white' }}><Text style={{ fontWeight: 'bold' }}>Ties:</Text> {tie} %</Text>
               </View>}
             <EquitoolPlayerCards updatePlayer={this.updatePlayerTwoCards} player='two' />
-
           </View>
+        </View>
+        {Platform.OS === 'web'
+          && <View style={{ flexDirection: 'column-reverse', justifyContent: 'center', alignItems: 'center', marginBottom: 50 }}>
+            <EquitoolCalculateButton state={this.state} calculateOdds={this.calculateOdds} />
+          </View>}
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          {playerOneWins && Platform.OS === 'ios' &&
+            <View style={{ justifyContent: 'center', alignItems: 'center', borderColor: '#3498db', borderWidth: 3, borderRadius: 8, height: 100, width: 250, marginTop: 20, backgroundColor: 'black' }}>
+              <Text style={{ textAlign: 'center', color: 'white' }}><Text style={{ fontWeight: 'bold', fontSize: 24 }}>Player 1</Text></Text>
+              <Text style={{ textAlign: 'center', color: 'white' }}><Text style={{ fontWeight: 'bold' }}>Wins:</Text> {playerOneWins} %</Text>
+              <Text style={{ textAlign: 'center', color: 'white' }}><Text style={{ fontWeight: 'bold' }}>Ties:</Text> {tie} %</Text>
+            </View>}
+          {playerTwoWins && Platform.OS === 'ios' &&
+            <View style={{ marginBottom: 100, justifyContent: 'center', alignItems: 'center', borderColor: '#3498db', borderWidth: 3, borderRadius: 8, height: 100, width: 250, marginTop: 20, backgroundColor: 'black' }}>
+              <Text style={{ textAlign: 'center', color: 'white' }}><Text style={{ fontWeight: 'bold', fontSize: 24 }}>Player 2</Text></Text>
+              <Text style={{ textAlign: 'center', color: 'white' }}><Text style={{ fontWeight: 'bold' }}>Wins:</Text> {playerTwoWins} %</Text>
+              <Text style={{ textAlign: 'center', color: 'white' }}><Text style={{ fontWeight: 'bold' }}>Ties:</Text> {tie} %</Text>
+            </View>}
+        </View>
 
-        </View>
-        <View style={{ flexDirection: 'column-reverse', justifyContent: 'center', alignItems: 'center', marginBottom: 50 }}>
-          <EquitoolCalculateButton state={this.state} calculateOdds={this.calculateOdds} />
-        </View>
       </ImageBackground>
     )
   }
@@ -313,8 +341,60 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 10000
   },
+  containerIos: {
+    flex: 1,
+    width: Dimensions.get('window').width
+  },
   backgroundImage: {
     flex: 1,
+  },
+  playerHeaderWeb: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#3498db',
+    width: 250,
+    height: 50,
+    borderLeftWidth: 4,
+    borderRadius: 5,
+    borderWidth: 2,
+    borderColor: 'gray'
+  },
+  communityHeaderWeb: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#3498db',
+    width: 400,
+    height: 50,
+    borderRadius: 5,
+    borderWidth: 2,
+    borderColor: 'gray'
+  },
+  playerHeaderOneIos: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#3498db',
+    width: 91,
+    height: 25,
+    borderRightColor: 'black',
+    borderRightWidth: 4,
+    borderLeftWidth: 4
+  },
+  playerHeaderTwoIos: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#3498db',
+    width: 91,
+    height: 25,
+    borderLeftColor: 'black',
+    borderRightWidth: 4,
+    borderLeftWidth: 4
+  },
+  communityHeaderIos: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#3498db',
+    width: 200,
+    height: 25
   },
 })
 export default connect()(EquitoolMainMenu)

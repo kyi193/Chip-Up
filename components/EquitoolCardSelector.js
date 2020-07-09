@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableWithoutFeedback, Image } from 'react-native'
+import { View, StyleSheet, TouchableWithoutFeedback, Image, Platform } from 'react-native'
 import { connect } from 'react-redux'
 import { generateUID } from '../utils/helpers'
-import Card from '../utils/card'
 import Deck from '../utils/card'
 
 class EquitoolCardSelector extends Component {
@@ -22,7 +21,7 @@ class EquitoolCardSelector extends Component {
   render() {
     const deck = new Deck()
     return (
-      <View style={{ width: 800, height: 500, flexDirection: 'row', flexWrap: 'wrap', }}>
+      <View style={Platform.OS === 'web' ? { width: 900, height: 500, flexDirection: 'row', flexWrap: 'wrap' } : { maxWidth: 215, height: 500, flexDirection: 'row', flexWrap: 'wrap', }}>
         {deck.cards.map(
           (card, index) =>
             this.shouldRenderCard(card)
@@ -31,17 +30,15 @@ class EquitoolCardSelector extends Component {
                   key={index}
                   source={card.imagePath}
                   alt="info"
-                  style={styles.selectedCard} />
+                  style={Platform.OS === 'web' ? styles.selectedCard : styles.selectedCardIos} />
               </TouchableWithoutFeedback>
-              ) : <View key={generateUID()} style={styles.blackedOut} />
+              ) : <View key={generateUID()} style={Platform.OS === 'web' ? styles.blackedOut : styles.blackedOutIos} />
         )}
       </View>
     )
   }
 }
 function mapStateToProps(state) {
-  // console.log(state)
-  // const { playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB, flopOneCard, flopTwoCard, flopThreeCard, turnCard } = state.equitool
   return { cardsInPlay: state.cardsInPlay }
 }
 
@@ -61,6 +58,20 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     backgroundColor: 'gray',
     marginHorizontal: 5
+  },
+  selectedCardIos: {
+    height: 50,
+    width: 37.5,
+    borderWidth: 1,
+    borderColor: 'black',
+    marginHorizontal: 2
+  },
+  blackedOutIos: {
+    height: 50,
+    width: 37.5,
+    borderWidth: 1,
+    backgroundColor: 'gray',
+    marginHorizontal: 2
   }
 })
 export default connect(mapStateToProps)(EquitoolCardSelector)

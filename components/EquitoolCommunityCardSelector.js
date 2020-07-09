@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TouchableWithoutFeedback, Image } from 'react-native'
+import { View, StyleSheet, TouchableWithoutFeedback, Image, Platform } from 'react-native'
 import EquitoolCardSelector from './EquitoolCardSelector'
 
 class EquitoolCommunityCardSelector extends Component {
@@ -57,48 +57,45 @@ class EquitoolCommunityCardSelector extends Component {
     const values = ['flopOne', 'flopTwo', 'flopThree', 'turn']
     return (
       <View style={{ flexDirection: 'column' }}>
-        <View style={styles.containerOne}>
+        <View style={Platform.OS === 'web' ? styles.containerOne : styles.containerOneIos}>
           <View style={{ flexDirection: 'row' }}>
             <TouchableWithoutFeedback onPress={!values.includes(this.state.cardSelected) ? (() => this.setState(() => ({ cardSelected: 'flopOne' }))) : (() => this.setState(() => ({ cardSelected: 'none' })))}>
               {flopOneSelected === null
-                ? <View style={styles.cardUnhighlighted} />
+                ? <View style={Platform.OS === 'web' ? styles.cardUnhighlighted : styles.cardUnhighlightedIos} />
                 : <Image
                   source={flopOneSelected}
                   alt="info"
-                  style={{ height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'gray', marginHorizontal: 5 }} />
+                  style={Platform.OS === 'web' ? { height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'gray', marginHorizontal: 5 } : { height: 50, width: 36.5, borderWidth: 1, borderColor: 'gray', marginHorizontal: 2 }} />
               }
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback onPress={!values.includes(this.state.cardSelected) ? (() => this.setState(() => ({ cardSelected: 'flopTwo' }))) : (() => this.setState(() => ({ cardSelected: 'none' })))}>
               {flopTwoSelected === null
-                ? <View style={styles.cardUnhighlighted} />
+                ? <View style={Platform.OS === 'web' ? styles.cardUnhighlighted : styles.cardUnhighlightedIos} />
                 : <Image
                   source={flopTwoSelected}
                   alt="info"
-                  style={{ height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'gray', marginHorizontal: 5 }} />
+                  style={Platform.OS === 'web' ? { height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'gray', marginHorizontal: 5 } : { height: 50, width: 36.5, borderWidth: 1, borderColor: 'gray', marginHorizontal: 2 }} />
               }
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback onPress={!values.includes(this.state.cardSelected) ? (() => this.setState(() => ({ cardSelected: 'flopThree' }))) : (() => this.setState(() => ({ cardSelected: 'none' })))}>
               {flopThreeSelected === null
-                ? <View style={styles.cardUnhighlighted} />
+                ? <View style={Platform.OS === 'web' ? styles.cardUnhighlighted : styles.cardUnhighlightedIos} />
                 : <Image
                   source={flopThreeSelected}
                   alt="info"
-                  style={{ height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'gray', marginHorizontal: 5 }} />
+                  style={Platform.OS === 'web' ? { height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'gray', marginHorizontal: 5 } : { height: 50, width: 36.5, borderWidth: 1, borderColor: 'gray', marginHorizontal: 2 }} />
               }
             </TouchableWithoutFeedback>
           </View>
           <TouchableWithoutFeedback onPress={!values.includes(this.state.cardSelected) ? (() => this.setState(() => ({ cardSelected: 'turn' }))) : (() => this.setState(() => ({ cardSelected: 'none' })))}>
-            {flopTwoSelected === null
-              ? <View style={styles.cardUnhighlighted} />
+            {turnSelected === null
+              ? <View style={Platform.OS === 'web' ? styles.cardUnhighlighted : styles.cardUnhighlightedIos} />
               : <Image
                 source={turnSelected}
                 alt="info"
-                style={{ height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'gray', marginHorizontal: 5 }} />
+                style={Platform.OS === 'web' ? { height: 100, width: 71, borderRadius: 8, borderWidth: 2, borderColor: 'gray', marginHorizontal: 5 } : { height: 50, width: 36.5, borderWidth: 1, borderColor: 'gray', marginHorizontal: 2 }} />
             }
           </TouchableWithoutFeedback>
-          <View>
-            <View style={styles.cardUnhighlighted} />
-          </View>
         </View>
         {this.state.cardSelected !== 'none' ? <EquitoolCardSelector selectCard={this.selectCard} /> : <View></View>}
 
@@ -113,6 +110,12 @@ const styles = StyleSheet.create({
     marginLeft: 50,
     marginBottom: 10
   },
+  containerOneIos: {
+    flexDirection: 'row',
+    marginTop: 20,
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
   cardUnhighlighted: {
     height: 100,
     width: 71,
@@ -120,6 +123,13 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 8,
     marginHorizontal: 5,
+  },
+  cardUnhighlightedIos: {
+    height: 50,
+    width: 36.5,
+    borderWidth: 1,
+    borderColor: 'gray',
+    marginHorizontal: 2,
   },
 })
 export default EquitoolCommunityCardSelector
