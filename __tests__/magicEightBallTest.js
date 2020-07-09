@@ -6,7 +6,8 @@ import {
   AskAgainLaterResponse,
   BetterNotTellResponse,
   OnThisMonthResponse,
-  IfNameStartsWithResponse
+  IfNameStartsWithResponse,
+  IfThisHeightResponse
 } from '../utils/magicEightBall'
 const months = ['January',
   'February',
@@ -22,6 +23,8 @@ const months = ['January',
   'December']
 const when = ['before', 'after']
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+const inches = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5, 10.5, 11.5]
+const tallerOrShorter = ['taller', 'shorter']
 
 describe('YesReponse', () => {
   describe('getResults()', () => {
@@ -141,6 +144,29 @@ describe('IfNameStartsWithResponse', () => {
     })
     test('randomLetter should be a valid upperCase letter', () => {
       expect(alphabet.includes(ifNameStartsWithResults.randomLetter)).toBe(true);
+    })
+  })
+})
+
+
+describe('IfThisHeightResponse', () => {
+  describe('getResults()', () => {
+    const ifThisHeightResponse = new IfThisHeightResponse()
+    const ifThisHeightResults = ifThisHeightResponse.getResults()
+    test('answer should start with If you\'re', () => {
+      expect(ifThisHeightResults.answer.includes('If you\'re')).toBe(true);
+    })
+    test('index should be 8', () => {
+      expect(ifThisHeightResults.index).toBe(8);
+    })
+    test('randomFeet should be between 3 and 7', () => {
+      expect(ifThisHeightResults.randomFeet >= 3 && ifThisHeightResults.randomFeet <= 7).toBe(true);
+    })
+    test('randomInches should be a valid number(1-11 increments of .5)', () => {
+      expect(inches.includes(ifThisHeightResults.randomInches)).toBe(true);
+    })
+    test('randomTallerOrShorter either be taller or shorter', () => {
+      expect(tallerOrShorter.includes(ifThisHeightResults.randomTallerOrShorter)).toBe(true);
     })
   })
 })
