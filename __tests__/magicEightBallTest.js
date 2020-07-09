@@ -1,4 +1,4 @@
-import { YesResponse, PerhapsResponse } from '../utils/magicEightBall'
+import { YesResponse, PerhapsResponse, MaybeResponse } from '../utils/magicEightBall'
 
 describe('YesReponse', () => {
   describe('getResults()', () => {
@@ -22,6 +22,22 @@ describe('PerhapsResponse', () => {
     })
     test('index should be 1', () => {
       expect(perhapsResults.index).toBe(1);
+    })
+  })
+})
+
+describe('MaybeResponse', () => {
+  describe('getResults()', () => {
+    const maybeResponse = new MaybeResponse()
+    const maybeResults = maybeResponse.getResults()
+    test('answer should be Perhaps', () => {
+      expect(maybeResults.answer).toBe('Maybe');
+    })
+    test('index should be 2', () => {
+      expect(maybeResults.index).toBe(2);
+    })
+    test('index should be not be anything other than 2', () => {
+      expect(maybeResults.index).not.toBe(1);
     })
   })
 })
