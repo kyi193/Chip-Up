@@ -79,74 +79,7 @@ class EquitoolMainMenu extends Component {
     }
     return handEval
   }
-  evaluateTie(handOne, handTwo) {
-    const rankNames = "23456789TJQKA";
-    if (handOne.name === 'Three of a kind') {
-      let handOneRanks = {}
-      let handTwoRanks = {}
-      let handOneArr = handOne.hand.split(' ')
-      let handTwoArr = handTwo.hand.split(' ')
-      let handOneTrips
-      let handTwoTrips
-      for (let i = 0; i < handOneArr.length; i++) {
-        let value = handOneArr[i][0]
-        if (handOneRanks[value] !== undefined) {
-          handOneRanks[value] += 1
-          if (handOneRanks[value] === 3) {
-            handOneTrips = rankNames.indexOf(value)
-          }
-        } else {
-          handOneRanks[value] = 1
-        }
-      }
-      for (let i = 0; i < handTwoArr.length; i++) {
-        let value = handTwoArr[i][0]
-        if (handTwoRanks[value] !== undefined) {
-          handTwoRanks[value] += 1
-          if (handTwoRanks[value] === 3) {
-            handTwoTrips = rankNames.indexOf(value)
-          }
-        } else {
-          handTwoRanks[value] = 1
-        }
-      }
-      if (handOneTrips > handTwoTrips) {
-        return 'one'
-      } else {
-        return 'two'
-      }
-    }
-    if (handOne.name === 'Two of a kind') {
-
-    }
-  }
   calculateOdds = () => {
-    // const { playerOneCardA,
-    //   playerOneCardB,
-    //   playerTwoCardA,
-    //   playerTwoCardB,
-    //   flopOneCard,
-    //   flopTwoCard,
-    //   flopThreeCard,
-    //   turnCard } = this.state
-    // console.log((turnCard !== 'empty')
-    //   ? [playerOneCardA,
-    //     playerOneCardB,
-    //     playerTwoCardA,
-    //     playerTwoCardB,
-    //     flopOneCard,
-    //     flopTwoCard,
-    //     flopThreeCard,
-    //     turnCard]
-    //   : ['Bink', playerOneCardA,
-    //     playerOneCardB,
-    //     playerTwoCardA,
-    //     playerTwoCardB,
-    //     flopOneCard,
-    //     flopTwoCard,
-    //     flopThreeCard,
-    //   ])
-    const PokerHand = require('poker-hand-evaluator');
     let playerOneWins = 0
     let playerTwoWins = 0
     let tie = 0

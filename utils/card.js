@@ -142,33 +142,6 @@ export default class Deck {
       new Card('AH', require(`../assets/images/cards/AH.png`)),
     ]
   }
-
-  // setupCards() {
-  //   // setup values array
-  //   let values = []
-  //   for (let i = 2; i < 10; i++) {
-  //     values.push(i)
-  //   }
-  //   values = values.concat(['T', 'J', 'Q', 'K', 'A']);
-
-  //   // setup suits array
-  //   let suits = ['D', 'C', 'H', 'S'];
-  //   let cards = []
-
-  //   for (const value of values) {
-  //     for (const suit of suits) {
-  //       let valueSuitString = `${value}${suit}`;
-  //       let path = `../assets/images/cards/${valueSuitString}.png`
-  //       let imagePath = require(path)
-
-  //       cards.push(
-  //         new Card(valueSuitString, imagePath)
-  //       )
-  //     }
-  //   }
-
-  //   return cards;
-  // }
 }
 
 export class Game {
@@ -186,13 +159,6 @@ export class Game {
 
 
   generateFiveCardHand() {
-    // 1. duplicate a deck copy
-
-    // pick 1 card at random and remove it from copied eck
-
-    // repeated 4 more times
-
-    // return array of 5 cards
     let newDeck = [...this.deck.cards]
     let deckLength = Object.keys(newDeck).length
     let fiveCardHand = []
@@ -732,15 +698,12 @@ class HighCardChecker {
     return true
   }
 }
-// TOOD: OTHER CHECKS
 
 export class HandEvaluator {
   constructor(fiveCardHand) {
     this.validateHand(fiveCardHand)
     this.fiveCardHand = fiveCardHand
-    // Start form checking BEST hand to worst
     this.handCheckers = {
-      // TODO: Straight flush (re-use logic for straight + flush)
       StraightFlushChecker,
       FourOfAKindChecker,
       FullHouseChecker,
@@ -760,25 +723,13 @@ export class HandEvaluator {
   }
   getScore() {
     for (let checkerClass in this.handCheckers) {
-      const checker = new this.handCheckers[checkerClass](this.fiveCardHand); // TODO: figure out dynamic class instantiation
-      const result = checker.getResults(); // Eecpeted: { score: Integer, matchesHand: Boolean}
+      const checker = new this.handCheckers[checkerClass](this.fiveCardHand)
+      const result = checker.getResults()
       if (result.matchesHand) {
         return result.score
       }
     }
     return false;
-  }
-
-  fourOfKindScorer() {
-
-  }
-
-  fourofAKindChecker() {
-
-  }
-
-  fullHouseChecker() {
-    // TODO
   }
 
   sortCards(cardsArray) {
