@@ -9,3 +9,15 @@ export class YesResponse {
     }
   }
 }
+
+export class PerhapsResponse {
+  getAnswer() {
+    return "Perhaps"
+  }
+  getResults() {
+    return {
+      answer: this.getAnswer(),
+      index: 1
+    }
+  }
+}
