@@ -30,7 +30,7 @@ describe('MaybeResponse', () => {
   describe('getResults()', () => {
     const maybeResponse = new MaybeResponse()
     const maybeResults = maybeResponse.getResults()
-    test('answer should be Perhaps', () => {
+    test('answer should be Maybe', () => {
       expect(maybeResults.answer).toBe('Maybe');
     })
     test('index should be 2', () => {
