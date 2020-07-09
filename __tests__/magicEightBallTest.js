@@ -1,4 +1,25 @@
-import { YesResponse, PerhapsResponse, MaybeResponse, NotTodayResponse, AskAgainLaterResponse, BetterNotTellResponse } from '../utils/magicEightBall'
+import {
+  YesResponse,
+  PerhapsResponse,
+  MaybeResponse,
+  NotTodayResponse,
+  AskAgainLaterResponse,
+  BetterNotTellResponse,
+  OnThisMonthResponse
+} from '../utils/magicEightBall'
+const months = ['January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December']
+const when = ['before', 'after']
 
 describe('YesReponse', () => {
   describe('getResults()', () => {
@@ -83,6 +104,25 @@ describe('BetterNotTellResponse', () => {
     })
     test('index should be 5', () => {
       expect(betterNotTellResults.index).toBe(5);
+    })
+  })
+})
+
+describe('OnThisMonthResponse', () => {
+  describe('getResults()', () => {
+    const onThisMonthResponse = new OnThisMonthResponse()
+    const onThisMonthResults = onThisMonthResponse.getResults()
+    test('answer should start with If you were born', () => {
+      expect(onThisMonthResults.answer.includes('If you were born')).toBe(true);
+    })
+    test('index should be 6', () => {
+      expect(onThisMonthResults.index).toBe(6);
+    })
+    test('randomWhen should be either before or after', () => {
+      expect(when.includes(onThisMonthResults.randomWhen)).toBe(true);
+    })
+    test('randomMonth should be either be a valid month', () => {
+      expect(months.includes(onThisMonthResults.randomMonth)).toBe(true);
     })
   })
 })
