@@ -1,4 +1,4 @@
-import { YesResponse, PerhapsResponse, MaybeResponse, NotTodayResponse, AskAgainLaterResponse } from '../utils/magicEightBall'
+import { YesResponse, PerhapsResponse, MaybeResponse, NotTodayResponse, AskAgainLaterResponse, BetterNotTellResponse } from '../utils/magicEightBall'
 
 describe('YesReponse', () => {
   describe('getResults()', () => {
@@ -70,6 +70,19 @@ describe('AskAgainLaterresponse', () => {
     })
     test('askAgainLaterResults.randomHour should be between 1 and 12', () => {
       expect(askAgainLaterResults.randomHour >= 1 || askAgainLaterResults.randomHour <= 12).toBe(true);
+    })
+  })
+})
+
+describe('BetterNotTellResponse', () => {
+  describe('getResults()', () => {
+    const betterNotTellResponse = new BetterNotTellResponse()
+    const betterNotTellResults = betterNotTellResponse.getResults()
+    test('answer should be better not not say, sorry', () => {
+      expect(betterNotTellResults.answer).toBe('Better to not say, sorry');
+    })
+    test('index should be 5', () => {
+      expect(betterNotTellResults.index).toBe(5);
     })
   })
 })
