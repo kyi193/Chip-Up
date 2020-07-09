@@ -83,7 +83,7 @@ class EquitoolMainMenu extends Component {
     let playerOneWins = 0
     let playerTwoWins = 0
     let tie = 0
-    const simulations = 100
+    const simulations = 500
     for (let i = 0; i < simulations; i++) {
       const game = this.state.game
       let remainingDeck = deck
