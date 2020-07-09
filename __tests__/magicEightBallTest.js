@@ -5,7 +5,8 @@ import {
   NotTodayResponse,
   AskAgainLaterResponse,
   BetterNotTellResponse,
-  OnThisMonthResponse
+  OnThisMonthResponse,
+  IfNameStartsWithResponse
 } from '../utils/magicEightBall'
 const months = ['January',
   'February',
@@ -20,6 +21,7 @@ const months = ['January',
   'November',
   'December']
 const when = ['before', 'after']
+const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 describe('YesReponse', () => {
   describe('getResults()', () => {
@@ -123,6 +125,22 @@ describe('OnThisMonthResponse', () => {
     })
     test('randomMonth should be either be a valid month', () => {
       expect(months.includes(onThisMonthResults.randomMonth)).toBe(true);
+    })
+  })
+})
+
+describe('IfNameStartsWithResponse', () => {
+  describe('getResults()', () => {
+    const ifNameStartsWithResponse = new IfNameStartsWithResponse()
+    const ifNameStartsWithResults = ifNameStartsWithResponse.getResults()
+    test('answer should start with If your name starts with a', () => {
+      expect(ifNameStartsWithResults.answer.includes('If your name starts with a')).toBe(true);
+    })
+    test('index should be 7', () => {
+      expect(ifNameStartsWithResults.index).toBe(7);
+    })
+    test('randomLetter should be a valid upperCase letter', () => {
+      expect(alphabet.includes(ifNameStartsWithResults.randomLetter)).toBe(true);
     })
   })
 })
