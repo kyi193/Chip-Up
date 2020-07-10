@@ -63,35 +63,38 @@ class MagicEightBallMainMenu extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={styles.container}>
-            <Text style={{ color: 'white', fontSize: 17 }}>Please ask a yes or no question</Text>
-            <TextInput
-              style={styles.textInput}
-              onChangeText={text => this.onChangeText(text)}
-              value={this.state.textInput}
-              color='white'
-            />
-            <FadeInView
-              duration={3000}
-              style={styles.answer}
-            >
-              {this.state.answer &&
-                <FadeInView
-                  duration={2000}
-                  style={{ padding: 5 }}
-                >
-                  <Text style={{ color: 'white', textAlign: 'center', fontSize: 16 }}>{this.state.answer}</Text>
-                </FadeInView>}
-            </FadeInView>
-            <View style={{ flexDirection: 'row', marginBottom: 10 }}>
-              <SubmitBtn onPress={this.submitQuestion} />
-              <ResetBtn onPress={this.reset} />
-            </View>
-            <Text style={{ color: 'white', fontSize: 17 }}>(or shake your phone)</Text>
+        <Text style={styles.title}>Magic 8 Ball</Text>
+        <View style={styles.magicEightBall}>
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.container}>
+              <Text style={{ color: 'white', fontSize: 17 }}>Please ask a yes or no question</Text>
+              <TextInput
+                style={styles.textInput}
+                onChangeText={text => this.onChangeText(text)}
+                value={this.state.textInput}
+                color='white'
+              />
+              <FadeInView
+                duration={3000}
+                style={styles.answer}
+              >
+                {this.state.answer &&
+                  <FadeInView
+                    duration={2000}
+                    style={{ padding: 5 }}
+                  >
+                    <Text style={{ color: 'white', textAlign: 'center', fontSize: 16 }}>{this.state.answer}</Text>
+                  </FadeInView>}
+              </FadeInView>
+              <View style={{ flexDirection: 'row', marginBottom: 10 }}>
+                <SubmitBtn onPress={this.submitQuestion} />
+                <ResetBtn onPress={this.reset} />
+              </View>
+              <Text style={{ color: 'white', fontSize: 17 }}>(or shake your phone)</Text>
 
-          </View>
-        </TouchableWithoutFeedback>
+            </View>
+          </TouchableWithoutFeedback>
+        </View>
       </View>
     )
   }
@@ -99,6 +102,18 @@ class MagicEightBallMainMenu extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 60,
+    backgroundColor: 'black',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  title: {
+    color: 'white',
+    fontFamily: 'Zapfino',
+    fontSize: 30
+  },
+  magicEightBall: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
