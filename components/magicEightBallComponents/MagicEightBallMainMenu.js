@@ -10,6 +10,15 @@ function SubmitBtn({ onPress }) {
     </TouchableOpacity>
   )
 }
+function ResetBtn({ onPress }) {
+  return (
+    <TouchableOpacity
+      style={{ justifyContent: 'center', alignItems: 'center', height: 50, width: 75, borderWidth: 1, borderColor: 'black' }}
+      onPress={onPress}>
+      <Text>Reset</Text>
+    </TouchableOpacity>
+  )
+}
 class MagicEightBallMainMenu extends Component {
   state = {
     textInput: '',
@@ -28,6 +37,12 @@ class MagicEightBallMainMenu extends Component {
       answer,
     }))
   }
+  reset = () => {
+    this.setState(() => ({
+      textInput: '',
+      answer: null
+    }))
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -40,6 +55,7 @@ class MagicEightBallMainMenu extends Component {
               value={this.state.textInput}
             />
             <SubmitBtn onPress={this.submitQuestion} />
+            <ResetBtn onPress={this.reset} />
             {this.state.answer &&
               <View>
                 <Text>{this.state.answer}</Text>
