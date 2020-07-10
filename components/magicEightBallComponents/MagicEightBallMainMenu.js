@@ -28,12 +28,7 @@ class MagicEightBallMainMenu extends Component {
   }
   async componentWillMount() {
     ShakeEventExpo.addListener(() => {
-      Keyboard.dismiss()
-      const magic8Ball = new MagicEightBall()
-      const answer = magic8Ball.getResponse().answer
-      this.setState(() => ({
-        answer,
-      }))
+      this.submitQuestion()
     });
   }
 
