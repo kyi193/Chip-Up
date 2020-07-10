@@ -50,27 +50,32 @@ class MagicEightBallMainMenu extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={styles.container}>
-            <Text>Please ask a yes or no question</Text>
-            <TextInput
-              style={styles.textInput}
-              onChangeText={text => this.onChangeText(text)}
-              value={this.state.textInput}
-            />
-            <View style={{ flexDirection: 'row' }}>
-              <SubmitBtn onPress={this.submitQuestion} />
-              <ResetBtn onPress={this.reset} />
+        <FadeInView
+          duration={750}
+          style={{ alignItems: 'center' }}
+        >
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.container}>
+              <Text>Please ask a yes or no question</Text>
+              <TextInput
+                style={styles.textInput}
+                onChangeText={text => this.onChangeText(text)}
+                value={this.state.textInput}
+              />
+              <View style={{ flexDirection: 'row' }}>
+                <SubmitBtn onPress={this.submitQuestion} />
+                <ResetBtn onPress={this.reset} />
+              </View>
+              {this.state.answer &&
+                <FadeInView
+                  duration={750}
+                  style={{ alignItems: 'center' }}
+                >
+                  <Text>Answer: {this.state.answer}</Text>
+                </FadeInView>}
             </View>
-            {this.state.answer &&
-              <FadeInView
-                duration={750}
-                style={{ alignItems: 'center' }}
-              >
-                <Text>Answer: {this.state.answer}</Text>
-              </FadeInView>}
-          </View>
-        </TouchableWithoutFeedback>
+          </TouchableWithoutFeedback>
+        </FadeInView>
       </View>
     )
   }
