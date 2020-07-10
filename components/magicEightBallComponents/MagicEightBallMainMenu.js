@@ -58,8 +58,10 @@ class MagicEightBallMainMenu extends Component {
               onChangeText={text => this.onChangeText(text)}
               value={this.state.textInput}
             />
-            <SubmitBtn onPress={this.submitQuestion} />
-            <ResetBtn onPress={this.reset} />
+            <View style={{ flexDirection: 'row' }}>
+              <SubmitBtn onPress={this.submitQuestion} />
+              <ResetBtn onPress={this.reset} />
+            </View>
             {this.state.answer &&
               <FadeInView
                 duration={750}
