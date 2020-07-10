@@ -235,17 +235,17 @@ export class IfFanOfThisMovieBadResponse {
 export class MagicEightBall {
   constructor() {
     this.response = [
-      yesResponse,
-      perhapsResponse,
-      maybeResponse,
-      notTodayResponse,
-      askAgainLaterResponse,
-      betterNotTellResponse,
-      onThisMonthResponse,
-      ifNameStartsWithResponse,
-      ifThisHeightResponse,
-      ifFanOfThisMovieGoodResponse,
-      ifFanOfThisMovieBadResponse
+      YesResponse,
+      PerhapsResponse,
+      MaybeResponse,
+      NotTodayResponse,
+      AskAgainLaterResponse,
+      BetterNotTellResponse,
+      OnThisMonthResponse,
+      IfNameStartsWithResponse,
+      IfThisHeightResponse,
+      IfFanOfThisMovieGoodResponse,
+      IfFanOfThisMovieBadResponse
     ]
   }
 
