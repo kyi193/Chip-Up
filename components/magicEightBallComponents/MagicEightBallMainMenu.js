@@ -31,6 +31,7 @@ class MagicEightBallMainMenu extends Component {
   }
 
   submitQuestion = () => {
+    Keyboard.dismiss()
     const magic8Ball = new MagicEightBall()
     const answer = magic8Ball.getResponse().answer
     this.setState(() => ({
