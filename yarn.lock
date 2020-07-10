@@ -3337,6 +3337,13 @@ expo-permissions@~8.1.0:
   resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-8.1.0.tgz#a7f2ee91ba76ce3a467e7b10adaa9ca5201b226f"
   integrity sha512-QBHD+1J9+sGFnhoEGzMRchPweeEE0OJ9ehG/0l1BMRBA7qsLS9vRC1FTJ55NwjI0Kr4RTha9r6ZX1kZHT09f/w==
 
+expo-sensors@^9.0.1:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/expo-sensors/-/expo-sensors-9.0.1.tgz#dcaccf0c6b1d6db2283150439482315e41060778"
+  integrity sha512-dsMCehc9YVW+41AysFLsx5Ikyg/Dul13e+j5JiZnHLTbJucBR3UiBE+zh10KdhYG/qORZhBmYYt4OYOhvlxmbA==
+  dependencies:
+    invariant "^2.2.4"
+
 expo-splash-screen@^0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/expo-splash-screen/-/expo-splash-screen-0.2.3.tgz#3f913652596de128828499db3a6a9da1cb201d61"

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, Platform, TextInput, TouchableWithoutFeedback, Keyboard, TouchableOpacity } from 'react-native'
 import { MagicEightBall } from '../../utils/magicEightBall'
 import FadeInView from 'react-native-fade-in-view';
-
+import { ShakeEventExpo } from '../../utils/ShakeEventExpo'
 function SubmitBtn({ onPress }) {
   return (
     <TouchableOpacity
@@ -25,6 +25,20 @@ class MagicEightBallMainMenu extends Component {
   state = {
     textInput: '',
     answer: null
+  }
+  async componentWillMount() {
+    ShakeEventExpo.addListener(() => {
+      Keyboard.dismiss()
+      const magic8Ball = new MagicEightBall()
+      const answer = magic8Ball.getResponse().answer
+      this.setState(() => ({
+        answer,
+      }))
+    });
+  }
+
+  componentWillUnmount() {
+    ShakeEventExpo.removeListener();
   }
   onChangeText = (text) => {
     this.setState(() => ({
