@@ -66,7 +66,6 @@ class MagicEightBallMainMenu extends Component {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.container}>
             <Text style={{ color: 'white', fontSize: 17 }}>Please ask a yes or no question</Text>
-            <Text style={{ color: 'white', fontSize: 17 }}>(or shake your phone)</Text>
             <TextInput
               style={styles.textInput}
               onChangeText={text => this.onChangeText(text)}
@@ -85,10 +84,11 @@ class MagicEightBallMainMenu extends Component {
                   <Text style={{ color: 'white', textAlign: 'center', fontSize: 16 }}>{this.state.answer}</Text>
                 </FadeInView>}
             </FadeInView>
-            <View style={{ flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'row', marginBottom: 10 }}>
               <SubmitBtn onPress={this.submitQuestion} />
               <ResetBtn onPress={this.reset} />
             </View>
+            <Text style={{ color: 'white', fontSize: 17 }}>(or shake your phone)</Text>
 
           </View>
         </TouchableWithoutFeedback>
