@@ -103,10 +103,10 @@ export class OnThisMonthResponse {
     this.randomMonth = randomMonth
     this.randomWhen = randomWhen
     if (randomMonth === 'January' && randomWhen === 'before') {
-      randomWhen = 'after'
+      this.randomWhen = 'after'
     }
     if (randomMonth === 'December' && randomWhen === 'after') {
-      randomWhen = 'before'
+      this.randomWhen = 'before'
     }
     return `If you were born ${randomWhen} the month of ${randomMonth}, then yes`
   }
