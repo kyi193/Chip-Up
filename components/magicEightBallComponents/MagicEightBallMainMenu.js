@@ -6,18 +6,18 @@ import FadeInView from 'react-native-fade-in-view';
 function SubmitBtn({ onPress }) {
   return (
     <TouchableOpacity
-      style={{ justifyContent: 'center', alignItems: 'center', height: 50, width: 75, borderWidth: 1, borderColor: 'black' }}
+      style={styles.submit}
       onPress={onPress}>
-      <Text>Ask</Text>
+      <Text style={{ color: 'white' }}>Ask</Text>
     </TouchableOpacity>
   )
 }
 function ResetBtn({ onPress }) {
   return (
     <TouchableOpacity
-      style={{ justifyContent: 'center', alignItems: 'center', height: 50, width: 75, borderWidth: 1, borderColor: 'black' }}
+      style={styles.reset}
       onPress={onPress}>
-      <Text>Reset</Text>
+      <Text style={{ color: 'white' }}>Reset</Text>
     </TouchableOpacity>
   )
 }
@@ -56,11 +56,12 @@ class MagicEightBallMainMenu extends Component {
         >
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.container}>
-              <Text>Please ask a yes or no question</Text>
+              <Text style={{ color: 'white' }}>Please ask a yes or no question</Text>
               <TextInput
                 style={styles.textInput}
                 onChangeText={text => this.onChangeText(text)}
                 value={this.state.textInput}
+                color='white'
               />
               <View style={{ flexDirection: 'row' }}>
                 <SubmitBtn onPress={this.submitQuestion} />
@@ -71,7 +72,7 @@ class MagicEightBallMainMenu extends Component {
                   duration={750}
                   style={{ alignItems: 'center' }}
                 >
-                  <Text>Answer: {this.state.answer}</Text>
+                  <Text style={{ color: 'white' }}>Answer: {this.state.answer}</Text>
                 </FadeInView>}
             </View>
           </TouchableWithoutFeedback>
@@ -85,7 +86,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: 'black'
   },
   textInput: {
     height: 40,
@@ -93,6 +95,22 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     paddingLeft: 10
+  },
+  submit: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 50,
+    width: 75,
+    borderWidth: 1,
+    borderColor: 'white'
+  },
+  reset: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 50,
+    width: 75,
+    borderWidth: 1,
+    borderColor: 'white'
   }
 })
 export default MagicEightBallMainMenu
