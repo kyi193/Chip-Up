@@ -257,7 +257,8 @@ export class MagicEightBall {
       IfNameStartsWithResponse,
       IfThisHeightResponse,
       IfFanOfThisMovieGoodResponse,
-      IfFanOfThisMovieBadResponse
+      IfFanOfThisMovieBadResponse,
+      ThereIsHopeResponse
     ]
   }
 

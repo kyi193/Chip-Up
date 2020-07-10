@@ -10,7 +10,8 @@ import {
   IfThisHeightResponse,
   IfFanOfThisMovieGoodResponse,
   IfFanOfThisMovieBadResponse,
-  MagicEightBall
+  MagicEightBall,
+  ThereIsHopeResponse
 } from '../utils/magicEightBall'
 const months = ['January',
   'February',
@@ -228,6 +229,20 @@ describe('IfFanOfThisMovieBadResponse', () => {
   })
 })
 
+
+describe('ThereIsHope', () => {
+  describe('getResults()', () => {
+    const thereIsHopeResponse = new ThereIsHopeResponse()
+    const thereIsHopeResults = thereIsHopeResponse.getResults()
+    test('answer should be There is hope', () => {
+      expect(thereIsHopeResults.answer).toBe('There is hope');
+    })
+    test('index should be 11', () => {
+      expect(thereIsHopeResults.index).toBe(11);
+    })
+  })
+})
+
 describe('MagicEightBall', () => {
   const magic8Ball = new MagicEightBall()
   const resultsKeys = Object.keys(magic8Ball.getResponse())
@@ -235,8 +250,8 @@ describe('MagicEightBall', () => {
     describe('this.response should be an object', () => {
       expect(typeof magic8Ball.response).toBe('object')
     })
-    describe('this.response array length should be 11', () => {
-      expect(magic8Ball.response.length).toBe(11)
+    describe('this.response array length should be 12', () => {
+      expect(magic8Ball.response.length).toBe(12)
     })
   })
   describe('getResponse()', () => {
