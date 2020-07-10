@@ -7,7 +7,8 @@ import {
   BetterNotTellResponse,
   OnThisMonthResponse,
   IfNameStartsWithResponse,
-  IfThisHeightResponse
+  IfThisHeightResponse,
+  IfFanOfThisMovieGoodResponse
 } from '../utils/magicEightBall'
 const months = ['January',
   'February',
@@ -25,6 +26,18 @@ const when = ['before', 'after']
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const inches = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5, 10.5, 11.5]
 const tallerOrShorter = ['taller', 'shorter']
+const goodMovies = ['the Lord of the Rings',
+  'The Matrix',
+  'Parasite',
+  'Memento',
+  'No Country For Old Men',
+  'Back to the Future',
+  'Jurassic Park',
+  'The Dark Knight',
+  'Inglourious Basterds',
+  'Her',
+  'The Shawshank Redemption',
+  'Blade Runner']
 
 describe('YesReponse', () => {
   describe('getResults()', () => {
@@ -167,6 +180,22 @@ describe('IfThisHeightResponse', () => {
     })
     test('randomTallerOrShorter either be taller or shorter', () => {
       expect(tallerOrShorter.includes(ifThisHeightResults.randomTallerOrShorter)).toBe(true);
+    })
+  })
+})
+
+describe('IfFanOfThisMovieGoodResponse', () => {
+  describe('getResults()', () => {
+    const ifFanOfThisMovieGoodResponse = new IfFanOfThisMovieGoodResponse()
+    const ifFanOfThisMovieGoodResults = ifFanOfThisMovieGoodResponse.getResults()
+    test('answer should include you\'re in  luck!', () => {
+      expect(ifFanOfThisMovieGoodResults.answer.includes('you\'re in luck!')).toBe(true);
+    })
+    test('index should be 9', () => {
+      expect(ifFanOfThisMovieGoodResults.index).toBe(9);
+    })
+    test('randomMovie should be a valid good movie', () => {
+      expect(goodMovies.includes(ifFanOfThisMovieGoodResults.randomMovie)).toBe(true);
     })
   })
 })
