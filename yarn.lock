@@ -6437,6 +6437,11 @@ react-native-elements@^2.0.2:
     react-native-ratings "^7.2.0"
     react-native-status-bar-height "^2.2.0"
 
+react-native-fade-in-view@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-fade-in-view/-/react-native-fade-in-view-1.1.0.tgz#9d7e39d09cbbd715c2e180151aa388d126d41cce"
+  integrity sha512-1KOyRRgDdgN3X14bDjxXmZ4/La4DVZVBbr/aOpvzxDEDsQrq8uSCM+2hBcqC5mPGqTOcwKqVRtbzxRq145xxzA==
+
 react-native-gesture-handler@~1.6.0:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.6.1.tgz#678e2dce250ed66e93af409759be22cd6375dd17"
