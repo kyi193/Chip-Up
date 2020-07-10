@@ -42,6 +42,10 @@ class MagicEightBallMainMenu extends Component {
   }
 
   submitQuestion = () => {
+    if (this.state.textInput === '') {
+      alert('Please type in a question')
+      return
+    }
     Keyboard.dismiss()
     const magic8Ball = new MagicEightBall()
     const answer = magic8Ball.getResponse().answer
@@ -81,7 +85,7 @@ class MagicEightBallMainMenu extends Component {
                     duration={2000}
                     style={{ padding: 5 }}
                   >
-                    <Text style={{ color: 'white', textAlign: 'center', fontSize: 16 }}>Answer: {this.state.answer}</Text>
+                    <Text style={{ color: 'white', textAlign: 'center', fontSize: 16 }}>{this.state.answer}</Text>
                   </FadeInView>}
               </FadeInView>
               <View style={{ flexDirection: 'row' }}>
