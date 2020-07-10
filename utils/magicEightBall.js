@@ -244,6 +244,18 @@ export class ThereIsHopeResponse {
   }
 }
 
+export class IDontKnow {
+  getAnswer() {
+    return `I don't know lol`
+  }
+  getResults() {
+    return {
+      answer: this.getAnswer(),
+      index: 12,
+    }
+  }
+}
+
 export class MagicEightBall {
   constructor() {
     this.response = [
@@ -258,7 +270,8 @@ export class MagicEightBall {
       IfThisHeightResponse,
       IfFanOfThisMovieGoodResponse,
       IfFanOfThisMovieBadResponse,
-      ThereIsHopeResponse
+      ThereIsHopeResponse,
+      IDontKnow
     ]
   }
 
