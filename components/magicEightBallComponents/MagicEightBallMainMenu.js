@@ -67,7 +67,7 @@ class MagicEightBallMainMenu extends Component {
         <View style={styles.magicEightBall}>
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.container}>
-              <Text style={{ color: 'white', fontSize: 17 }}>Please ask a yes or no question</Text>
+              <Text style={{ color: 'white', fontSize: 20, width: 310, textAlign: 'center', fontFamily: 'Hoefler Text' }}>Please ask a yes or no question (shake your phone to reveal answer)</Text>
               <TextInput
                 style={styles.textInput}
                 onChangeText={text => this.onChangeText(text)}
@@ -90,7 +90,6 @@ class MagicEightBallMainMenu extends Component {
                 <SubmitBtn onPress={this.submitQuestion} />
                 <ResetBtn onPress={this.reset} />
               </View>
-              <Text style={{ color: 'white', fontSize: 17 }}>(or shake your phone)</Text>
 
             </View>
           </TouchableWithoutFeedback>
@@ -105,7 +104,7 @@ const styles = StyleSheet.create({
     paddingTop: 60,
     backgroundColor: 'black',
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center'
   },
   title: {
@@ -137,6 +136,7 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10,
+    marginBottom: 20
   },
   reset: {
     justifyContent: 'center',
@@ -147,6 +147,7 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
+    marginBottom: 20
   },
   answer: {
     flexWrap: 'wrap',
