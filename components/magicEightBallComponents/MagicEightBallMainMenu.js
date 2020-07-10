@@ -39,6 +39,7 @@ class MagicEightBallMainMenu extends Component {
     }))
   }
   reset = () => {
+    Keyboard.dismiss()
     this.setState(() => ({
       textInput: '',
       answer: null
