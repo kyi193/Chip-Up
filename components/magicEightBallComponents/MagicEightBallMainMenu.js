@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Platform, TextInput, TouchableWithoutFeedback, Keyboard, TouchableOpacity } from 'react-native'
 import { MagicEightBall } from '../../utils/magicEightBall'
+import FadeInView from 'react-native-fade-in-view';
+
 function SubmitBtn({ onPress }) {
   return (
     <TouchableOpacity
@@ -59,9 +61,12 @@ class MagicEightBallMainMenu extends Component {
             <SubmitBtn onPress={this.submitQuestion} />
             <ResetBtn onPress={this.reset} />
             {this.state.answer &&
-              <View>
+              <FadeInView
+                duration={750}
+                style={{ alignItems: 'center' }}
+              >
                 <Text>{this.state.answer}</Text>
-              </View>}
+              </FadeInView>}
           </View>
         </TouchableWithoutFeedback>
       </View>
