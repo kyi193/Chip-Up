@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Platform, TextInput, TouchableWithoutFeedback, Keyboard, TouchableOpacity } from 'react-native'
+import { MagicEightBall } from '../../utils/magicEightBall'
 function SubmitBtn({ onPress }) {
   return (
     <TouchableOpacity
@@ -11,7 +12,8 @@ function SubmitBtn({ onPress }) {
 }
 class MagicEightBallMainMenu extends Component {
   state = {
-    textInput: ''
+    textInput: '',
+    answer: null
   }
   onChangeText = (text) => {
     this.setState(() => ({
@@ -20,8 +22,10 @@ class MagicEightBallMainMenu extends Component {
   }
 
   submitQuestion = () => {
+    const magic8Ball = new MagicEightBall()
+    const answer = magic8Ball.getResponse().answer
     this.setState(() => ({
-      textInput: ''
+      answer,
     }))
   }
   render() {
@@ -36,6 +40,10 @@ class MagicEightBallMainMenu extends Component {
               value={this.state.textInput}
             />
             <SubmitBtn onPress={this.submitQuestion} />
+            {this.state.answer &&
+              <View>
+                <Text>{this.state.answer}</Text>
+              </View>}
           </View>
         </TouchableWithoutFeedback>
       </View>
