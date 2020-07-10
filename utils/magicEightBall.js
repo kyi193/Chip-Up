@@ -232,6 +232,18 @@ export class IfFanOfThisMovieBadResponse {
   }
 }
 
+export class ThereIsHopeResponse {
+  getAnswer() {
+    return `There is hope`
+  }
+  getResults() {
+    return {
+      answer: this.getAnswer(),
+      index: 11,
+    }
+  }
+}
+
 export class MagicEightBall {
   constructor() {
     this.response = [
