@@ -12,6 +12,7 @@ import ChipUpMainMenu from './components/ChipUpMainMenu'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import RangeChart from './components/RangeChart'
 import EquitoolMainMenu from './components/EquitoolMainMenu'
+import MagicEightBallMainMenu from './components/magicEightBallComponents/MagicEightBallMainMenu'
 
 
 const Stack = createStackNavigator();
@@ -33,6 +34,10 @@ const MainNav = () => (
     <Stack.Screen
       name="Equitool"
       component={EquitoolMainMenu}
+    />
+    <Stack.Screen
+      name="Magic Eight Ball"
+      component={MagicEightBallMainMenu}
     />
   </Stack.Navigator>
 );
