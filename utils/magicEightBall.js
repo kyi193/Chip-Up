@@ -231,3 +231,28 @@ export class IfFanOfThisMovieBadResponse {
     }
   }
 }
+
+export class MagicEightBall {
+  constructor() {
+    this.response = [
+      yesResponse,
+      perhapsResponse,
+      maybeResponse,
+      notTodayResponse,
+      askAgainLaterResponse,
+      betterNotTellResponse,
+      onThisMonthResponse,
+      ifNameStartsWithResponse,
+      ifThisHeightResponse,
+      ifFanOfThisMovieGoodResponse,
+      ifFanOfThisMovieBadResponse
+    ]
+  }
+
+  getResponse() {
+    const randomIdx = Math.floor(Math.random() * this.response.length)
+    const response = new this.response[randomIdx]
+    const answer = response.getResults()
+    return answer
+  }
+}
