@@ -63,39 +63,35 @@ class MagicEightBallMainMenu extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <FadeInView
-          duration={750}
-          style={{ alignItems: 'center' }}
-        >
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.container}>
-              <Text style={{ color: 'white', fontSize: 17 }}>Please ask a yes or no question</Text>
-              <TextInput
-                style={styles.textInput}
-                onChangeText={text => this.onChangeText(text)}
-                value={this.state.textInput}
-                color='white'
-              />
-              <FadeInView
-                duration={2000}
-                style={styles.answer}
-              >
-                {this.state.answer &&
-                  <FadeInView
-                    duration={2000}
-                    style={{ padding: 5 }}
-                  >
-                    <Text style={{ color: 'white', textAlign: 'center', fontSize: 16 }}>{this.state.answer}</Text>
-                  </FadeInView>}
-              </FadeInView>
-              <View style={{ flexDirection: 'row' }}>
-                <SubmitBtn onPress={this.submitQuestion} />
-                <ResetBtn onPress={this.reset} />
-              </View>
-
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.container}>
+            <Text style={{ color: 'white', fontSize: 17 }}>Please ask a yes or no question</Text>
+            <Text style={{ color: 'white', fontSize: 17 }}>(or shake your phone)</Text>
+            <TextInput
+              style={styles.textInput}
+              onChangeText={text => this.onChangeText(text)}
+              value={this.state.textInput}
+              color='white'
+            />
+            <FadeInView
+              duration={3000}
+              style={styles.answer}
+            >
+              {this.state.answer &&
+                <FadeInView
+                  duration={2000}
+                  style={{ padding: 5 }}
+                >
+                  <Text style={{ color: 'white', textAlign: 'center', fontSize: 16 }}>{this.state.answer}</Text>
+                </FadeInView>}
+            </FadeInView>
+            <View style={{ flexDirection: 'row' }}>
+              <SubmitBtn onPress={this.submitQuestion} />
+              <ResetBtn onPress={this.reset} />
             </View>
-          </TouchableWithoutFeedback>
-        </FadeInView>
+
+          </View>
+        </TouchableWithoutFeedback>
       </View>
     )
   }
