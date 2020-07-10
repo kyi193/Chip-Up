@@ -9,7 +9,8 @@ import {
   IfNameStartsWithResponse,
   IfThisHeightResponse,
   IfFanOfThisMovieGoodResponse,
-  IfFanOfThisMovieBadResponse
+  IfFanOfThisMovieBadResponse,
+  MagicEightBall
 } from '../utils/magicEightBall'
 const months = ['January',
   'February',
@@ -223,6 +224,36 @@ describe('IfFanOfThisMovieBadResponse', () => {
     })
     test('randomMovie should be a valid bad movie', () => {
       expect(badMovies.includes(ifFanOfThisMovieBadResults.randomMovie)).toBe(true);
+    })
+  })
+})
+
+describe('MagicEightBall', () => {
+  const magic8Ball = new MagicEightBall()
+  const resultsKeys = Object.keys(magic8Ball.getResponse())
+  describe('constructor', () => {
+    describe('this.response should be an object', () => {
+      expect(typeof magic8Ball.response).toBe('object')
+    })
+    describe('this.response array length should be 11', () => {
+      expect(magic8Ball.response.length).toBe(11)
+    })
+  })
+  describe('getResponse()', () => {
+    test('getResponse() should be an object', () => {
+      expect(typeof magic8Ball.getResponse()).toBe('object')
+    })
+    test('the key named answer should exist in getResults', () => {
+      expect(resultsKeys.includes('answer')).toBe(true)
+    })
+    test('the key named index should exist in getResults', () => {
+      expect(resultsKeys.includes('index')).toBe(true)
+    })
+    test('getResponse().answer should return a string', () => {
+      expect(typeof magic8Ball.getResponse().answer).toBe('string');
+    })
+    test('getResponse().index should return a number', () => {
+      expect(typeof magic8Ball.getResponse().index).toBe('number');
     })
   })
 })
