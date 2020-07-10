@@ -67,7 +67,7 @@ class MagicEightBallMainMenu extends Component {
                 duration={750}
                 style={{ alignItems: 'center' }}
               >
-                <Text>{this.state.answer}</Text>
+                <Text>Answer: {this.state.answer}</Text>
               </FadeInView>}
           </View>
         </TouchableWithoutFeedback>
