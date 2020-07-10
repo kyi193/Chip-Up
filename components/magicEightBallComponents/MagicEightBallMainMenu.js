@@ -65,24 +65,30 @@ class MagicEightBallMainMenu extends Component {
         >
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.container}>
-              <Text style={{ color: 'white' }}>Please ask a yes or no question</Text>
+              <Text style={{ color: 'white', fontSize: 17 }}>Please ask a yes or no question</Text>
               <TextInput
                 style={styles.textInput}
                 onChangeText={text => this.onChangeText(text)}
                 value={this.state.textInput}
                 color='white'
               />
+              <FadeInView
+                duration={2000}
+                style={styles.answer}
+              >
+                {this.state.answer &&
+                  <FadeInView
+                    duration={2000}
+                    style={{ padding: 5 }}
+                  >
+                    <Text style={{ color: 'white', textAlign: 'center', fontSize: 16 }}>Answer: {this.state.answer}</Text>
+                  </FadeInView>}
+              </FadeInView>
               <View style={{ flexDirection: 'row' }}>
                 <SubmitBtn onPress={this.submitQuestion} />
                 <ResetBtn onPress={this.reset} />
               </View>
-              {this.state.answer &&
-                <FadeInView
-                  duration={750}
-                  style={{ alignItems: 'center' }}
-                >
-                  <Text style={{ color: 'white' }}>Answer: {this.state.answer}</Text>
-                </FadeInView>}
+
             </View>
           </TouchableWithoutFeedback>
         </FadeInView>
@@ -103,7 +109,9 @@ const styles = StyleSheet.create({
     width: 350,
     borderColor: 'gray',
     borderWidth: 1,
-    paddingLeft: 10
+    paddingLeft: 10,
+    borderRadius: 15,
+    marginTop: 5
   },
   submit: {
     justifyContent: 'center',
@@ -111,7 +119,9 @@ const styles = StyleSheet.create({
     height: 50,
     width: 75,
     borderWidth: 1,
-    borderColor: 'white'
+    borderColor: 'white',
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
   },
   reset: {
     justifyContent: 'center',
@@ -119,7 +129,22 @@ const styles = StyleSheet.create({
     height: 50,
     width: 75,
     borderWidth: 1,
-    borderColor: 'white'
+    borderColor: 'white',
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+  },
+  answer: {
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignContent: 'center',
+    height: 250,
+    width: 250,
+    borderColor: 'gray',
+    borderWidth: 5,
+    borderRadius: 150,
+    marginBottom: 40,
+    marginTop: 20
   }
 })
 export default MagicEightBallMainMenu
