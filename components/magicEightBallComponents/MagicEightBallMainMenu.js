@@ -26,13 +26,13 @@ class MagicEightBallMainMenu extends Component {
     textInput: '',
     answer: null
   }
-  async componentWillMount() {
+  async UNSAFE_componentWillMount() {
     ShakeEventExpo.addListener(() => {
       this.submitQuestion()
     });
   }
 
-  componentWillUnmount() {
+  UNSAFE_componentWillUnmount() {
     ShakeEventExpo.removeListener();
   }
   onChangeText = (text) => {
