@@ -8,7 +8,8 @@ import {
   OnThisMonthResponse,
   IfNameStartsWithResponse,
   IfThisHeightResponse,
-  IfFanOfThisMovieGoodResponse
+  IfFanOfThisMovieGoodResponse,
+  IfFanOfThisMovieBadResponse
 } from '../utils/magicEightBall'
 const months = ['January',
   'February',
@@ -38,6 +39,16 @@ const goodMovies = ['the Lord of the Rings',
   'Her',
   'The Shawshank Redemption',
   'Blade Runner']
+const badMovies = ['The Hunger Games Series',
+  'Gravity',
+  'Avatar (by James Cameron)',
+  'Memento',
+  'Catwoman',
+  'Gigli',
+  'Disaster Movie',
+  'Movie 43',
+  'The Mummy 3',
+]
 
 describe('YesReponse', () => {
   describe('getResults()', () => {
@@ -196,6 +207,22 @@ describe('IfFanOfThisMovieGoodResponse', () => {
     })
     test('randomMovie should be a valid good movie', () => {
       expect(goodMovies.includes(ifFanOfThisMovieGoodResults.randomMovie)).toBe(true);
+    })
+  })
+})
+
+describe('IfFanOfThisMovieBadResponse', () => {
+  describe('getResults()', () => {
+    const ifFanOfThisMovieBadResponse = new IfFanOfThisMovieBadResponse()
+    const ifFanOfThisMovieBadResults = ifFanOfThisMovieBadResponse.getResults()
+    test('answer should include then unfortunately there is no hope...', () => {
+      expect(ifFanOfThisMovieBadResults.answer.includes('then unfortunately there is no hope...')).toBe(true);
+    })
+    test('index should be 10', () => {
+      expect(ifFanOfThisMovieBadResults.index).toBe(10);
+    })
+    test('randomMovie should be a valid bad movie', () => {
+      expect(badMovies.includes(ifFanOfThisMovieBadResults.randomMovie)).toBe(true);
     })
   })
 })
