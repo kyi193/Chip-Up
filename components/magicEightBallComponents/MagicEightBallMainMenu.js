@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Platform, TextInput, TouchableWithoutFeedback, Keyboard, TouchableOpacity } from 'react-native'
-import { MagicEightBall } from '../../utils/magicEightBall'
 import FadeInView from 'react-native-fade-in-view';
 import { ShakeEventExpo } from '../../utils/ShakeEventExpo'
+import KevinsThoughtMachine from '@kyi193/kevins-thought-machine/dist'
 function SubmitBtn({ onPress }) {
   return (
     <TouchableOpacity
@@ -37,8 +37,8 @@ class MagicEightBallMainMenu extends Component {
   }
 
   submitQuestion = () => {
-    const magic8Ball = new MagicEightBall()
-    const answer = magic8Ball.getResponse().answer
+    const kevinsThoughtMachine = new KevinsThoughtMachine()
+    const answer = kevinsThoughtMachine.getResponse().answer
     this.setState(() => ({
       answer,
     }))
