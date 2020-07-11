@@ -1324,9 +1324,9 @@
     chalk "^4.0.0"
 
 "@kyi193/kevins-thought-machine@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@kyi193/kevins-thought-machine/-/kevins-thought-machine-1.0.0.tgz#7fce0497044ec2b6967bfaa30915098d3cc4fa80"
-  integrity sha512-wV8/TiwqDfCOj5YzN826mUYoOd6HD8pBhr3DPEo9F/WmH4uwbj1cbDZgEzwCSSO0YgSuL0UYqWyd745aO5xRCA==
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@kyi193/kevins-thought-machine/-/kevins-thought-machine-1.0.1.tgz#9d004afa58c5de237cbfcc5a556db095a8ddef82"
+  integrity sha512-QE3XIbkTPW2rPlsQ8v771JJ4D/PRhZjMHhPmduNBeLkWvVzeBqc2nCAXa1tEuAf3Lef5ABhJ5KURqmiiXqF4zg==
 
 "@popmotion/easing@^1.0.1":
   version "1.0.2"
