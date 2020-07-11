@@ -1323,10 +1323,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@kyi193/kevins-thought-machine@^1.0.0":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@kyi193/kevins-thought-machine/-/kevins-thought-machine-1.0.3.tgz#4ec394d7707e82fc7d556b04a0866f20ab2e6f29"
-  integrity sha512-Vh8UNXLafxt2ypsRt6IsD2Yj6Rto4jQEnKcSAJSrkHwMR+Vo2AEIiwT52MgwNgKYkEZvzx1qxUXD98wm3ZkdXw==
+"@kyi193/kevins-thought-machine@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@kyi193/kevins-thought-machine/-/kevins-thought-machine-1.0.5.tgz#7846536ab6fc11c1bfb1ae273195528f2e8b91df"
+  integrity sha512-LZroCubYApBInw5RD+HZ5INQ8ZJurmsCUpool2wkKHfOfFTcEWHZPz97JGqg0rLdslGu3tSThsOe397khXEtVw==
 
 "@popmotion/easing@^1.0.1":
   version "1.0.2"
