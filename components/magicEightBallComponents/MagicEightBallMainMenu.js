@@ -38,10 +38,12 @@ class MagicEightBallMainMenu extends Component {
 
   submitQuestion = () => {
     const kevinsThoughtMachine = new KevinsThoughtMachine()
-    const answer = kevinsThoughtMachine.getResponse().answer
     this.setState(() => ({
-      answer,
-    }))
+      answer: null
+    }), () => {
+      const answer = kevinsThoughtMachine.getResponse().answer
+      this.setState(() => ({ answer }));
+    })
   }
   reset = () => {
     Keyboard.dismiss()
