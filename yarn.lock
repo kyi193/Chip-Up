@@ -1323,6 +1323,11 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@kyi193/kevins-thought-machine@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@kyi193/kevins-thought-machine/-/kevins-thought-machine-1.0.0.tgz#7fce0497044ec2b6967bfaa30915098d3cc4fa80"
+  integrity sha512-wV8/TiwqDfCOj5YzN826mUYoOd6HD8pBhr3DPEo9F/WmH4uwbj1cbDZgEzwCSSO0YgSuL0UYqWyd745aO5xRCA==
+
 "@popmotion/easing@^1.0.1":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@popmotion/easing/-/easing-1.0.2.tgz#17d925c45b4bf44189e5a38038d149df42d8c0b4"
