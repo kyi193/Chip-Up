@@ -3,6 +3,7 @@
   "displayName": "ChipUp",
   "expo": {
     "name": "ChipUp",
+    "orientation": "portrait",
     "slug": "expo-template-bare",
     "version": "1.0.0",
     "platforms": [
