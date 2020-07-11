@@ -35,18 +35,8 @@ class MagicEightBallMainMenu extends Component {
   UNSAFE_componentWillUnmount() {
     ShakeEventExpo.removeListener();
   }
-  onChangeText = (text) => {
-    this.setState(() => ({
-      textInput: text
-    }))
-  }
 
   submitQuestion = () => {
-    if (this.state.textInput === '') {
-      alert('Please type in a question')
-      return
-    }
-    Keyboard.dismiss()
     const magic8Ball = new MagicEightBall()
     const answer = magic8Ball.getResponse().answer
     this.setState(() => ({
@@ -68,12 +58,6 @@ class MagicEightBallMainMenu extends Component {
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.container}>
               <Text style={{ color: 'white', fontSize: 20, width: 310, textAlign: 'center', fontFamily: 'Hoefler Text' }}>Please ask a yes or no question (shake your phone to reveal answer)</Text>
-              <TextInput
-                style={styles.textInput}
-                onChangeText={text => this.onChangeText(text)}
-                value={this.state.textInput}
-                color='white'
-              />
               <FadeInView
                 duration={3000}
                 style={styles.answer}
