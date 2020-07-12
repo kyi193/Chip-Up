@@ -13,6 +13,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import RangeChart from './components/RangeChart'
 import EquitoolMainMenu from './components/EquitoolMainMenu'
 import MagicEightBallMainMenu from './components/magicEightBallComponents/MagicEightBallMainMenu'
+import { AppLoading } from 'expo';
+import { Asset } from 'expo-asset'
 
 
 const Stack = createStackNavigator();
@@ -43,7 +45,21 @@ const MainNav = () => (
 );
 
 export default class App extends React.Component {
+  state = {
+    isReady: false,
+  }
+
   render() {
+    if (!this.state.isReady) {
+      return (
+        <AppLoading
+          startAsync={this._cacheResourcesAsync}
+          onFinish={() => this.setState({ isReady: true })}
+          onError={console.warn}
+        />
+      );
+    }
+
     return (
       <Provider store={createStore(reducer, composeWithDevTools(middleware))}>
         <SafeAreaProvider style={{ flex: 1 }}>
@@ -53,5 +69,14 @@ export default class App extends React.Component {
         </SafeAreaProvider>
       </Provider>
     );
+  }
+
+  async _cacheResourcesAsync() {
+    const images = [require('./assets/images/splashscreen.png')];
+
+    const cacheImages = images.map(image => {
+      return Asset.fromModule(image).downloadAsync();
+    });
+    return Promise.all(cacheImages);
   }
 }
