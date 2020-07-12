@@ -3,6 +3,9 @@
   "displayName": "ChipUp",
   "expo": {
     "name": "ChipUp",
+    "splash": {
+      "image": "./assets/images/splashscreen.png"
+    },
     "orientation": "portrait",
     "slug": "expo-template-bare",
     "version": "1.0.0",
