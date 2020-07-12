@@ -1,13 +1,18 @@
 {
-  "name": "ChipUp",
-  "displayName": "ChipUp",
   "expo": {
     "name": "ChipUp",
+    "slug": "ChipUp",
+    "description": "A poker session app that lets you save your session results and view data and graph analytics",
+    "displayName": "ChipUp",
+    "icon": "./assets/images/icon.png",
     "splash": {
       "image": "./assets/images/splashscreen.png"
     },
+    "ios": {
+      "bundleIdentifier": "com.chipup.exp",
+      "buildNumber": "1.0.0"
+    },
     "orientation": "portrait",
-    "slug": "expo-template-bare",
     "version": "1.0.0",
     "platforms": [
       "ios",
