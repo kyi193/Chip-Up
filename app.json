@@ -6,7 +6,8 @@
     "description": "A poker session app that lets you save your session results and view data and graph analytics",
     "icon": "./assets/images/icon.png",
     "splash": {
-      "image": "./assets/images/splashscreen.png"
+      "image": "./assets/images/splashscreen.png",
+      "resizeMode": "cover"
     },
     "ios": {
       "bundleIdentifier": "com.chipup.exp",

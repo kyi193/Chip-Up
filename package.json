@@ -1,6 +1,9 @@
 {
+  "homepage": "https://kyi193.github.io/Chip-Up/",
   "main": "index.js",
   "scripts": {
+    "deploy": "gh-pages -d web-build",
+    "predeploy": "expo build:web",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "web": "expo start --web",
@@ -43,6 +46,7 @@
   "devDependencies": {
     "@babel/core": "~7.9.0",
     "babel-jest": "~25.2.6",
+    "gh-pages": "^3.1.0",
     "jest": "^26.1.0",
     "react-test-renderer": "~16.9.0"
   },
