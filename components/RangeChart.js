@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, Platform } from 'react-native'
+import { Text, View, StyleSheet, Platform, TouchableOpacity, Image } from 'react-native'
 import { handChart, ranges } from '../utils/helpers'
 import { connect } from 'react-redux'
 import { Header } from 'react-native-elements'
@@ -54,10 +54,17 @@ class RangeChart extends Component {
     return (
       <View style={{ flex: 1, backgroundColor: 'black' }}>
         <Header
-          leftComponent={<Ionicons style={(Platform.OS === 'ios' || Platform.OS === 'android' ? {} : { paddingLeft: 25 })} name="md-arrow-round-back" size={30} color="orange" onPress={() => this.props.navigation.goBack(null)} />}
+          leftComponent={<TouchableOpacity onPress={() => this.props.navigation.goBack(null)}>
+            <Image
+              style={{ height: 20, width: 20 }}
+              source={require('../assets/images/backOrange.png')}
+            />
+          </TouchableOpacity>}
           centerComponent={{ text: `${pos} - ${bigBlind} BB (${ante}% Ante)`, style: { color: 'gold', fontSize: (Platform.OS === 'ios' || Platform.OS === 'android') ? 14 : 40, fontWeight: 'bold' } }}
-          rightComponent={<Entypo style={(Platform.OS === 'ios' || Platform.OS === 'android' ? {} : { paddingRight: 25 })} name="hair-cross" size={30}
-            color={'orange'} />}
+          rightComponent={<Image
+            style={{ height: 30, width: 30 }}
+            source={require('../assets/images/rocketOrange.png')}
+          />}
           containerStyle={(Platform.OS === 'ios' || Platform.OS === 'android')
             ? {
               backgroundColor: 'black',

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableWithoutFeedback, Keyboard, ImageBackground, TouchableOpacity, Platform } from 'react-native'
+import { View, Text, StyleSheet, TouchableWithoutFeedback, Keyboard, ImageBackground, TouchableOpacity, Platform, Image } from 'react-native'
 import { Header } from 'react-native-elements'
 import { Entypo } from '@expo/vector-icons';
 import ChipUpPlayerNum from './ChipUpPlayerNum'
@@ -65,10 +65,17 @@ class ChipUpMainMenu extends Component {
       <View style={styles.container}>
         <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
           <Header
-            leftComponent={<Ionicons style={(Platform.OS === 'ios' || Platform.OS === 'android' ? {} : { paddingLeft: 25 })} name="md-arrow-round-back" size={30} color="orange" onPress={() => this.props.navigation.goBack(null)} />}
+            leftComponent={<TouchableOpacity onPress={() => this.props.navigation.goBack(null)}>
+              <Image
+                style={{ height: 20, width: 20 }}
+                source={require('../assets/images/backOrange.png')}
+              />
+            </TouchableOpacity>}
             centerComponent={{ text: 'Chip Up', style: { color: 'gold', fontSize: (Platform.OS === 'ios' || Platform.OS === 'android') ? 24 : 40, fontWeight: 'bold', } }}
-            rightComponent={<Entypo style={(Platform.OS === 'ios' || Platform.OS === 'android' ? {} : { paddingRight: 25 })} name="hair-cross" size={30}
-              color={'orange'} />}
+            rightComponent={<Image
+              style={{ height: 30, width: 30 }}
+              source={require('../assets/images/rocketOrange.png')}
+            />}
             containerStyle={(Platform.OS === 'ios' || Platform.OS === 'android')
               ? {
                 backgroundColor: 'black',

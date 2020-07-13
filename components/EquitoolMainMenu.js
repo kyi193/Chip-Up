@@ -195,11 +195,18 @@ class EquitoolMainMenu extends Component {
       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
         <View style={Platform === 'web' ? styles.container : styles.containerIos}>
           <Header
-            leftComponent={<Ionicons style={(Platform.OS === 'ios' || Platform.OS === 'android' ? {} : { paddingLeft: 25 })} name="md-arrow-round-back" size={30} color="#3498db" onPress={() => this.props.navigation.goBack(null)} />}
+            leftComponent={<TouchableOpacity onPress={() => this.props.navigation.goBack(null)}>
+              <Image
+                style={{ height: 20, width: 20 }}
+                source={require('../assets/images/backBlue.png')}
+              />
+            </TouchableOpacity>}
             centerComponent={{ text: 'Equitools', style: { color: '#3498db', fontSize: (Platform.OS === 'ios' || Platform.OS === 'android') ? 24 : 40, fontWeight: 'bold', } }}
             rightComponent={<TouchableOpacity onPress={this.calculateOdds}>
-              <Entypo style={(Platform.OS === 'ios' || Platform.OS === 'android' ? {} : { paddingRight: 25 })} name="hair-cross" size={30}
-                color={'#3498db'} />
+              <Image
+                style={{ height: 30, width: 30 }}
+                source={require('../assets/images/calculate.png')}
+              />
             </TouchableOpacity>}
             containerStyle={(Platform.OS === 'ios' || Platform.OS === 'android')
               ? {

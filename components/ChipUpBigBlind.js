@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native'
+import { View, Text, StyleSheet, TextInput, TouchableWithoutFeedback, Keyboard, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { AntDesign } from '@expo/vector-icons';
 
@@ -49,7 +49,10 @@ class ChipUpBigBlind extends Component {
               style={styles.buttonLeft}
               onPress={this.decrementBigBlind}
             >
-              <AntDesign name="caretleft" size={30} color="black" />
+              <Image
+                style={{ height: 30, width: 30 }}
+                source={require('../assets/images/left.png')}
+              />
             </TouchableOpacity>
             <TextInput
               style={styles.inputField}
@@ -61,7 +64,10 @@ class ChipUpBigBlind extends Component {
               style={styles.buttonRight}
               onPress={this.incrementBigBlind}
             >
-              <AntDesign name="caretright" size={30} color="black" />
+              <Image
+                style={{ height: 30, width: 30 }}
+                source={require('../assets/images/right.png')}
+              />
             </TouchableOpacity>
           </View>
         </TouchableWithoutFeedback>

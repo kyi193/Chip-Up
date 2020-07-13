@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Image } from 'react-native'
 import ActionButton from '../assets/circularTools/ActionButton.js'
 import { Entypo } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
@@ -12,14 +12,23 @@ class MainMenu extends Component {
     return (
       <View style={styles.container}>
         <ActionButton buttonColor="rgba(42, 125, 188, 0.5)">
-          <ActionButton.Item buttonColor='#FF8C00' title="New Task" btnOutRange='#ffffff' onPress={() => this.props.navigation.navigate('Chip Up')}>
-            <Entypo name="hair-cross" style={styles.actionButtonIcon} />
+          <ActionButton.Item buttonColor='#BEBEBE' title="New Task" btnOutRange='#ffffff' onPress={() => this.props.navigation.navigate('Chip Up')}>
+            <Image
+              style={{ height: 30, width: 30 }}
+              source={require('../assets/images/rocketOrange.png')}
+            />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => this.props.navigation.navigate('Equitool')}>
-            <Feather name="shuffle" style={styles.actionButtonIcon} />
+          <ActionButton.Item buttonColor='#BEBEBE' title="Notifications" onPress={() => this.props.navigation.navigate('Equitool')}>
+            <Image
+              style={{ height: 30, width: 30 }}
+              source={require('../assets/images/pokerBlue.png')}
+            />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#1abc9c' title="All Tasks" onPress={() => this.props.navigation.navigate('Magic Eight Ball')}>
-            <FontAwesome5 name="bolt" style={styles.actionButtonIcon} />
+          <ActionButton.Item buttonColor='#BEBEBE' title="All Tasks" onPress={() => this.props.navigation.navigate('Magic Eight Ball')}>
+            <Image
+              style={{ height: 40, width: 40 }}
+              source={require('../assets/images/magicEightBall.png')}
+            />
           </ActionButton.Item>
         </ActionButton>
       </View>
