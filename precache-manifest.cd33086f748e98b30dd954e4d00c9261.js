@@ -324,12 +324,12 @@ self.__precacheManifest = [
     "url": "/Chip-Up/static/media/splashscreen.906aa04e.png"
   },
   {
-    "revision": "ec543248d7b23864564429fc03837190",
-    "url": "/Chip-Up/serve.json"
-  },
-  {
     "revision": "48c7ed4e7da9792af288a60d7242d615",
     "url": "/Chip-Up/expo-service-worker.js"
+  },
+  {
+    "revision": "ec543248d7b23864564429fc03837190",
+    "url": "/Chip-Up/serve.json"
   },
   {
     "revision": "b421bc625b8c04bf949b800861d18315",
