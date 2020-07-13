@@ -1,11 +1,11 @@
 {
   "files": {
-    "app.js": "/Chip-Up/static/js/app.6e8fa783.chunk.js",
-    "app.js.map": "/Chip-Up/static/js/app.6e8fa783.chunk.js.map",
+    "app.js": "/Chip-Up/static/js/app.29b744ae.chunk.js",
+    "app.js.map": "/Chip-Up/static/js/app.29b744ae.chunk.js.map",
     "runtime~app.js": "/Chip-Up/static/js/runtime~app.9809d703.js",
     "runtime~app.js.map": "/Chip-Up/static/js/runtime~app.9809d703.js.map",
-    "static/js/2.9a640a09.chunk.js": "/Chip-Up/static/js/2.9a640a09.chunk.js",
-    "static/js/2.9a640a09.chunk.js.map": "/Chip-Up/static/js/2.9a640a09.chunk.js.map",
+    "static/js/2.98c13723.chunk.js": "/Chip-Up/static/js/2.98c13723.chunk.js",
+    "static/js/2.98c13723.chunk.js.map": "/Chip-Up/static/js/2.98c13723.chunk.js.map",
     "fonts/AntDesign.ttf": "/Chip-Up/./fonts/AntDesign.ttf",
     "fonts/Entypo.ttf": "/Chip-Up/./fonts/Entypo.ttf",
     "fonts/Feather.ttf": "/Chip-Up/./fonts/Feather.ttf",
@@ -78,6 +78,7 @@
     "static/media/TS.png": "/Chip-Up/static/media/TS.b5405714.png",
     "static/media/backBlue.png": "/Chip-Up/static/media/backBlue.28f367cc.png",
     "static/media/backOrange.png": "/Chip-Up/static/media/backOrange.37b237cc.png",
+    "static/media/backWhite.png": "/Chip-Up/static/media/backWhite.91ce4128.png",
     "static/media/bell.png": "/Chip-Up/static/media/bell.a7b9dc9d.png",
     "static/media/calculate.png": "/Chip-Up/static/media/calculate.26862609.png",
     "static/media/heart.png": "/Chip-Up/static/media/heart.2327736b.png",
@@ -92,7 +93,7 @@
   },
   "entrypoints": [
     "static/js/runtime~app.9809d703.js",
-    "static/js/2.9a640a09.chunk.js",
-    "static/js/app.6e8fa783.chunk.js"
+    "static/js/2.98c13723.chunk.js",
+    "static/js/app.29b744ae.chunk.js"
   ]
 }
