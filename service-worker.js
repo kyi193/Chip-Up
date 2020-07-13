@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/chip-up/precache-manifest.74a3d62757b889a5a96d7b7f60cecb43.js"
+  "/Chip-Up/precache-manifest.80f20bf32cc0e8efab299d9489da5c64.js"
 );
 
 workbox.skipWaiting();
@@ -29,7 +29,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/chip-up/index.html", {
+workbox.routing.registerNavigationRoute("/Chip-Up/index.html", {
   
   blacklist: [/^\/_/,/\/[^/]+\.[^/]+$/],
 });
