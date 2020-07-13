@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "862278ccdcc083e72d2e",
-    "url": "/Chip-Up/static/js/app.29b744ae.chunk.js"
+    "revision": "004acf8e0d2527fadfcd",
+    "url": "/Chip-Up/static/js/app.5abd0d20.chunk.js"
   },
   {
     "revision": "fd4342c2a7cf2e5f5bab",
@@ -344,7 +344,7 @@ self.__precacheManifest = [
     "url": "/Chip-Up/favicon.ico"
   },
   {
-    "revision": "f522e3d5bba330c167926f68921991d7",
+    "revision": "0d0fda889dba6b12d9d8daba63a15d60",
     "url": "/Chip-Up/index.html"
   },
   {

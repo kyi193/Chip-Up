@@ -1,7 +1,7 @@
 {
   "files": {
-    "app.js": "/Chip-Up/static/js/app.29b744ae.chunk.js",
-    "app.js.map": "/Chip-Up/static/js/app.29b744ae.chunk.js.map",
+    "app.js": "/Chip-Up/static/js/app.5abd0d20.chunk.js",
+    "app.js.map": "/Chip-Up/static/js/app.5abd0d20.chunk.js.map",
     "runtime~app.js": "/Chip-Up/static/js/runtime~app.9809d703.js",
     "runtime~app.js.map": "/Chip-Up/static/js/runtime~app.9809d703.js.map",
     "static/js/2.98c13723.chunk.js": "/Chip-Up/static/js/2.98c13723.chunk.js",
@@ -94,6 +94,6 @@
   "entrypoints": [
     "static/js/runtime~app.9809d703.js",
     "static/js/2.98c13723.chunk.js",
-    "static/js/app.29b744ae.chunk.js"
+    "static/js/app.5abd0d20.chunk.js"
   ]
 }
