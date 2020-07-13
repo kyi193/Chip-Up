@@ -75,8 +75,6 @@ class MagicEightBallMainMenu extends Component {
               borderBottomColor: 'white',
               borderBottomWidth: '3',
               height: 100,
-              borderBottomColor: 'white',
-              borderBottomWidth: 4
             }} />
         <Text style={styles.title}>Magic 8 Ball</Text>
         <View style={styles.magicEightBall}>
