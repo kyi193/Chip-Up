@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableWithoutFeedback, Keyboard, ImageBackground, TouchableOpacity, Platform, Image } from 'react-native'
+import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Platform, Image } from 'react-native'
 import { Header } from 'react-native-elements'
 import { Entypo } from '@expo/vector-icons';
 import ChipUpPlayerNum from './ChipUpPlayerNum'
 import ChipUpAnteAmt from './ChipUpAnteAmt'
 import ChipUpBigBlind from './ChipUpBigBlind'
 import ChipUpPosition from './ChipUpPosition'
-import RangeChart from './RangeChart'
 import { connect } from 'react-redux'
 import { submitParameters } from '../actions'
-import { Ionicons } from '@expo/vector-icons';
 
 const backgroundImage = (Platform.OS === 'ios' || Platform.OS === 'android') ? { uri: "https://i.imgur.com/BrFGUhA.jpg" } : { uri: "https://i.imgur.com/qDG7eHT.jpg" };
 
