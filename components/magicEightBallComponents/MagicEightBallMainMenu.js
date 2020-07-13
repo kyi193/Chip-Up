@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Platform, TextInput, TouchableWithoutFeedback, Keyboard, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Platform, TextInput, TouchableWithoutFeedback, Keyboard, TouchableOpacity, Image } from 'react-native'
 import FadeInView from 'react-native-fade-in-view';
 import { ShakeEventExpo } from '../../utils/ShakeEventExpo'
 import KevinsThoughtMachine from '@kyi193/kevins-thought-machine/dist'
+import { Header } from 'react-native-elements'
 function SubmitBtn({ onPress }) {
   return (
     <TouchableOpacity
@@ -55,6 +56,28 @@ class MagicEightBallMainMenu extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Header
+          centerComponent={<TouchableOpacity onPress={() => this.props.navigation.goBack(null)}>
+            <Image
+              style={{ height: 50, width: 50 }}
+              source={require('../../assets/images/backWhite.png')}
+            />
+          </TouchableOpacity>}
+          containerStyle={(Platform.OS === 'ios' || Platform.OS === 'android')
+            ? {
+              backgroundColor: 'black',
+              justifyContent: 'space-around',
+              borderBottomColor: 'white',
+              borderBottomWidth: '3',
+            } : {
+              backgroundColor: 'black',
+              justifyContent: 'space-around',
+              borderBottomColor: 'white',
+              borderBottomWidth: '3',
+              height: 100,
+              borderBottomColor: 'white',
+              borderBottomWidth: 4
+            }} />
         <Text style={styles.title}>Magic 8 Ball</Text>
         <View style={styles.magicEightBall}>
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
