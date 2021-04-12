@@ -3,10 +3,6 @@ import { Text, View, StyleSheet, Platform, TouchableOpacity, Image } from 'react
 import { handChart, ranges } from '../utils/helpers'
 import { connect } from 'react-redux'
 import { Header } from 'react-native-elements'
-import { Entypo } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
-
-
 
 class RangeChart extends Component {
   getCombination = (range) => {

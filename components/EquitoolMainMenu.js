@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Platform, ImageBackground, Dimensions, TouchableOpacity, Image } from 'react-native'
 import { Header } from 'react-native-elements'
-import { Entypo, Ionicons } from '@expo/vector-icons';
 import EquitoolPlayerCards from './EquitoolPlayerCards'
 import EquitoolCommunityCardSelector from './EquitoolCommunityCardSelector'
 import { connect } from 'react-redux'
@@ -39,13 +38,10 @@ class EquitoolMainMenu extends Component {
   }
   componentDidUpdate = () => {
     const { dispatch } = this.props
-    // const { playerOneCardA, playerOneCardB, playerTwoCardA, playerTwoCardB, flopOneCard, flopTwoCard, flopThreeCard, turnCard } = this.state
-    // dispatch(saveEquitoolParameters(...this.state.game.cardsInPlay()))
     dispatch(saveEquitoolParameters(this.state.game))
   }
   componentDidMount() {
     const { dispatch } = this.props
-    // dispatch(saveEquitoolParameters(...this.state.game.cardsInPlay()))
     dispatch(saveEquitoolParameters(this.state.game))
   }
   removeCards(arr, subset) {
